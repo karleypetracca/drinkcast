@@ -3,12 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import config from './components/config';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App
+      apiKey={config.API_KEY}
+      sessionId={config.SESSION_ID}
+      token={config.TOKEN}
+    />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 serviceWorker.unregister();
