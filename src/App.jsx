@@ -7,7 +7,7 @@ import Subscriber from './components/Subscriber';
 
 
 function App({ apiKey, sessionId, token }) {
-  const [error, setError] = useState('null');
+  const [error, setError] = useState(null);
   const [connected, setConnected] = useState(false);
   const sessionEvents = {
     sessionConnected: () => setConnected(true),
