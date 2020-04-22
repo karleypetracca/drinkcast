@@ -3,11 +3,13 @@ import React, { useState, useReducer } from 'react';
 import { OTSession, OTStreams, preloadScript } from 'opentok-react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { StateProvider } from './context';
+
+import Nav from './components/Nav';
+import IndexPage from './components/IndexPage';
 import ConnectionStatus from './components/ConnectionStatus';
 import Publisher from './components/Publisher';
 import Subscriber from './components/Subscriber';
 import Reducer from './reducers/Reducer';
-import IndexPage from './components/IndexPage';
 import CreateBar from './components/CreateBar';
 import JoinBar from './components/JoinBar';
 
@@ -37,9 +39,7 @@ function App({ apiKey, sessionId, token }) {
         <Route path="/createbar" component={CreateBar} />
         <Route path="/joinbar" component={JoinBar} />
         <Route path="/join">
-          <nav>
-            <h1>drinkcast</h1>
-          </nav>
+          <Nav />
           <main>
             <OTSession
               apiKey={apiKey}
@@ -57,9 +57,7 @@ function App({ apiKey, sessionId, token }) {
             </OTSession>
           </main>
         </Route>
-
       </Router>
-
     </StateProvider>
 
   );
