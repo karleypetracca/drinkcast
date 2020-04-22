@@ -1,24 +1,40 @@
-body, html {
-  background-color: pink;
-  height: 100%;
-  font-family: Verdana, Geneva, sans-serif
+nav {
+  width: calc(100vw - (100vw - 100%));
+  min-height: var(--nav-height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary);
+  /* box-shadow: 0 10px 4px var(--brown); */
 }
+
+main {
+  color: var(--tertiary);
+  width: calc(100vw - (100vw - 100%));
+  background-color: var(--yellow);
+  min-height: calc(100vh - var(--nav-height));
+}
+
 .connectionStatus {
   padding-top: 20px;
   margin-left: 5%;
   font-size: 1.5em;
 }
+
 .subscriber {
   margin-left: 10%;
 }
+
 .publisher {
   float: right;
   margin-right: 10%;
 }
+
 .OTPublisherContainer {
-  width: 80vh !important;
-  height: 80vh !important;
+  width: 90%;
+  height: 90%;
 }
+
 #error {
   color: red;
 }
