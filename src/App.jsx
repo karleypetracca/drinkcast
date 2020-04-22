@@ -38,7 +38,7 @@ function App({ apiKey, sessionId, token }) {
         <Route path="/" component={IndexPage} exact />
         <Route path="/createbar" component={CreateBar} />
         <Route path="/joinbar" component={JoinBar} />
-        <Route path="/join">
+        <Route path="/bar">
           <Nav />
           <main>
             <OTSession
