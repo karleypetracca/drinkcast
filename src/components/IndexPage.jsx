@@ -2,7 +2,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Image from './Image';
 import Button from './Button';
+
+import logo from '../images/drinkcast-logo-white.png';
+import tagline from '../images/drinkcast-tagline-white.png';
 
 // styles
 
@@ -15,10 +19,11 @@ const IndexDiv = styled.div`
 `;
 
 const IndexBox = styled.div`
-  border: 2px solid var(--secondary);
+  border: 2px solid var(--tertiary);
   border-radius: 5px;
   background-color: var(--orange);
-  width: 280px;
+  width: 50%;
+  min-width: 300px;
   margin: 15vh auto;
   padding: 1rem;
   height: auto;
@@ -27,8 +32,14 @@ const IndexBox = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
+  font-weight: bold;
+
   @media screen and (max-width: 450px) {
     
+  }
+
+  * {
+    margin: 5px auto;
   }
 `;
 
@@ -40,12 +51,14 @@ const ButtonBox = styled.div`
 `;
 
 const IndexPage = () => {
-  const greeting = 'hi there! How is this going to behave if i type as longish sentence?';
+  const greeting = 'hi there! How is this going to behave if i type as longish sentence? testing 123... ';
 
   return (
     <IndexDiv>
       <IndexBox>
-        {greeting.repeat(3)}
+        <Image src={logo} alt="logo" className="inline-logo" />
+        <Image src={tagline} alt="tagline" className="inline-tagline" />
+        <h3>{greeting.repeat(3)}</h3>
         <ButtonBox>
           <Button url="/createbar">CREATE A BAR</Button>
           <p><span>OR</span></p>
