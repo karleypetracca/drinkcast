@@ -9,10 +9,10 @@ const IndexPage = () => {
     <div>
       <p>{greeting}</p>
       <div>
-        <a type="button" href="#">CREATE A BAR</a>
+        <a type="button" href="/createbar">CREATE A BAR</a>
       </div>
       <div>
-        <a type="button" href="/join">GO TO A BAR</a>
+        <a type="button" href="/joinbar">GO TO A BAR</a>
       </div>
 
     </div>

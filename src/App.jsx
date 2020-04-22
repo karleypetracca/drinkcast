@@ -8,6 +8,8 @@ import Publisher from './components/Publisher';
 import Subscriber from './components/Subscriber';
 import Reducer from './reducers/Reducer';
 import IndexPage from './components/IndexPage';
+import CreateBar from './components/CreateBar';
+import JoinBar from './components/JoinBar';
 
 
 import './App.css';
@@ -32,6 +34,8 @@ function App({ apiKey, sessionId, token }) {
     <StateProvider value={useReducer(Reducer, initialState)}>
       <Router>
         <Route path="/" component={IndexPage} exact />
+        <Route path="/createbar" component={CreateBar} />
+        <Route path="/joinbar" component={JoinBar} />
         <Route path="/join">
           <nav>
             <h1>drinkcast</h1>
