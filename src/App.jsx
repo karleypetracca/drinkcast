@@ -31,11 +31,11 @@ function App({ apiKey, sessionId, token }) {
 
   return (
     <StateProvider value={useReducer(Reducer, initialState)}>
-      <Nav />
-      <main>
-        <Router>
-          <Route path="/" component={IndexPage} exact />
-          <Route path="/join">
+      <Router>
+        <Route path="/" component={IndexPage} exact />
+        <Route path="/join">
+          <Nav />
+          <main>
             <OTSession
               apiKey={apiKey}
               sessionId={sessionId}
@@ -50,9 +50,9 @@ function App({ apiKey, sessionId, token }) {
                 <Subscriber />
               </OTStreams>
             </OTSession>
-          </Route>
-        </Router>
-      </main>
+          </main>
+        </Route>
+      </Router>
     </StateProvider>
 
   );

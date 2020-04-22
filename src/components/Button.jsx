@@ -5,9 +5,16 @@ import styled from 'styled-components';
 const ButtonStyled = styled.a`
   text-align: center;
   cursor: pointer;
+  transition: 0.3s ease-in-out;
+  background-color: var(--secondary);
+  color: var(--white);
+
+  a:hover {
+    background-color: var(--green-dark);
+    color: white;
+  }
 
   button {
-    background-color: var(--secondary);
     color: var(--white);
     border-radius: 4px;
     border-style: none;
