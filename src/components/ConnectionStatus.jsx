@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-const ConnectinStatus = ({ connected }) => {
+const ConnectionStatus = ({ connected }) => {
   const status = connected ? 'Connected' : 'Disconnected';
 
   return (
@@ -12,4 +12,4 @@ const ConnectinStatus = ({ connected }) => {
   );
 };
 
-export default ConnectinStatus;
+export default ConnectionStatus;
