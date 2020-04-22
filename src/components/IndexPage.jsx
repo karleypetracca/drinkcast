@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 
+import Button from './Button';
 
 const IndexPage = () => {
   const greeting = 'hi';
@@ -8,13 +9,10 @@ const IndexPage = () => {
   return (
     <div>
       <p>{greeting}</p>
-      <div>
-        <a type="button" href="#">CREATE A BAR</a>
-      </div>
-      <div>
-        <a type="button" href="/join">GO TO A BAR</a>
-      </div>
-
+      <Button url="#">
+        CREATE A BAR
+      </Button>
+      <Button url="/join">GO TO A BAR</Button>
     </div>
   );
 };

@@ -3,12 +3,13 @@ import React, { useState, useReducer } from 'react';
 import { OTSession, OTStreams, preloadScript } from 'opentok-react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { StateProvider } from './context';
+
+import Nav from './components/Nav';
+import IndexPage from './components/IndexPage';
 import ConnectionStatus from './components/ConnectionStatus';
 import Publisher from './components/Publisher';
 import Subscriber from './components/Subscriber';
 import Reducer from './reducers/Reducer';
-import IndexPage from './components/IndexPage';
-
 
 import './App.css';
 
@@ -30,13 +31,11 @@ function App({ apiKey, sessionId, token }) {
 
   return (
     <StateProvider value={useReducer(Reducer, initialState)}>
-      <Router>
-        <Route path="/" component={IndexPage} exact />
-        <Route path="/join">
-          <nav>
-            <h1>drinkcast</h1>
-          </nav>
-          <main>
+      <Nav />
+      <main>
+        <Router>
+          <Route path="/" component={IndexPage} exact />
+          <Route path="/join">
             <OTSession
               apiKey={apiKey}
               sessionId={sessionId}
@@ -51,11 +50,9 @@ function App({ apiKey, sessionId, token }) {
                 <Subscriber />
               </OTStreams>
             </OTSession>
-          </main>
-        </Route>
-
-      </Router>
-
+          </Route>
+        </Router>
+      </main>
     </StateProvider>
 
   );
