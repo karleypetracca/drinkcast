@@ -45,7 +45,6 @@ function App({ apiKey, sessionId, token }) {
             </OTStreams>
           </OTSession>
         </main>
-
       </div>
     </StateProvider>
 
