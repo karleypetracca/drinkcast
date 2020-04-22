@@ -47,9 +47,9 @@ const IndexPage = () => {
       <IndexBox>
         {greeting.repeat(3)}
         <ButtonBox>
-          <Button url="#">CREATE A BAR</Button>
+          <Button url="/createbar">CREATE A BAR</Button>
           <p><span>OR</span></p>
-          <Button url="/join">GO TO A BAR</Button>
+          <Button url="/joinbar">GO TO A BAR</Button>
         </ButtonBox>
 
       </IndexBox>
