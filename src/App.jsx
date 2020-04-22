@@ -7,6 +7,8 @@ import Publisher from './components/Publisher';
 import Subscriber from './components/Subscriber';
 import Reducer from './reducers/Reducer';
 
+import './App.css';
+
 function App({ apiKey, sessionId, token }) {
   const initialState = {
     example: 'Hi there, welcome to DrinkCast!',
@@ -25,28 +27,25 @@ function App({ apiKey, sessionId, token }) {
 
   return (
     <StateProvider value={useReducer(Reducer, initialState)}>
-      <div className="App">
-        <header className="App-header">
-          drinkcast
-        </header>
-        <main>
-          <OTSession
-            apiKey={apiKey}
-            sessionId={sessionId}
-            token={token}
-            eventHandlers={sessionEvents}
-            onError={onError}
-          >
-            {error ? <div>error</div> : null}
-            <ConnectionStatus connected={connected} />
-            <Publisher />
-            <OTStreams>
-              <Subscriber />
-            </OTStreams>
-          </OTSession>
-        </main>
-
-      </div>
+      <nav>
+        <h1>drinkcast</h1>
+      </nav>
+      <main>
+        <OTSession
+          apiKey={apiKey}
+          sessionId={sessionId}
+          token={token}
+          eventHandlers={sessionEvents}
+          onError={onError}
+        >
+          {error ? <div>error</div> : null}
+          <ConnectionStatus connected={connected} />
+          <Publisher />
+          <OTStreams>
+            <Subscriber />
+          </OTStreams>
+        </OTSession>
+      </main>
     </StateProvider>
 
   );
