@@ -12,7 +12,7 @@ import Subscriber from './components/Subscriber';
 import Reducer from './reducers/Reducer';
 import CreateBar from './components/CreateBar';
 import JoinBar from './components/JoinBar';
-import WYR from './components/wyr';
+import Modal from './components/Modal';
 
 import './App.css';
 
@@ -40,6 +40,7 @@ function App({ apiKey, sessionId, token }) {
         <Route path='/joinbar' component={JoinBar} />
         <Route path='/bar'>
           <Nav />
+          <Modal text='Hi there Chauncey. Pull up a seat!' />
           <main>
             <OTSession
               apiKey={apiKey}

@@ -50,25 +50,20 @@ const ButtonBox = styled.div`
   margin: .5rem auto;
 `;
 
-const IndexPage = () => {
-  const greeting = 'hi there! How is this going to behave if i type as longish sentence? testing 123... ';
+const IndexPage = () => (
+  <IndexDiv>
+    <IndexBox>
+      <Image src={logo} alt="logo" className="inline-logo" />
+      <Image src={tagline} alt="tagline" className="inline-tagline" />
+      <ButtonBox>
+        <Button url="/createbar">CREATE A BAR</Button>
+        <p><span>OR</span></p>
+        <Button url="/joinbar">GO TO A BAR</Button>
+      </ButtonBox>
 
-  return (
-    <IndexDiv>
-      <IndexBox>
-        <Image src={logo} alt="logo" className="inline-logo" />
-        <Image src={tagline} alt="tagline" className="inline-tagline" />
-        <h3>{greeting.repeat(3)}</h3>
-        <ButtonBox>
-          <Button url="/createbar">CREATE A BAR</Button>
-          <p><span>OR</span></p>
-          <Button url="/joinbar">GO TO A BAR</Button>
-        </ButtonBox>
+    </IndexBox>
 
-      </IndexBox>
-
-    </IndexDiv>
-  );
-};
+  </IndexDiv>
+);
 
 export default IndexPage;
