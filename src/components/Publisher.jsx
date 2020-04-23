@@ -34,12 +34,12 @@ const Publisher = () => {
       />
       <CheckBox
         label="Publish Video"
-        initalChecked={video}
+        initialChecked={video}
         onChange={setVideo}
       />
       <CheckBox
         label="Publish Audio"
-        initalChecked={audio}
+        initialChecked={audio}
         onChange={setAudio}
       />
     </div>
