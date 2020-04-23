@@ -9,7 +9,7 @@ const FormDiv = styled.div`
   height: 100vh;
 `;
 
-const Form = styled.div`
+const Form = styled.form`
   border: 2px solid var(--tertiary);
   display: flex;
   flex-direction: column;
@@ -60,7 +60,7 @@ const IndexPage = () => {
 
   return (
     <FormDiv>
-      <Form onSubmit={submitBarName}>
+      <Form onSubmit={(e) => submitBarName(e)}>
         <h1>DRINKCAST</h1>
         <input
           name="barName"
@@ -76,7 +76,7 @@ const IndexPage = () => {
           placeholder="Enter a Passwrod"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button url="/bar">Create New Bar</Button>
+        <button type="submit">Create New Bar</button>
       </Form>
     </FormDiv>
   );
