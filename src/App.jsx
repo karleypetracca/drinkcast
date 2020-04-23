@@ -3,7 +3,6 @@ import React, { useState, useReducer } from 'react';
 import { OTSession, OTStreams, preloadScript } from 'opentok-react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { StateProvider } from './context';
-
 import Nav from './components/Nav';
 import IndexPage from './components/IndexPage';
 import ConnectionStatus from './components/ConnectionStatus';
@@ -14,11 +13,15 @@ import CreateBar from './components/CreateBar';
 import JoinBar from './components/JoinBar';
 import Modal from './components/Modal';
 
+
 import './App.css';
 
 function App({ apiKey, sessionId, token }) {
   const initialState = {
-    example: 'Hi there, welcome to DrinkCast!',
+    sessionId: 'no session yet',
+    token: 'no token yet',
+    barName: 'no name yet',
+    userName: 'no user name yet',
   };
 
   const [error, setError] = useState(null);

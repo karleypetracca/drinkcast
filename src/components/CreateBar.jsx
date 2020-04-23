@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { post, API_URL } from '../utils/apiConn';
 import Button from './Button';
+import StateContext from '../context';
 
 const FormDiv = styled.div`
   display: flex;
@@ -46,6 +47,9 @@ const Form = styled.form`
 const IndexPage = () => {
   const [barName, setBarName] = useState('');
   const [password, setPassword] = useState('');
+  const [value, dispatch] = useContext(StateContext);
+
+  // console.log('this is the sessionId from context: ', value.sessionId);
 
   const submitBarName = async (e) => {
     e.preventDefault();
@@ -53,7 +57,14 @@ const IndexPage = () => {
     const postUrl = `${API_URL}api/createbar`;
     const response = await post(postUrl, data);
     const opentokInfo = await response.json();
-    console.log(opentokInfo);
+
+    dispatch({
+      type: 'ACTION_CREATE_BAR',
+      sessionId: opentokInfo.newSession,
+      token: opentokInfo.token,
+    });
+
+    // console.log(opentokInfo);
     setBarName('');
     setPassword('');
   };
