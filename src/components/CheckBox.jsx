@@ -10,7 +10,7 @@ const CheckBox = ({ initalChecked, label, onChange }) => {
 
   useEffect(() => {
     onChange(isChecked);
-  }, [isChecked]);
+  }, [isChecked, onChange]);
 
   const handleChange = (e) => {
     setIsChecked(e.target.checked);

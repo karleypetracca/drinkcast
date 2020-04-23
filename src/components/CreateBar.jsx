@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
+import { post, API_URL } from '../utils/apiConn';
 import styled from 'styled-components';
-import { post } from '../utils/apiConn';
 import Button from './Button';
-
-const API_URL = 'http://localhost:5000/';
 
 const FormDiv = styled.div`
   display: flex;
@@ -49,11 +47,15 @@ const IndexPage = () => {
   const [barName, setBarName] = useState('');
   const [password, setPassword] = useState('');
 
-  const submitBarName = (e) => {
+  const submitBarName = async (e) => {
     e.preventDefault();
     const data = { barName, password };
     const postUrl = `${API_URL}api/createbar`;
-    post(postUrl, data);
+    const response = await post(postUrl, data);
+    const opentokInfo = await response.json();
+    console.log(opentokInfo);
+    setBarName('');
+    setPassword('');
   };
 
   return (
@@ -62,6 +64,7 @@ const IndexPage = () => {
         <h1>DRINKCAST</h1>
         <input
           name="barName"
+          type="text"
           value={barName}
           placeholder="Enter a New Bar Name"
           onChange={(e) => setBarName(e.target.value)}
@@ -69,6 +72,7 @@ const IndexPage = () => {
         <input
           type="password"
           name="password"
+          type="password"
           value={password}
           placeholder="Enter a Passwrod"
           onChange={(e) => setPassword(e.target.value)}
