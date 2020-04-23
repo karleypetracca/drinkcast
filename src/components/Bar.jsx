@@ -7,8 +7,6 @@ import Subscriber from './Subscriber';
 import StateContext from '../context';
 import Nav from './Nav';
 import Modal from './Modal';
-import config from './config';
-
 
 const BarRoom = styled.div`
   background-color: var(--yellow);
@@ -40,9 +38,9 @@ const Bar = () => {
       <Nav />
       <Modal text="Hi there Chauncey. Pull up a seat!" />
       <OTSession
-        apiKey={config.API_KEY}
-        sessionId={config.SESSION_ID}
-        token={config.TOKEN}
+        apiKey={value.key}
+        sessionId={value.sessionId}
+        token={value.token}
         eventHandlers={sessionEvents}
         onError={onError}
       >

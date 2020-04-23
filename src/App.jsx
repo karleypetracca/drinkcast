@@ -14,6 +14,7 @@ const App = () => {
   const initialState = {
     sessionId: 'no session yet',
     token: 'no token yet',
+    key: 'no key yet',
     barName: 'no name yet',
     userName: 'no user name yet',
   };
