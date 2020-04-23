@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { post } from '../utils/apiConn';
+import { post, API_URL } from '../utils/apiConn';
 import Button from './Button';
-
-const API_URL = 'http://localhost:5000/';
 
 const FormDiv = styled.div`
   display: flex;
@@ -11,7 +9,7 @@ const FormDiv = styled.div`
   height: 100vh;
 `;
 
-const Form = styled.div`
+const Form = styled.form`
   border: 2px solid var(--tertiary);
   display: flex;
   flex-direction: column;
@@ -49,19 +47,24 @@ const IndexPage = () => {
   const [barName, setBarName] = useState('');
   const [password, setPassword] = useState('');
 
-  const submitBarName = (e) => {
+  const submitBarName = async (e) => {
     e.preventDefault();
     const data = { barName, password };
     const postUrl = `${API_URL}api/createbar`;
-    post(postUrl, data);
+    const response = await post(postUrl, data);
+    const opentokInfo = await response.json();
+    console.log(opentokInfo);
+    setBarName('');
+    setPassword('');
   };
 
   return (
     <FormDiv>
-      <Form onSubmit={submitBarName}>
+      <Form onSubmit={(e) => submitBarName(e)}>
         <h1>DRINKCAST</h1>
         <input
           name="barName"
+          type="text"
           value={barName}
           placeholder="Enter a New Bar Name"
           onChange={(e) => setBarName(e.target.value)}
@@ -73,7 +76,7 @@ const IndexPage = () => {
           placeholder="Enter a Passwrod"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button url="/bar">Create New Bar</Button>
+        <button type="submit">Create New Bar</button>
       </Form>
     </FormDiv>
   );

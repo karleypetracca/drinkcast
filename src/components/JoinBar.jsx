@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { post } from '../utils/apiConn';
+import { post, API_URL } from '../utils/apiConn';
 import Button from './Button';
-
-const API_URL = 'http://localhost:5000/';
-
 
 const FormDiv = styled.div`
   display: flex;
@@ -12,7 +9,7 @@ const FormDiv = styled.div`
   height: 100vh;
 `;
 
-const Form = styled.div`
+const Form = styled.form`
   border: 2px solid var(--tertiary);
   display: flex;
   flex-direction: column;
@@ -50,20 +47,25 @@ const IndexPage = () => {
   const [joinBar, setJoinBar] = useState('');
   const [password, setPassword] = useState('');
 
-  const submitJoinBar = (e) => {
+  const submitJoinBar = async (e) => {
     e.preventDefault();
     const data = { joinBar, password };
-    const postUrl = `${API_URL}api/joinbar`;
-    post(postUrl, data);
+    const getUrl = `${API_URL}api/joinbar`;
+    const response = await post(getUrl, data);
+    const opentokInfo = await response.json();
+    console.log(opentokInfo);
+    setJoinBar('');
+    setPassword('');
   };
 
 
   return (
     <FormDiv>
-      <Form onSubmit={submitJoinBar}>
+      <Form onSubmit={(e) => submitJoinBar(e)}>
         <h1>DRINKCAST</h1>
         <input
           name="joinBar"
+          type="text"
           value={joinBar}
           placeholder="Enter a Bar to Join"
           onChange={(e) => setJoinBar(e.target.value)}
@@ -72,10 +74,9 @@ const IndexPage = () => {
           type="password"
           name="password"
           value={password}
-          placeholder="Enter the password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button url="/bar">Join a Bar</Button>
+        <button type="submit">Join a Bar</button>
       </Form>
     </FormDiv>
   );
