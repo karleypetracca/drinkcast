@@ -12,7 +12,7 @@ import Subscriber from './components/Subscriber';
 import Reducer from './reducers/Reducer';
 import CreateBar from './components/CreateBar';
 import JoinBar from './components/JoinBar';
-
+import WYR from './components/wyr';
 
 import './App.css';
 
@@ -35,10 +35,10 @@ function App({ apiKey, sessionId, token }) {
   return (
     <StateProvider value={useReducer(Reducer, initialState)}>
       <Router>
-        <Route path="/" component={IndexPage} exact />
-        <Route path="/createbar" component={CreateBar} />
-        <Route path="/joinbar" component={JoinBar} />
-        <Route path="/bar">
+        <Route path='/' component={IndexPage} exact />
+        <Route path='/createbar' component={CreateBar} />
+        <Route path='/joinbar' component={JoinBar} />
+        <Route path='/bar'>
           <Nav />
           <main>
             <OTSession
@@ -59,7 +59,6 @@ function App({ apiKey, sessionId, token }) {
         </Route>
       </Router>
     </StateProvider>
-
   );
 }
 
