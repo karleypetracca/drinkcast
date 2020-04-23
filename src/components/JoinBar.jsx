@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { get, API_URL } from '../utils/apiConn';
+import { post, API_URL } from '../utils/apiConn';
 
 const IndexPage = () => {
   const [joinBar, setJoinBar] = useState('');
   const [password, setPassword] = useState('');
 
-  const submitJoinBar = (e) => {
+  const submitJoinBar = async (e) => {
     e.preventDefault();
     const data = { joinBar, password };
     const getUrl = `${API_URL}api/joinbar`;
-    const response = get(getUrl, data);
-    console.log(response);
+    const response = await post(getUrl, data);
+    const opentokInfo = await response.json();
+    console.log(opentokInfo);
     setJoinBar('');
     setPassword('');
   };
@@ -29,7 +30,6 @@ const IndexPage = () => {
           name="password"
           type="password"
           value={password}
-          placeholder="Enter a Bar to Join"
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit">Join a Bar</button>

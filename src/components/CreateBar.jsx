@@ -10,7 +10,8 @@ const IndexPage = () => {
     const data = { barName, password };
     const postUrl = `${API_URL}api/createbar`;
     const response = await post(postUrl, data);
-    console.log(response);
+    const opentokInfo = await response.json();
+    console.log(opentokInfo);
     setBarName('');
     setPassword('');
   };
