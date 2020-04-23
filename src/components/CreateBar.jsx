@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { post } from '../utils/apiConn';
-
-const API_URL = 'http://localhost:5000/';
+import { post, API_URL } from '../utils/apiConn';
 
 const IndexPage = () => {
   const [barName, setBarName] = useState('');
   const [password, setPassword] = useState('');
 
-  const submitBarName = (e) => {
+  const submitBarName = async (e) => {
     e.preventDefault();
     const data = { barName, password };
     const postUrl = `${API_URL}api/createbar`;
-    post(postUrl, data);
+    const response = await post(postUrl, data);
+    console.log(response);
+    setBarName('');
+    setPassword('');
   };
 
   return (
@@ -19,12 +20,14 @@ const IndexPage = () => {
       <form onSubmit={submitBarName}>
         <input
           name="barName"
+          type="text"
           value={barName}
           placeholder="Enter a New Bar Name"
           onChange={(e) => setBarName(e.target.value)}
         />
         <input
           name="password"
+          type="password"
           value={password}
           placeholder="Enter a New Bar Name"
           onChange={(e) => setPassword(e.target.value)}

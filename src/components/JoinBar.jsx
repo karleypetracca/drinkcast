@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { post } from '../utils/apiConn';
-
-const API_URL = 'http://localhost:5000/';
+import { get, API_URL } from '../utils/apiConn';
 
 const IndexPage = () => {
   const [joinBar, setJoinBar] = useState('');
@@ -10,8 +8,11 @@ const IndexPage = () => {
   const submitJoinBar = (e) => {
     e.preventDefault();
     const data = { joinBar, password };
-    const postUrl = `${API_URL}api/joinbar`;
-    post(postUrl, data);
+    const getUrl = `${API_URL}api/joinbar`;
+    const response = get(getUrl, data);
+    console.log(response);
+    setJoinBar('');
+    setPassword('');
   };
 
   return (
@@ -19,12 +20,14 @@ const IndexPage = () => {
       <form onSubmit={submitJoinBar}>
         <input
           name="joinBar"
+          type="text"
           value={joinBar}
           placeholder="Enter a Bar to Join"
           onChange={(e) => setJoinBar(e.target.value)}
         />
         <input
           name="password"
+          type="password"
           value={password}
           placeholder="Enter a Bar to Join"
           onChange={(e) => setPassword(e.target.value)}
