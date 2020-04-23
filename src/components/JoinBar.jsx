@@ -69,6 +69,7 @@ const IndexPage = () => {
           onChange={(e) => setJoinBar(e.target.value)}
         />
         <input
+          type="password"
           name="password"
           value={password}
           placeholder="Enter the password"

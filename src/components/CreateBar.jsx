@@ -67,9 +67,10 @@ const IndexPage = () => {
           onChange={(e) => setBarName(e.target.value)}
         />
         <input
+          type="password"
           name="password"
           value={password}
-          placeholder="Enter a New Bar Name"
+          placeholder="Enter a Passwrod"
           onChange={(e) => setPassword(e.target.value)}
         />
         <Button url="/bar">Create New Bar</Button>
