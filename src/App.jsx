@@ -14,11 +14,15 @@ import CreateBar from './components/CreateBar';
 import JoinBar from './components/JoinBar';
 import Modal from './components/Modal';
 
+
 import './App.css';
 
 function App({ apiKey, sessionId, token }) {
   const initialState = {
-    example: 'Hi there, welcome to DrinkCast!',
+    sessionId: 'no session yet',
+    token: 'no token yet',
+    barName: 'no name yet',
+    userName: 'no user name yet',
   };
 
   const [error, setError] = useState(null);
