@@ -60,12 +60,12 @@ const IndexPage = () => {
     const getUrl = `${API_URL}api/joinbar`;
     const response = await post(getUrl, data);
     const opentokInfo = await response.json();
-    console.log(opentokInfo);
-
+    console.log('session', opentokInfo);
     dispatch({
       type: 'ACTION_JOIN_BAR',
       token: opentokInfo.token,
       sessionId: opentokInfo.sessionId,
+      key: opentokInfo.key,
     });
 
     setJoinBar('');

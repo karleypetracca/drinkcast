@@ -47,6 +47,7 @@ const Form = styled.form`
 const IndexPage = () => {
   const [barName, setBarName] = useState('');
   const [password, setPassword] = useState('');
+  // eslint-disable-next-line no-unused-vars
   const [value, dispatch] = useContext(StateContext);
 
   // console.log('this is the sessionId from context: ', value.sessionId);
@@ -57,11 +58,12 @@ const IndexPage = () => {
     const postUrl = `${API_URL}api/createbar`;
     const response = await post(postUrl, data);
     const opentokInfo = await response.json();
-
+    console.log('session', opentokInfo);
     dispatch({
       type: 'ACTION_CREATE_BAR',
       sessionId: opentokInfo.newSession,
       token: opentokInfo.token,
+      key: opentokInfo.key,
     });
 
     // console.log(opentokInfo);
