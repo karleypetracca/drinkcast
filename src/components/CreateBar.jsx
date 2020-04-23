@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { post, API_URL } from '../utils/apiConn';
-import Button from './Button';
 import StateContext from '../context';
 
 const FormDiv = styled.div`
