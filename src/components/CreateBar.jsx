@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { post, API_URL } from '../utils/apiConn';
+import Button from './Button';
+import StateContext from '../context';
 
 const FormDiv = styled.div`
   display: flex;
@@ -45,6 +47,10 @@ const IndexPage = () => {
   const [barName, setBarName] = useState('');
   const [password, setPassword] = useState('');
   const [nameCheck, setNameCheck] = useState('');
+  // eslint-disable-next-line no-unused-vars
+  const [value, dispatch] = useContext(StateContext);
+
+  // console.log('this is the sessionId from context: ', value.sessionId);
 
   const submitBarName = async (e) => {
     e.preventDefault();
@@ -53,6 +59,16 @@ const IndexPage = () => {
     const response = await post(postUrl, data);
     const opentokInfo = await response.json();
     setNameCheck(opentokInfo.nameIsInConflict);
+    console.log('session', opentokInfo);
+    dispatch({
+      type: 'ACTION_CREATE_BAR',
+      sessionId: opentokInfo.newSession,
+      token: opentokInfo.token,
+      key: opentokInfo.key,
+    });
+
+    // console.log(opentokInfo);
+    setBarName('');
     setPassword('');
   };
 

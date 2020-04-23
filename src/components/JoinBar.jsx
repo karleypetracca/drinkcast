@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
+import { Redirect } from 'react-router-dom';
 import { post, API_URL } from '../utils/apiConn';
 import Button from './Button';
+import StateContext from '../context';
+
 
 const FormDiv = styled.div`
   display: flex;
@@ -45,20 +48,33 @@ const Form = styled.form`
 const IndexPage = () => {
   const [joinBar, setJoinBar] = useState('');
   const [password, setPassword] = useState('');
+  const [value, dispatch] = useContext(StateContext);
+  const [redirect, setRedirect] = useState(false); // this is experimental with
+  // tring to redirect onSubmit.
 
+  console.log(value);
   const submitJoinBar = async (e) => {
     e.preventDefault();
     const data = { joinBar, password };
     const getUrl = `${API_URL}api/joinbar`;
     const response = await post(getUrl, data);
     const opentokInfo = await response.json();
-    console.log(opentokInfo);
+    console.log('session', opentokInfo);
+    dispatch({
+      type: 'ACTION_JOIN_BAR',
+      token: opentokInfo.token,
+      sessionId: opentokInfo.sessionId,
+      key: opentokInfo.key,
+    });
+
     setJoinBar('');
     setPassword('');
+    setRedirect(true);
   };
 
   return (
     <FormDiv>
+      {/* {redirect && (<Redirect to="./bar" />)} */}
       <Form onSubmit={(e) => submitJoinBar(e)}>
         <h1>DRINKCAST</h1>
         <input
@@ -76,6 +92,7 @@ const IndexPage = () => {
         />
         <button type='submit'>Join a Bar</button>
       </Form>
+
     </FormDiv>
   );
 };

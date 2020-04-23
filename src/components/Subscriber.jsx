@@ -24,12 +24,12 @@ const Subscriber = () => {
       />
       <CheckBox
         label="Subscribe Video"
-        initalChecked={video}
+        initialChecked={video}
         onChange={setVideo}
       />
       <CheckBox
         label="Subscribe Audio"
-        initalChecked={audio}
+        initialChecked={audio}
         onChange={setAudio}
       />
     </div>

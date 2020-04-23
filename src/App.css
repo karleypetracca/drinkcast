@@ -1,11 +1,11 @@
-main {
+/* main {
   color: var(--black);
   width: calc(100vw - (100vw - 100%));
   background-color: var(--yellow);
   min-height: calc(100vh - var(--nav-height));
-}
+} */
 
-.connectionStatus {
+/* .connectionStatus {
   padding-top: 20px;
   margin-left: 5%;
   font-size: 1.5em;
@@ -16,8 +16,8 @@ main {
 }
 
 .publisher {
-  float: right;
-  margin-right: 10%;
+  display: flex;
+  flex-direction: column;
 }
 
 .OTPublisherContainer {
@@ -28,4 +28,4 @@ main {
 #error {
   color: red;
 }
- 
+  */
