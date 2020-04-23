@@ -15,3 +15,5 @@ export const post = async (url, data) => {
   });
   return response;
 };
+
+export const API_URL = 'http://localhost:5000/';
