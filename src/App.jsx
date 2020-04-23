@@ -3,7 +3,6 @@ import React, { useState, useReducer } from 'react';
 import { OTSession, OTStreams, preloadScript } from 'opentok-react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { StateProvider } from './context';
-
 import Nav from './components/Nav';
 import IndexPage from './components/IndexPage';
 import ConnectionStatus from './components/ConnectionStatus';
