@@ -2,11 +2,11 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useRef, useEffect } from 'react';
 
-const CheckBox = ({ initalChecked, label, onChange }) => {
+const CheckBox = ({ initialChecked, label, onChange }) => {
   const id = useRef(
     Math.random().toString(36).substring(2, 5) + Math.random().toString(36).substring(2, 5),
   );
-  const [isChecked, setIsChecked] = useState(initalChecked);
+  const [isChecked, setIsChecked] = useState(initialChecked);
 
   useEffect(() => {
     onChange(isChecked);
@@ -25,6 +25,7 @@ const CheckBox = ({ initalChecked, label, onChange }) => {
           checked={isChecked}
           id={id}
           onChange={(e) => handleChange(e)}
+          data-testid="checkbox"
         />
       </label>
     </div>
