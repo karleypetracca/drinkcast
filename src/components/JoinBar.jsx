@@ -15,20 +15,19 @@ const Form = styled.form`
   flex-direction: column;
   background-color: var(--primary);
   width: 230px;
-  height: 350px;;
+  height: 350px;
   align-items: center;
   justify-content: center;
   margin: auto;
   border-radius: 3px;
-  
+
   h1 {
     display: inherit;
     flex-direction: inherit;
     align-self: flex-start;
-    margin: 18px auto 38px auto ;
+    margin: 18px auto 38px auto;
   }
-  
-  
+
   input {
     border: none;
     font-family: inherit;
@@ -37,7 +36,7 @@ const Form = styled.form`
     margin: 7px auto;
     text-align: center;
   }
-  
+
   button {
     font-family: inherit;
   }
@@ -58,25 +57,24 @@ const IndexPage = () => {
     setPassword('');
   };
 
-
   return (
     <FormDiv>
       <Form onSubmit={(e) => submitJoinBar(e)}>
         <h1>DRINKCAST</h1>
         <input
-          name="joinBar"
-          type="text"
+          name='joinBar'
+          type='text'
           value={joinBar}
-          placeholder="Enter a Bar to Join"
+          placeholder='Enter a Bar to Join'
           onChange={(e) => setJoinBar(e.target.value)}
         />
         <input
-          type="password"
-          name="password"
+          type='password'
+          name='password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Join a Bar</button>
+        <button type='submit'>Join a Bar</button>
       </Form>
     </FormDiv>
   );

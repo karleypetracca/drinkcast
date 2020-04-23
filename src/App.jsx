@@ -40,7 +40,7 @@ function App({ apiKey, sessionId, token }) {
         <Route path='/joinbar' component={JoinBar} />
         <Route path='/bar'>
           <Nav />
-          <Modal text='Hi there Chauncey. Pull up a seat!' />
+          <Modal text='Hi there, Chauncey. Pull up a seat!' />
           <main>
             <OTSession
               apiKey={apiKey}
