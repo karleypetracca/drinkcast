@@ -25,6 +25,11 @@ const Form = styled.form`
   margin: auto;
   border-radius: 3px;
   box-shadow: 10px 5px 3px grey;
+  
+  div {
+    display: inherit;
+    text-align: center;
+  }
 
   h1 {
     display: inherit;
@@ -61,20 +66,26 @@ const IndexPage = () => {
     const postUrl = `${API_URL}api/createbar`;
     const response = await post(postUrl, data);
     const opentokInfo = await response.json();
-    setNameCheck(opentokInfo.nameIsInConflict);
+    setNameCheck(opentokInfo.error);
 
-    dispatch({
-      type: 'ACTION_CREATE_BAR',
-      sessionId: opentokInfo.newSession,
-      token: opentokInfo.token,
-      key: opentokInfo.key,
-      barName,
-      userName,
-    });
+    console.log(opentokInfo);
+    if (!opentokInfo.hasOwnProperty('error') && barName !== '' && password !== '') {
+      dispatch({
+        type: 'ACTION_CREATE_BAR',
+        sessionId: opentokInfo.newSession,
+        token: opentokInfo.token,
+        key: opentokInfo.key,
+        barName,
+        userName,
+      });
+
+      setRedirect(true);
+    }
+
 
     setBarName('');
     setPassword('');
-    setRedirect(true);
+    setUserName('');
   };
 
   return (
@@ -82,13 +93,14 @@ const IndexPage = () => {
       {redirect && (<Redirect to="./bar" />)}
       <Form onSubmit={(e) => submitBarName(e)}>
         <h1>DRINKCAST</h1>
-        {nameCheck}
+        <div>{nameCheck}</div>
         <input
           name="barName"
           type="text"
           value={barName}
           placeholder="Enter a New Bar Name"
           onChange={(e) => setBarName(e.target.value)}
+          isRequired
         />
         <input
           name="userName"

@@ -23,6 +23,12 @@ const Form = styled.form`
   justify-content: center;
   margin: auto;
   border-radius: 3px;
+  
+  div {
+    display: inherit;
+    text-align: center;
+    
+  }
 
   h1 {
     display: inherit;
@@ -47,8 +53,9 @@ const IndexPage = () => {
   const [userName, setUserName] = useState('');
   const [value, dispatch] = useContext(StateContext);
   const [redirect, setRedirect] = useState(false);
+  const [alert, setAlert] = useState(false);
 
-  console.log(value);
+  // console.log(value);
   const submitJoinBar = async (e) => {
     e.preventDefault();
     const data = { joinBar, password };
@@ -57,19 +64,26 @@ const IndexPage = () => {
     const opentokInfo = await response.json();
 
     // console.log('session', opentokInfo);
+    if (!opentokInfo.hasOwnProperty('error') && joinBar !== '' && password !== '') {
+      dispatch({
+        type: 'ACTION_JOIN_BAR',
+        token: opentokInfo.token,
+        sessionId: opentokInfo.sessionId,
+        key: opentokInfo.key,
+        barName: joinBar,
+        userName,
+      });
+      setAlert(false);
+      setJoinBar('');
+      setPassword('');
+      setRedirect(true);
+    }
 
-    dispatch({
-      type: 'ACTION_JOIN_BAR',
-      token: opentokInfo.token,
-      sessionId: opentokInfo.sessionId,
-      key: opentokInfo.key,
-      barName: joinBar,
-      userName,
-    });
 
+    setAlert(true);
     setJoinBar('');
     setPassword('');
-    setRedirect(true);
+    setUserName('');
   };
 
   return (
@@ -77,6 +91,7 @@ const IndexPage = () => {
       {redirect && (<Redirect to="./bar" />)}
       <Form onSubmit={(e) => submitJoinBar(e)}>
         <h1>DRINKCAST</h1>
+        {alert ? <div>Incorrect bar name or password.</div> : null}
         <input
           name="joinBar"
           type="text"
