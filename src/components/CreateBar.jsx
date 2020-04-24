@@ -48,6 +48,7 @@ const IndexPage = () => {
   const [barName, setBarName] = useState('');
   const [password, setPassword] = useState('');
   const [nameCheck, setNameCheck] = useState('');
+  const [passCheck, setPassCheck] = useState('');
   const [redirect, setRedirect] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [value, dispatch] = useContext(StateContext);
@@ -61,6 +62,7 @@ const IndexPage = () => {
     const response = await post(postUrl, data);
     const opentokInfo = await response.json();
     setNameCheck(opentokInfo.nameIsInConflict);
+    setPassCheck(opentokInfo.passwordIncorrectLength);
     dispatch({
       type: 'ACTION_CREATE_BAR',
       sessionId: opentokInfo.newSession,
@@ -76,26 +78,29 @@ const IndexPage = () => {
 
   return (
     <FormDiv>
-      {redirect && (<Redirect to="./bar" />)}
+      {redirect && <Redirect to='./bar' />}
       <Form onSubmit={(e) => submitBarName(e)}>
         <h1>DRINKCAST</h1>
         {nameCheck}
+        {passCheck}
         <input
-          name="barName"
-          type="text"
+          name='barName'
+          type='text'
           value={barName}
-          placeholder="Enter a New Bar Name"
+          placeholder='Enter a New Bar Name'
           onChange={(e) => setBarName(e.target.value)}
         />
         <input
-          type="password"
-          name="password"
+          type='password'
+          name='password'
           value={password}
-          placeholder="Enter a Password"
+          placeholder='Enter a Password'
           onChange={(e) => setPassword(e.target.value)}
         />
         <br />
-        <Button url="" type="submit">Create New Bar</Button>
+        <Button url='' type='submit'>
+          Create New Bar
+        </Button>
       </Form>
     </FormDiv>
   );
