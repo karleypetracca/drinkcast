@@ -17,7 +17,7 @@ const IndexDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url(${wood}) no-repeat top left fixed;
+  background: url(${wood}) no-repeat top left fixed;
   background-size: cover;
 `;
 
