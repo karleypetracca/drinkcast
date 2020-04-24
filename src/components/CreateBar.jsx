@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
@@ -50,10 +51,9 @@ const IndexPage = () => {
   const [nameCheck, setNameCheck] = useState('');
   const [passCheck, setPassCheck] = useState('');
   const [redirect, setRedirect] = useState(false);
-  // eslint-disable-next-line no-unused-vars
-  const [value, dispatch] = useContext(StateContext);
+  const [userName, setUserName] = useState('');
 
-  // console.log('this is the sessionId from context: ', value.sessionId);
+  const [value, dispatch] = useContext(StateContext);
 
   const submitBarName = async (e) => {
     e.preventDefault();
@@ -69,6 +69,7 @@ const IndexPage = () => {
       token: opentokInfo.token,
       key: opentokInfo.key,
       barName,
+      userName,
     });
 
     setBarName('');
@@ -89,6 +90,13 @@ const IndexPage = () => {
           value={barName}
           placeholder='Enter a New Bar Name'
           onChange={(e) => setBarName(e.target.value)}
+        />
+        <input
+          name='userName'
+          type='text'
+          value={userName}
+          placeholder='Enter your name'
+          onChange={(e) => setUserName(e.target.value)}
         />
         <input
           type='password'

@@ -44,6 +44,7 @@ const Form = styled.form`
 const IndexPage = () => {
   const [joinBar, setJoinBar] = useState('');
   const [password, setPassword] = useState('');
+  const [userName, setUserName] = useState('');
   const [value, dispatch] = useContext(StateContext);
   const [redirect, setRedirect] = useState(false);
 
@@ -62,6 +63,8 @@ const IndexPage = () => {
       token: opentokInfo.token,
       sessionId: opentokInfo.sessionId,
       key: opentokInfo.key,
+      barName: joinBar,
+      userName,
     });
 
     setJoinBar('');
@@ -82,8 +85,16 @@ const IndexPage = () => {
           onChange={(e) => setJoinBar(e.target.value)}
         />
         <input
+          name="userName"
+          type="text"
+          value={userName}
+          placeholder="Enter your name"
+          onChange={(e) => setUserName(e.target.value)}
+        />
+        <input
           type="password"
           name="password"
+          placeholder="Enter a password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />

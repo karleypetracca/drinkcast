@@ -29,7 +29,7 @@ const Bar = () => {
   const onError = (err) => {
     setError(`Failed to connect: ${err.message}`);
   };
-  const greeting = `Welcome to ${value.barName}! Pull up a seat!`;
+  const greeting = `Welcome to ${value.barName}! Pull up a seat ${value.userName}!`;
 
   return (
     <BarRoom>

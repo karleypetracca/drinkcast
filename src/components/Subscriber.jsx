@@ -23,12 +23,12 @@ const Subscriber = () => {
         onError={onError}
       />
       <CheckBox
-        label="Subscribe Video"
+        label="Hide Video"
         initialChecked={video}
         onChange={setVideo}
       />
       <CheckBox
-        label="Subscribe Audio"
+        label="Mute Audio"
         initialChecked={audio}
         onChange={setAudio}
       />
