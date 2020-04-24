@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
+import { Redirect } from 'react-router-dom';
 import { post, API_URL } from '../utils/apiConn';
 import StateContext from '../context';
 
@@ -54,6 +55,7 @@ const IndexPage = () => {
   const [barName, setBarName] = useState('');
   const [password, setPassword] = useState('');
   const [nameCheck, setNameCheck] = useState('');
+  const [redirect, setRedirect] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [value, dispatch] = useContext(StateContext);
 
@@ -71,33 +73,36 @@ const IndexPage = () => {
       sessionId: opentokInfo.newSession,
       token: opentokInfo.token,
       key: opentokInfo.key,
+      barName,
     });
 
     setBarName('');
     setPassword('');
+    setRedirect(true);
   };
 
   return (
     <FormDiv>
+      {redirect && (<Redirect to="./bar" />)}
       <Form onSubmit={(e) => submitBarName(e)}>
         <h1>DRINKCAST</h1>
         {nameCheck}
         <input
-          name='barName'
-          type='text'
+          name="barName"
+          type="text"
           value={barName}
-          placeholder='Enter a New Bar Name'
+          placeholder="Enter a New Bar Name"
           onChange={(e) => setBarName(e.target.value)}
         />
         <input
-          type='password'
-          name='password'
+          type="password"
+          name="password"
           value={password}
-          placeholder='Enter a Password'
+          placeholder="Enter a Password"
           onChange={(e) => setPassword(e.target.value)}
         />
         <br />
-        <button type='submit'>Create New Bar</button>
+        <button type="submit">Create New Bar</button>
       </Form>
     </FormDiv>
   );
