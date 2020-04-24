@@ -3,31 +3,6 @@ const Reducer = (state, action) => {
     sessionId, token, barName, userName, key,
   } = action;
   switch (action.type) {
-    case 'ACTION_SET_SESSION':
-      return {
-        ...state,
-        sessionId,
-      };
-    case 'ACTION_SET_USERNAME':
-      return {
-        ...state,
-        userName,
-      };
-    case 'ACTION_SET_BARNAME':
-      return {
-        ...state,
-        barName,
-      };
-    case 'ACTION_SET_TOKEN':
-      return {
-        ...state,
-        token,
-      };
-    case 'ACTION_SET_KEY':
-      return {
-        ...state,
-        key,
-      };
     case 'ACTION_CREATE_BAR':
       return {
         ...state,
@@ -35,6 +10,7 @@ const Reducer = (state, action) => {
         sessionId,
         key,
         barName,
+        userName,
       };
     case 'ACTION_JOIN_BAR':
       return {
@@ -42,6 +18,8 @@ const Reducer = (state, action) => {
         token,
         sessionId,
         key,
+        barName,
+        userName,
       };
     default:
       return state;
