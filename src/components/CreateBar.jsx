@@ -20,25 +20,33 @@ const Form = styled.form`
   justify-content: center;
   margin: auto;
   border-radius: 3px;
+  box-shadow: 10px 5px 3px grey;
 
   h1 {
     display: inherit;
     flex-direction: inherit;
     align-self: flex-start;
     margin: 18px auto 38px auto;
+    font-size: 40px;
   }
 
   input {
     border: none;
     font-family: inherit;
     padding: 10px;
-    border-radius: 2px;
+    border-radius: 7px;
     margin: 7px auto;
     text-align: center;
+    box-shadow: 5px 3px 3px grey;
   }
 
   button {
     font-family: inherit;
+    padding: 6px;
+    border-radius: 10px;
+    font-size: 13px;
+    color: purple;
+    box-shadow: 4px 3px 2px grey;
   }
 `;
 
@@ -58,7 +66,6 @@ const IndexPage = () => {
     const response = await post(postUrl, data);
     const opentokInfo = await response.json();
     setNameCheck(opentokInfo.nameIsInConflict);
-    console.log('session', opentokInfo);
     dispatch({
       type: 'ACTION_CREATE_BAR',
       sessionId: opentokInfo.newSession,
@@ -66,7 +73,6 @@ const IndexPage = () => {
       key: opentokInfo.key,
     });
 
-    // console.log(opentokInfo);
     setBarName('');
     setPassword('');
   };
@@ -87,9 +93,10 @@ const IndexPage = () => {
           type='password'
           name='password'
           value={password}
-          placeholder='Enter a Passwrod'
+          placeholder='Enter a Password'
           onChange={(e) => setPassword(e.target.value)}
         />
+        <br />
         <button type='submit'>Create New Bar</button>
       </Form>
     </FormDiv>

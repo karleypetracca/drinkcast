@@ -14,14 +14,12 @@ const BarRoom = styled.div`
   color: black;
 `;
 
-
 const Bar = () => {
   const [value, dispatch] = useContext(StateContext);
   const [error, setError] = useState(false);
   const [connected, setConnected] = useState(false);
 
   console.log('this is the context inside the Bar component: ', value);
-
 
   const sessionEvents = {
     sessionConnected: () => setConnected(true),
@@ -32,11 +30,10 @@ const Bar = () => {
     setError(`Failed to connect: ${err.message}`);
   };
 
-
   return (
     <BarRoom>
       <Nav />
-      <Modal text="Hi there Chauncey. Pull up a seat!" />
+      <Modal text='Hi there Chauncey. Pull up a seat!' />
       <OTSession
         apiKey={value.key}
         sessionId={value.sessionId}
