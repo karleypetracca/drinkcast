@@ -56,9 +56,9 @@ const IndexPage = () => (
       <Image src={logo} alt="logo" className="inline-logo" />
       <Image src={tagline} alt="tagline" className="inline-tagline" />
       <ButtonBox>
-        <Button url="/createbar">CREATE A BAR</Button>
+        <Button url="/createbar" type="button">CREATE A BAR</Button>
         <p><span>OR</span></p>
-        <Button url="/joinbar">JOIN A BAR</Button>
+        <Button url="/joinbar" type="button">JOIN A BAR</Button>
       </ButtonBox>
 
     </IndexBox>

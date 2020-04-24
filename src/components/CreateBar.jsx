@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { post, API_URL } from '../utils/apiConn';
 import StateContext from '../context';
 
+import Button from './Button';
+
 const FormDiv = styled.div`
   display: flex;
   background-color: var(--yellow);
@@ -39,15 +41,6 @@ const Form = styled.form`
     text-align: center;
     box-shadow: 5px 3px 3px grey;
   }
-
-  button {
-    font-family: inherit;
-    padding: 6px;
-    border-radius: 10px;
-    font-size: 13px;
-    color: purple;
-    box-shadow: 4px 3px 2px grey;
-  }
 `;
 
 const IndexPage = () => {
@@ -83,21 +76,21 @@ const IndexPage = () => {
         <h1>DRINKCAST</h1>
         {nameCheck}
         <input
-          name='barName'
-          type='text'
+          name="barName"
+          type="text"
           value={barName}
-          placeholder='Enter a New Bar Name'
+          placeholder="Enter a New Bar Name"
           onChange={(e) => setBarName(e.target.value)}
         />
         <input
-          type='password'
-          name='password'
+          type="password"
+          name="password"
           value={password}
-          placeholder='Enter a Password'
+          placeholder="Enter a Password"
           onChange={(e) => setPassword(e.target.value)}
         />
         <br />
-        <button type='submit'>Create New Bar</button>
+        <Button url="" type="submit">Create New Bar</Button>
       </Form>
     </FormDiv>
   );

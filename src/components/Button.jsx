@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
@@ -10,7 +11,7 @@ const ButtonStyled = styled.a`
   button {
     background-color: var(--secondary);
     color: var(--white);
-    transition: 0.3s ease-in-out;
+    transition: 0.2s ease-in;
     border-radius: 5px;
     border-style: none;
     font-weight: bold;
@@ -19,14 +20,15 @@ const ButtonStyled = styled.a`
   }
 
   button:hover {
-    background-color: var(--green-dark);
+    background-color: var(--white);
+    color: var(--secondary);
   }
 `;
 
-const Button = ({ url, children }) => (
+const Button = ({ url, type, children }) => (
 
   <ButtonStyled href={url} type="button">
-    <button type="button">
+    <button type={type}>
       {children}
     </button>
   </ButtonStyled>
