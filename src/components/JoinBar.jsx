@@ -2,9 +2,9 @@ import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
 import { post, API_URL } from '../utils/apiConn';
-import Button from './Button';
 import StateContext from '../context';
 
+import Button from './Button';
 
 const FormDiv = styled.div`
   display: flex;
@@ -39,18 +39,13 @@ const Form = styled.form`
     margin: 7px auto;
     text-align: center;
   }
-
-  button {
-    font-family: inherit;
-  }
 `;
 
 const IndexPage = () => {
   const [joinBar, setJoinBar] = useState('');
   const [password, setPassword] = useState('');
   const [value, dispatch] = useContext(StateContext);
-  const [redirect, setRedirect] = useState(false); // this is experimental with
-  // tring to redirect onSubmit.
+  const [redirect, setRedirect] = useState(false);
 
   console.log(value);
   const submitJoinBar = async (e) => {
@@ -59,7 +54,9 @@ const IndexPage = () => {
     const getUrl = `${API_URL}api/joinbar`;
     const response = await post(getUrl, data);
     const opentokInfo = await response.json();
-    console.log('session', opentokInfo);
+
+    // console.log('session', opentokInfo);
+
     dispatch({
       type: 'ACTION_JOIN_BAR',
       token: opentokInfo.token,
@@ -74,23 +71,23 @@ const IndexPage = () => {
 
   return (
     <FormDiv>
-      {/* {redirect && (<Redirect to="./bar" />)} */}
+      {redirect && (<Redirect to="./bar" />)}
       <Form onSubmit={(e) => submitJoinBar(e)}>
         <h1>DRINKCAST</h1>
         <input
-          name='joinBar'
-          type='text'
+          name="joinBar"
+          type="text"
           value={joinBar}
-          placeholder='Enter a Bar to Join'
+          placeholder="Enter a Bar to Join"
           onChange={(e) => setJoinBar(e.target.value)}
         />
         <input
-          type='password'
-          name='password'
+          type="password"
+          name="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type='submit'>Join a Bar</button>
+        <Button url="" type="submit">Join a Bar</Button>
       </Form>
 
     </FormDiv>

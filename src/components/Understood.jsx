@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Button from './Button';
+
 const FormDiv = styled.div`
   display: flex;
   background-color: var(--yellow);
@@ -35,14 +37,6 @@ const Form = styled.form`
     margin: 7px auto;
     text-align: center;
   }
-
-  button {
-    font-family: inherit;
-    font-size: 1.5em;
-    border-color: black;
-    padding: 5px;
-    border-radius: 10px;
-  }
 `;
 
 function Understood() {
@@ -54,7 +48,7 @@ function Understood() {
 
   return (
     <FormDiv>
-      <Form>
+      <Form onSubmit={acceptance}>
         <strong>
           <h2>Unfortunately, the clock is ticking.</h2>
         </strong>
@@ -69,9 +63,7 @@ function Understood() {
         Do you understand?
         <br />
         <br />
-        <button type='submit' onClick={acceptance}>
-          I understand
-        </button>
+        <Button url="" type="submit">I understand</Button>
       </Form>
     </FormDiv>
   );
