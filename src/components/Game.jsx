@@ -3,9 +3,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { get, API_URL } from '../utils/apiConn';
 
-import Button from './Button';
-
-
 const GameStyled = styled.div`
   height: 100vh;
   display: flex;
@@ -13,6 +10,7 @@ const GameStyled = styled.div`
   align-items: center;
   justify-content: center;
   background-color: var(--background);
+  padding: 10px;
 
   button {
     margin: 1rem auto;
@@ -60,7 +58,11 @@ const Game = () => {
   const getRoundText = async () => {
     const getUrl = `${API_URL}api/${gameSelected}`;
     const response = await get(getUrl);
-    setRoundText(response.statement);
+    if (gameSelected === 'neverhaveiever') {
+      setRoundText(response.statement);
+    } else {
+      setRoundText(response.question);
+    }
   };
 
   return (
@@ -76,21 +78,19 @@ const Game = () => {
           ? <button type="button" onClick={getRoundText}>New Round</button>
           : '')
         : <button type="button" onClick={startGame}>Start Game</button>}
-      <h2>{roundText}</h2>
-      {
-        gameStart
-          ? (
-            <div className="selectGame">
-              <p>Use dropdown to change games</p>
-              <select defaultValue="" onChange={(e) => changeGame(e)}>
-                <option value="">Please select a game</option>
-                <option value="neverhaveiever">Never Have I Ever</option>
-                <option value="wouldyourather">Would You Rather</option>
-              </select>
-            </div>
-          )
-          : ''
-      }
+      {roundText !== '' ? <h2>{roundText}</h2> : ''}
+      {gameStart
+        ? (
+          <div className="selectGame">
+            <p>Use dropdown to change games</p>
+            <select defaultValue="" onChange={(e) => changeGame(e)}>
+              <option value="">Please select a game</option>
+              <option value="neverhaveiever">Never Have I Ever</option>
+              <option value="wouldyourather">Would You Rather</option>
+            </select>
+          </div>
+        )
+        : ''}
     </GameStyled>
   );
 };
