@@ -4,6 +4,8 @@ import { Redirect } from 'react-router-dom';
 import { post, API_URL } from '../utils/apiConn';
 import StateContext from '../context';
 
+import Button from './Button';
+
 const FormDiv = styled.div`
   display: flex;
   background-color: var(--yellow);
@@ -39,15 +41,6 @@ const Form = styled.form`
     margin: 7px auto;
     text-align: center;
     box-shadow: 5px 3px 3px grey;
-  }
-
-  button {
-    font-family: inherit;
-    padding: 6px;
-    border-radius: 10px;
-    font-size: 13px;
-    color: purple;
-    box-shadow: 4px 3px 2px grey;
   }
 `;
 
@@ -102,7 +95,7 @@ const IndexPage = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <br />
-        <button type="submit">Create New Bar</button>
+        <Button url="" type="submit">Create New Bar</Button>
       </Form>
     </FormDiv>
   );

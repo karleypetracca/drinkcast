@@ -2,9 +2,9 @@ import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
 import { post, API_URL } from '../utils/apiConn';
-import Button from './Button';
 import StateContext from '../context';
 
+import Button from './Button';
 
 const FormDiv = styled.div`
   display: flex;
@@ -38,10 +38,6 @@ const Form = styled.form`
     border-radius: 2px;
     margin: 7px auto;
     text-align: center;
-  }
-
-  button {
-    font-family: inherit;
   }
 `;
 
@@ -91,7 +87,7 @@ const IndexPage = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Join a Bar</button>
+        <Button url="" type="submit">Join a Bar</Button>
       </Form>
 
     </FormDiv>
