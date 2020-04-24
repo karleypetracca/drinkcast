@@ -29,11 +29,12 @@ const Bar = () => {
   const onError = (err) => {
     setError(`Failed to connect: ${err.message}`);
   };
+  const greeting = `Welcome to ${value.barName}! Pull up a seat!`;
 
   return (
     <BarRoom>
       <Nav />
-      <Modal text='Hi there Chauncey. Pull up a seat!' />
+      <Modal text={greeting} />
       <OTSession
         apiKey={value.key}
         sessionId={value.sessionId}
