@@ -34,6 +34,7 @@ const Reducer = (state, action) => {
         token,
         sessionId,
         key,
+        barName,
       };
     case 'ACTION_JOIN_BAR':
       return {
