@@ -7,9 +7,8 @@ import Reducer from './reducers/Reducer';
 import CreateBar from './components/CreateBar';
 import JoinBar from './components/JoinBar';
 import Bar from './components/Bar';
+import Game from './components/Game';
 import Understood from './components/Understood';
-
-import './App.css';
 
 const App = () => {
   const initialState = {
@@ -23,11 +22,12 @@ const App = () => {
   return (
     <StateProvider value={useReducer(Reducer, initialState)}>
       <Router>
-        <Route path='/' component={IndexPage} exact />
-        <Route path='/createbar' component={CreateBar} />
-        <Route path='/joinbar' component={JoinBar} />
-        <Route path='/bar' component={Bar} />
-        <Route path='/understood' component={Understood} />
+        <Route path="/" component={IndexPage} exact />
+        <Route path="/createbar" component={CreateBar} />
+        <Route path="/joinbar" component={JoinBar} />
+        <Route path="/bar" component={Bar} />
+        <Route path="/game" component={Game} />
+        <Route path="/understood" component={Understood} />
       </Router>
     </StateProvider>
   );
