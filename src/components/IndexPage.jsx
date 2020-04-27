@@ -8,6 +8,8 @@ import Button from './Button';
 import logo from '../images/drinkcast-logo-white.png';
 import tagline from '../images/drinkcast-tagline-white.png';
 
+import wood from '../images/wood.jpg';
+
 // styles
 
 const IndexDiv = styled.div`
@@ -15,29 +17,29 @@ const IndexDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--background);
+  background: url(${wood}) no-repeat top left fixed;
+  background-size: cover;
 `;
 
 const IndexBox = styled.div`
-  border: 2px solid var(--tertiary);
   border-radius: 5px;
-  background-color: var(--orange);
-  width: 50%;
+  width: auto;
   min-width: 300px;
   margin: 15vh auto;
   padding: 1rem;
   height: auto;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   font-weight: bold;
-
-  @media screen and (max-width: 450px) {
-    
+  
+  .logo {
+    margin: 0 2.3rem;
   }
-
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+  }
   * {
     margin: 5px auto;
   }
@@ -46,15 +48,19 @@ const IndexBox = styled.div`
 const ButtonBox = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  height: 100%;
+  justify-content: space-evenly;
   margin: .5rem auto;
 `;
 
 const IndexPage = () => (
   <IndexDiv>
     <IndexBox>
-      <Image src={logo} alt="logo" className="inline-logo" />
-      <Image src={tagline} alt="tagline" className="inline-tagline" />
+      <div className="logo">
+        <Image src={logo} alt="logo" className="inline-logo" />
+        <Image src={tagline} alt="tagline" className="inline-tagline" />
+      </div>
+
       <ButtonBox>
         <Button url="/createbar" type="button">CREATE A BAR</Button>
         <p><span>OR</span></p>

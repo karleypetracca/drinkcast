@@ -4,22 +4,23 @@
   --black: rgb(0, 0, 0);
   --brown: rgb(144, 93, 73);
   --beige: rgb(252, 235, 183);
-  --blue: rgb(120, 192, 168);
-  --orange: rgb(244, 127, 73);
+  --blue: rgb(94, 173, 147);
+  --blue-dark: rgb(58, 138, 127);
+  --orange: rgb(209, 108, 61);
   --yellow: rgb(246, 197, 98);
   --green: rgb(119, 158, 104);
   --green-dark: rgb(76, 94, 55);
 
-
   --primary: var(--orange);
-  --secondary: var(--green);
-  --tertiary: var(--brown);
+  --secondary: var(--blue-dark);
+  --tertiary: var(--yellow);
   --background: var(--yellow);
 
 	/* default sizing */
 	--lg-container: 1000px;
-	--sm-container: 400px;
-	--nav-height: 60px;
+	--sm-container: 300px;
+  --nav-height: 60px;
+  --main-height: calc(100vh - var(--nav-height));
 }
 
 @font-face {
@@ -28,7 +29,6 @@
        url('uomo-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-
 }
 
 *, *:before, *:after {
