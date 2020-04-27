@@ -4,30 +4,32 @@ import { Redirect } from 'react-router-dom';
 import { post, API_URL } from '../utils/apiConn';
 import StateContext from '../context';
 
+import Nav from './Nav';
 import Button from './Button';
+import Input from './Input';
+import wood from '../images/wood.jpg';
 
 const FormDiv = styled.div`
   display: flex;
-  background-color: var(--yellow);
-  height: 100vh;
+  height: var(--main-height);
+  background: url(${wood}) no-repeat top left fixed;
+  background-size: cover;
 `;
 
 const Form = styled.form`
-  border: 2px solid var(--tertiary);
   display: flex;
   flex-direction: column;
   background-color: var(--primary);
-  width: 230px;
-  height: 350px;
+  width: var(--sm-container);
+  min-height: 350px;
   align-items: center;
   justify-content: center;
   margin: auto;
-  border-radius: 3px;
+  border-radius: 10px;
   
   div {
     display: inherit;
     text-align: center;
-    
   }
 
   h1 {
@@ -35,15 +37,6 @@ const Form = styled.form`
     flex-direction: inherit;
     align-self: flex-start;
     margin: 18px auto 38px auto;
-  }
-
-  input {
-    border: none;
-    font-family: inherit;
-    padding: 10px;
-    border-radius: 2px;
-    margin: 7px auto;
-    text-align: center;
   }
 `;
 
@@ -55,7 +48,6 @@ const IndexPage = () => {
   const [redirect, setRedirect] = useState(false);
   const [alert, setAlert] = useState(false);
 
-  // console.log(value);
   const submitJoinBar = async (e) => {
     e.preventDefault();
     const data = { joinBar, password };
@@ -63,7 +55,6 @@ const IndexPage = () => {
     const response = await post(getUrl, data);
     const opentokInfo = await response.json();
 
-    // console.log('session', opentokInfo);
     if (!opentokInfo.hasOwnProperty('error') && joinBar !== '' && password !== '') {
       dispatch({
         type: 'ACTION_JOIN_BAR',
@@ -79,7 +70,6 @@ const IndexPage = () => {
       setRedirect(true);
     }
 
-
     setAlert(true);
     setJoinBar('');
     setPassword('');
@@ -87,36 +77,42 @@ const IndexPage = () => {
   };
 
   return (
-    <FormDiv>
-      {redirect && (<Redirect to="./bar" />)}
-      <Form onSubmit={(e) => submitJoinBar(e)}>
-        <h1>DRINKCAST</h1>
-        {alert ? <div>Incorrect bar name or password.</div> : null}
-        <input
-          name="joinBar"
-          type="text"
-          value={joinBar}
-          placeholder="Enter a Bar to Join"
-          onChange={(e) => setJoinBar(e.target.value)}
-        />
-        <input
-          name="userName"
-          type="text"
-          value={userName}
-          placeholder="Enter your name"
-          onChange={(e) => setUserName(e.target.value)}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Enter a password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <Button url="" type="submit">Join a Bar</Button>
-      </Form>
+    <>
+      <Nav />
+      <FormDiv>
+        {redirect && (<Redirect to="./bar" />)}
+        <Form onSubmit={(e) => submitJoinBar(e)}>
+          <h1>Join</h1>
+          {alert ? <div>Incorrect bar name or password.</div> : null}
+          <Input
+            name="joinBar"
+            type="text"
+            value={joinBar}
+            placeholder="Bar Name"
+            onChange={(e) => setJoinBar(e.target.value)}
+            isRequired="true"
+          />
+          <Input
+            type="password"
+            name="password"
+            placeholder="Bar Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            isRequired=""
+          />
+          <Input
+            name="userName"
+            type="text"
+            value={userName}
+            placeholder="Your Name"
+            onChange={(e) => setUserName(e.target.value)}
+            isRequired="true"
+          />
+          <Button url="" type="submit">Join</Button>
+        </Form>
 
-    </FormDiv>
+      </FormDiv>
+    </>
   );
 };
 

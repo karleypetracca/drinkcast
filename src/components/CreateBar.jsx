@@ -5,26 +5,28 @@ import { Redirect } from 'react-router-dom';
 import { post, API_URL } from '../utils/apiConn';
 import StateContext from '../context';
 
+import Nav from './Nav';
 import Button from './Button';
+import Input from './Input';
+import wood from '../images/wood.jpg';
 
 const FormDiv = styled.div`
   display: flex;
-  background-color: var(--yellow);
-  height: 100vh;
+  height: var(--main-height);
+  background: url(${wood}) no-repeat top left fixed;
+  background-size: cover;
 `;
 
 const Form = styled.form`
-  border: 2px solid var(--tertiary);
   display: flex;
   flex-direction: column;
   background-color: var(--primary);
-  width: 230px;
-  height: 350px;
+  width: var(--sm-container);
+  min-height: 350px;
   align-items: center;
   justify-content: center;
   margin: auto;
-  border-radius: 3px;
-  box-shadow: 10px 5px 3px grey;
+  border-radius: 10px;
   
   div {
     display: inherit;
@@ -36,17 +38,6 @@ const Form = styled.form`
     flex-direction: inherit;
     align-self: flex-start;
     margin: 18px auto 38px auto;
-    font-size: 40px;
-  }
-
-  input {
-    border: none;
-    font-family: inherit;
-    padding: 10px;
-    border-radius: 7px;
-    margin: 7px auto;
-    text-align: center;
-    box-shadow: 5px 3px 3px grey;
   }
 `;
 
@@ -82,44 +73,47 @@ const IndexPage = () => {
       setRedirect(true);
     }
 
-
     setBarName('');
     setPassword('');
     setUserName('');
   };
 
   return (
-    <FormDiv>
-      {redirect && (<Redirect to="./bar" />)}
-      <Form onSubmit={(e) => submitBarName(e)}>
-        <h1>DRINKCAST</h1>
-        <div>{nameCheck}</div>
-        <input
-          name="barName"
-          type="text"
-          value={barName}
-          placeholder="Enter a New Bar Name"
-          onChange={(e) => setBarName(e.target.value)}
-          isRequired
-        />
-        <input
-          name="userName"
-          type="text"
-          value={userName}
-          placeholder="Enter your name"
-          onChange={(e) => setUserName(e.target.value)}
-        />
-        <input
-          type="password"
-          name="password"
-          value={password}
-          placeholder="Enter a Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <br />
-        <Button url="" type="submit">Create New Bar</Button>
-      </Form>
-    </FormDiv>
+    <>
+      <Nav />
+      <FormDiv>
+        {redirect && (<Redirect to="./bar" />)}
+        <Form onSubmit={(e) => submitBarName(e)}>
+          <h1>Create New Bar</h1>
+          <div>{nameCheck}</div>
+          <Input
+            name="barName"
+            type="text"
+            value={barName}
+            placeholder="Bar Name"
+            onChange={(e) => setBarName(e.target.value)}
+            isRequired="true"
+          />
+          <Input
+            type="password"
+            name="password"
+            value={password}
+            placeholder="Bar Password [Optional]"
+            onChange={(e) => setPassword(e.target.value)}
+            isRequired=""
+          />
+          <Input
+            name="userName"
+            type="text"
+            value={userName}
+            placeholder="Your Name"
+            onChange={(e) => setUserName(e.target.value)}
+            isRequired="true"
+          />
+          <Button url="" type="submit">Create</Button>
+        </Form>
+      </FormDiv>
+    </>
   );
 };
 
