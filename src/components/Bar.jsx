@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { OTSession, OTStreams, preloadScript } from 'opentok-react';
 import styled from 'styled-components';
 import ConnectionStatus from './ConnectionStatus';
@@ -8,6 +8,8 @@ import StateContext from '../context';
 
 import Nav from './Nav';
 import Modal from './Modal';
+import { post, API_URL } from '../utils/apiConn';
+import wood from '../images/wood.jpg';
 
 
 const BarRoom = styled.div`
@@ -19,6 +21,14 @@ const Bar = () => {
   const [value, dispatch] = useContext(StateContext);
   const [error, setError] = useState(false);
   const [connected, setConnected] = useState(false);
+
+  useEffect(() => {
+    const loadData = {
+      barName: value.barName,
+    };
+    const postURL = `${API_URL}api/updatebar`;
+    const loadResp = post(postURL, loadData);
+  }, [value.barName]);
 
   console.log('this is the context inside the Bar component: ', value);
 
