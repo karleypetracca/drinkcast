@@ -3,6 +3,10 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { get, API_URL } from '../utils/apiConn';
 
+import { subscribeToTimer } from '../api';
+
+//styling
+
 const GameStyled = styled.div`
   height: 100vh;
   display: flex;
@@ -42,10 +46,15 @@ const GameStyled = styled.div`
   }
 `;
 
+//websockets data
+
 const Game = () => {
   const [gameStart, setGameStart] = useState(false);
   const [gameSelected, setGameSelected] = useState(''); // "neverhaveiever" or "wouldyourather"
   const [roundText, setRoundText] = useState('');
+  const [timer, setTimer] = useState('');
+
+  // subscribeToTimer((err, timestamp) => setTimer(timestamp));
 
   const startGame = () => {
     setGameStart(!gameStart);
@@ -67,6 +76,10 @@ const Game = () => {
 
   return (
     <GameStyled>
+      {timer}
+      <button type='submit' onClick={subscribeToTimer}>
+        push
+      </button>
       {gameSelected === 'neverhaveiever' ? (
         <h1>Playing: Never Have I Ever</h1>
       ) : (
