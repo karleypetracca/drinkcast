@@ -29,7 +29,7 @@ const Bar = () => {
     };
     const postURL = `${API_URL}api/updatebar`;
     const loadResp = post(postURL, loadData);
-  }, []);
+  }, [value.barName]);
 
   console.log('this is the context inside the Bar component: ', value);
 
