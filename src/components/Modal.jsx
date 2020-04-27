@@ -13,35 +13,33 @@ const ModalDiv = styled.div`
   left: 0;
   right: 0;
   z-index: 9999;
-
 `;
 
 const ModalContent = styled.div`
   margin: 30vh auto;
-  border-radius: 4px;
   padding: 16px;
-  width: var(--sm-container);
+  padding-top: 35px;
+  border-radius: 10px;
+  min-width: var(--sm-container);
+  max-width: 400px;
+  text-align: center;
   height: auto;
-  background-color: var(--orange);
-  color: var(--black);
+  background-color: var(--secondary);
   position: relative;
   z-index: 10000;
-
 `;
 
 const CloseModal = styled.a`
-  background-color: none;
+  color: var(--tertiary);
+  border-radius: 5px;
   cursor: pointer;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  color: var(--black);
   position: absolute;
-  top: 16px;
-  right: 24px;
-  z-index: 109000;
-
+  top: 10px;
+  right: 10px;
 `;
 
 
@@ -62,7 +60,9 @@ const Modal = ({ text }) => {
   const modalDisplay = (
     <ModalDiv>
       <ModalContent>
-        <CloseModal onClick={(e) => closeModal(e)}><i className="far fa-window-close" /></CloseModal>
+        <CloseModal onClick={(e) => closeModal(e)}>
+          <i className="far fa-window-close" />
+        </CloseModal>
         <p>{text}</p>
       </ModalContent>
     </ModalDiv>
