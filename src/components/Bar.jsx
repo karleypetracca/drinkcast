@@ -3,7 +3,6 @@ import React, { useState, useContext, useEffect } from 'react';
 import { OTSession, OTStreams, preloadScript } from 'opentok-react';
 import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
-import ConnectionStatus from './ConnectionStatus';
 import Publisher from './Publisher';
 import Subscriber from './Subscriber';
 import StateContext from '../context';
@@ -12,20 +11,42 @@ import Game from './Game';
 import Nav from './Nav';
 import Modal from './Modal';
 import { post, API_URL } from '../utils/apiConn';
-import wood from '../images/wood.jpg';
 
 
 const BarRoom = styled.div`
   display: flex;
   flex-direction: column;
   height: var(--main-height);
+  text-align: center;
+  
 `;
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 const Patrons = styled.div`
+=======
+const Display = styled.div`
+>>>>>>> Stashed changes
   display: flex;
   flex-wrap: wrap;
-  height: 50%;
+  height: auto;
+  
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+  }
+`;
+
+const GameDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  margin: auto;
+  width: 50%;
+  
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
 const Bar = () => {
@@ -75,6 +96,7 @@ const Bar = ({ match }) => {
 
   return (
     <>
+<<<<<<< Updated upstream
       {
         !value.barName ? (<Redirect to="/" />)
           : (
@@ -98,6 +120,32 @@ const Bar = ({ match }) => {
             </>
           )
       }
+=======
+      <Nav />
+      <BarRoom>
+        <div className="bar">
+          <h1>{value.barName}</h1>
+        </div>
+        <Modal text={greeting} />
+        <OTSession
+          apiKey={value.key}
+          sessionId={value.sessionId}
+          token={value.token}
+          eventHandlers={sessionEvents}
+          onError={onError}
+        >
+          <Display>
+            <Publisher />
+            <GameDiv>
+              <OTStreams>
+                <Subscriber />
+              </OTStreams>
+              <Game />
+            </GameDiv>
+          </Display>
+        </OTSession>
+      </BarRoom>
+>>>>>>> Stashed changes
     </>
   );
 };

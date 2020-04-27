@@ -5,11 +5,13 @@ import CheckBox from './CheckBox';
 import StateContext from '../context';
 
 const PublisherDiv = styled.div`
-  padding: 1rem 0.2rem;
-  
+  padding: 1rem 3rem;
+  width: 50%;
+  margin: 0 auto;
+ 
   @media screen and (max-width: 600px) {
-    padding: 0;
-    
+    padding: 0 0.4rem;
+    width: 80%
   } 
 `;
 
@@ -29,6 +31,8 @@ const Publisher = () => {
       {error ? <div>{error}</div> : null}
       <OTPublisher
         properties={{
+          width: 'auto',
+          height: '40vw',
           publishAudio: audio,
           publishVideo: video,
         }}

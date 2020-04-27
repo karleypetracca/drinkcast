@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 import { OTSubscriber } from 'opentok-react';
+import styled from 'styled-components';
 import CheckBox from './CheckBox';
+
+const SubDiv = styled.div`
+ 
+  
+  @media screen and (max-width: 600px) {
+    width: 80%;
+  }
+`;
 
 const Subscriber = () => {
   const [error, setError] = useState(null);
@@ -12,11 +21,12 @@ const Subscriber = () => {
   };
 
   return (
-    <div className="subscriber">
-      Subscriber
+    <SubDiv>
       {error ? <div>{error}</div> : null}
       <OTSubscriber
         properties={{
+          width: '20vw',
+          height: '20vw',
           subscribeToAudio: audio,
           subscribeToVideo: video,
         }}
@@ -32,7 +42,7 @@ const Subscriber = () => {
         initialChecked={audio}
         onChange={setAudio}
       />
-    </div>
+    </SubDiv>
   );
 };
 
