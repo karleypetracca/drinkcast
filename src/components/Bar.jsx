@@ -5,13 +5,16 @@ import ConnectionStatus from './ConnectionStatus';
 import Publisher from './Publisher';
 import Subscriber from './Subscriber';
 import StateContext from '../context';
+
 import Nav from './Nav';
 import Modal from './Modal';
+import wood from '../images/wood.jpg';
 
 const BarRoom = styled.div`
-  background-color: var(--yellow);
-  height: 100vh;
-  color: black;
+  display: flex;
+  height: var(--main-height);
+  background: url(${wood}) no-repeat top left fixed;
+  background-size: cover;
 `;
 
 const Bar = () => {
@@ -32,24 +35,26 @@ const Bar = () => {
   const greeting = `Welcome to ${value.barName}! Pull up a seat ${value.userName}!`;
 
   return (
-    <BarRoom>
+    <>
       <Nav />
-      <Modal text={greeting} />
-      <OTSession
-        apiKey={value.key}
-        sessionId={value.sessionId}
-        token={value.token}
-        eventHandlers={sessionEvents}
-        onError={onError}
-      >
-        {/* {error ? <div>error</div> : null} */}
-        {/* <ConnectionStatus connected={connected} /> */}
-        <Publisher />
-        <OTStreams>
-          <Subscriber />
-        </OTStreams>
-      </OTSession>
-    </BarRoom>
+      <BarRoom>
+        <Modal text={greeting} />
+        <OTSession
+          apiKey={value.key}
+          sessionId={value.sessionId}
+          token={value.token}
+          eventHandlers={sessionEvents}
+          onError={onError}
+        >
+          {/* {error ? <div>error</div> : null} */}
+          {/* <ConnectionStatus connected={connected} /> */}
+          <Publisher />
+          <OTStreams>
+            <Subscriber />
+          </OTStreams>
+        </OTSession>
+      </BarRoom>
+    </>
   );
 };
 

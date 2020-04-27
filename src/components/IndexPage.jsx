@@ -22,8 +22,7 @@ const IndexDiv = styled.div`
 `;
 
 const IndexBox = styled.div`
-  border: 2px solid var(--tertiary);
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: var(--orange);
   width: 50%;
   min-width: 300px;
