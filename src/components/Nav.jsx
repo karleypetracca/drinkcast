@@ -6,13 +6,12 @@ import Image from './Image';
 import logo from '../images/drinkcast-logo-white.png';
 
 const NavStyled = styled.nav`
-  position: fixed;
   width: calc(100vw - (100vw - 100%));
   min-height: var(--nav-height);
   display: flex;
   background-color: var(--primaryFaded);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  z-index: 3;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  z-index: 6;
 
   .links {
     display: flex;
