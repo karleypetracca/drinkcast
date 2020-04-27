@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import { OTSession, OTStreams, preloadScript } from 'opentok-react';
 import styled from 'styled-components';
 import ConnectionStatus from './ConnectionStatus';
@@ -22,7 +22,10 @@ const Bar = () => {
   const [value, dispatch] = useContext(StateContext);
   const [error, setError] = useState(false);
   const [connected, setConnected] = useState(false);
+  const sessionRef = useRef();
 
+  // this passes the barName to the backend to set the last access time
+  // of a particular bar.
   useEffect(() => {
     const loadData = {
       barName: value.barName,
@@ -31,17 +34,44 @@ const Bar = () => {
     const loadResp = post(postURL, loadData);
   }, [value.barName]);
 
-  console.log('this is the context inside the Bar component: ', value);
+  // console.log('this is the context inside the Bar component: ', value);
 
+  const onSignalReceive = (signal) => {
+    console.log('onSignalReceive => ', signal.data);
+    // based on signal data type you can do use switch or conditional statements
+  };
+
+  const signalCallback = (event) => {
+    console.log(event);
+    onSignalReceive(event);
+  };
   const sessionEvents = {
     sessionConnected: () => setConnected(true),
     sessionDisconnected: () => setConnected(false),
+    'signal:msg': (event) => signalCallback(event),
   };
+
 
   const onError = (err) => {
     setError(`Failed to connect: ${err.message}`);
   };
   const greeting = `Welcome to ${value.barName}! Pull up a seat ${value.userName}!`;
+
+  const sendSignal = () => {
+    sessionRef.current.sessionHelper.session.signal(
+      {
+        type: 'msg',
+        data: 'TheData',
+      },
+      (err) => {
+        if (err) {
+          console.log('signal error: ', err.message);
+        } else {
+          console.log('signal sent');
+        }
+      },
+    );
+  };
 
   return (
     <>
@@ -49,6 +79,7 @@ const Bar = () => {
       <BarRoom>
         <Modal text={greeting} />
         <OTSession
+          ref={sessionRef}
           apiKey={value.key}
           sessionId={value.sessionId}
           token={value.token}
@@ -61,6 +92,7 @@ const Bar = () => {
           <OTStreams>
             <Subscriber />
           </OTStreams>
+          <button type="button" onClick={sendSignal}>Signal</button>
         </OTSession>
       </BarRoom>
     </>
