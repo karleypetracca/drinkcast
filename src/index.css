@@ -10,7 +10,9 @@
   --yellow: rgb(246, 197, 98);
   --green: rgb(119, 158, 104);
   --green-dark: rgb(76, 94, 55);
-
+  
+  --primaryFaded: rgba(209, 108, 61, 0.5);
+  
   --primary: var(--orange);
   --secondary: var(--blue-dark);
   --tertiary: var(--yellow);
