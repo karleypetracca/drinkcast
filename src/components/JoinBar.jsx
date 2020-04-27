@@ -14,18 +14,17 @@ const FormDiv = styled.div`
   height: var(--main-height);
   background: url(${wood}) no-repeat top left fixed;
   background-size: cover;
+  height: 100vh;
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  background-color: var(--primary);
   width: var(--sm-container);
   min-height: 350px;
   align-items: center;
   justify-content: center;
   margin: auto;
-  border-radius: 10px;
   
   div {
     display: inherit;
