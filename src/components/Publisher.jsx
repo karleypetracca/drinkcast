@@ -1,7 +1,17 @@
 import React, { useState, useContext } from 'react';
 import { OTPublisher } from 'opentok-react';
+import styled from 'styled-components';
 import CheckBox from './CheckBox';
 import StateContext from '../context';
+
+const PublisherDiv = styled.div`
+  padding: 1rem 0.2rem;
+  
+  @media screen and (max-width: 600px) {
+    padding: 0;
+    
+  } 
+`;
 
 const Publisher = () => {
   const [error, setError] = useState(null);
@@ -14,7 +24,7 @@ const Publisher = () => {
   };
 
   return (
-    <div className="publisher">
+    <PublisherDiv>
       {value.userName}
       {error ? <div>{error}</div> : null}
       <OTPublisher
@@ -34,7 +44,7 @@ const Publisher = () => {
         initialChecked={audio}
         onChange={setAudio}
       />
-    </div>
+    </PublisherDiv>
   );
 };
 

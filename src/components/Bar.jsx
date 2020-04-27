@@ -5,6 +5,7 @@ import ConnectionStatus from './ConnectionStatus';
 import Publisher from './Publisher';
 import Subscriber from './Subscriber';
 import StateContext from '../context';
+import Game from './Game';
 
 import Nav from './Nav';
 import Modal from './Modal';
@@ -14,7 +15,14 @@ import wood from '../images/wood.jpg';
 
 const BarRoom = styled.div`
   display: flex;
+  flex-direction: column;
   height: var(--main-height);
+`;
+
+const Patrons = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  height: 50%;
 `;
 
 const Bar = () => {
@@ -56,11 +64,19 @@ const Bar = () => {
         >
           {/* {error ? <div>error</div> : null} */}
           {/* <ConnectionStatus connected={connected} /> */}
-          <Publisher />
-          <OTStreams>
-            <Subscriber />
-          </OTStreams>
+          <Patrons>
+            <Publisher />
+            <Publisher />
+            <Publisher />
+            <Publisher />
+            <Publisher />
+            <OTStreams>
+              <Subscriber />
+            </OTStreams>
+          </Patrons>
+
         </OTSession>
+        <Game />
       </BarRoom>
     </>
   );
