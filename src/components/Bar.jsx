@@ -8,13 +8,11 @@ import StateContext from '../context';
 
 import Nav from './Nav';
 import Modal from './Modal';
-import wood from '../images/wood.jpg';
+
 
 const BarRoom = styled.div`
   display: flex;
   height: var(--main-height);
-  background: url(${wood}) no-repeat top left fixed;
-  background-size: cover;
 `;
 
 const Bar = () => {

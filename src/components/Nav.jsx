@@ -9,22 +9,45 @@ const NavStyled = styled.nav`
   width: calc(100vw - (100vw - 100%));
   min-height: var(--nav-height);
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--primary);
+  background-color: var(--primaryFaded);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  z-index: 6;
 
-  a {
+  .links {
     display: flex;
-    justify-content: center;
+    font-size: 1.6rem;
+    flex-direction: row-reverse;
+    width: 100%;
     align-items: center;
   }
+  
+  .links a {
+    padding: 0 1rem;
+  }
+  
+  a:hover {
+    transition: 0.3s ease-in-out;
+    color: var(--secondary);
+  }
+  
 `;
+
 
 const Nav = () => (
   <NavStyled>
     <a href="/">
       <Image src={logo} alt="logo" className="nav-logo" />
     </a>
+    <div className="links">
+      <a href="/joinbar" className="joinBar">
+        JOIN
+      </a>
+      <a href="/createbar" classnam="createBar">
+        CREATE
+      </a>
+    </div>
+
+
   </NavStyled>
 );
 
