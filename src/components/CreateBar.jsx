@@ -8,25 +8,21 @@ import StateContext from '../context';
 import Nav from './Nav';
 import Button from './Button';
 import Input from './Input';
-import wood from '../images/wood.jpg';
 
 const FormDiv = styled.div`
   display: flex;
   height: var(--main-height);
-  background: url(${wood}) no-repeat top left fixed;
-  background-size: cover;
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  background-color: var(--primary);
   width: var(--sm-container);
   min-height: 350px;
   align-items: center;
   justify-content: center;
   margin: auto;
-  border-radius: 10px;
+
   
   div {
     display: inherit;

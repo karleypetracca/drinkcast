@@ -11,11 +11,10 @@ import Modal from './Modal';
 import { post, API_URL } from '../utils/apiConn';
 import wood from '../images/wood.jpg';
 
+
 const BarRoom = styled.div`
   display: flex;
   height: var(--main-height);
-  background: url(${wood}) no-repeat top left fixed;
-  background-size: cover;
 `;
 
 const Bar = () => {
