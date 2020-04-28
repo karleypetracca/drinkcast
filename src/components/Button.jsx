@@ -35,7 +35,7 @@ const Button = ({
   <>
     {url !== ''
       ? (
-        <WrapperStyled href={url} type="button">
+        <WrapperStyled href={url} type="button" onClick={action || null}>
           <ButtonStyled type={type}>
             {children}
           </ButtonStyled>
