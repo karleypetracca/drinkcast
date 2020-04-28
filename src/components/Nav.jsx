@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import Burger from '@animated-burgers/burger-squeeze';
+import '@animated-burgers/burger-squeeze/dist/styles.css';
 import styled from 'styled-components';
+import StateContext from '../context';
 
 import Image from './Image';
+import Button from './Button';
+import NavDropdown from './NavDropdown';
 
 import logo from '../images/drinkcast-logo-white.png';
-import { get } from '../utils/apiConn';
 
 const NavStyled = styled.nav`
   width: calc(100vw - (100vw - 100%));
@@ -22,44 +26,108 @@ const NavStyled = styled.nav`
     align-items: center;
   }
   
-  .links a {
+  .links {
     padding: 0 1rem;
+  }
+
+  .links a {
+    padding: 10px 1rem;
   }
   
   a:hover {
     transition: 0.3s ease-in-out;
     color: var(--secondary);
   }
-  
+
+  @media only screen and (min-width: 601px) {
+    .mobile {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .desktop {
+      display: none;
+    }
+  }
 `;
 
-
 const Nav = () => {
+  const [burgerIsOpen, setBurgerIsOpen] = useState(false);
+
+  const location = !!(window.location.href.split('/').pop() === 'bar');
+  const [inBar, setInBar] = useState(location);
+  const [value, dispatch] = useContext(StateContext);
+
+  const clearBarInfo = (e) => {
+    e.preventDefault();
+    dispatch({
+      type: 'ACTION_EXIT_BAR',
+      sessionId: '',
+      token: '',
+      key: '',
+      barName: '',
+      userName: '',
+    });
+
+    localStorage.clear();
+  };
+
   const getBarName = () => {
-    const item = localStorage.getItem('barName');
+    const item = localStorage.getItem('barName') || '';
+    if (item === '') {
+      return '';
+    }
     const bar = JSON.parse(item);
     return bar.localValue;
   };
 
   const name = getBarName();
+
+  const burgerClick = () => {
+    setBurgerIsOpen(!burgerIsOpen);
+  };
+
   return (
     <NavStyled>
       <a href="/">
         <Image src={logo} alt="logo" className="nav-logo" />
       </a>
-      <div className="links">
-        {localStorage.getItem('sessionId') && localStorage.getItem('token')
+      <div className="desktop links">
+        {localStorage.getItem('sessionId') && localStorage.getItem('token') && !inBar
           ? <a href="/bar">{name}</a> : null}
-        <a href="/joinbar" className="joinBar">
-          JOIN
-        </a>
-        <a href="/createbar" classnam="createBar">
-          CREATE
-        </a>
+        {inBar
+          ? (
+            <Button href="/" type="button" action={(e) => clearBarInfo(e)}>
+              EXIT
+            </Button>
+          )
+          : (
+            <>
+              <a href="/joinbar" className="joinBar">
+                JOIN
+              </a>
+              <a href="/createbar" classnam="createBar">
+                CREATE
+              </a>
+            </>
+          )}
       </div>
-
-
+      <div className="mobile links">
+        {burgerIsOpen ? <Burger isOpen onClick={burgerClick} /> : <Burger onClick={burgerClick} />}
+        <NavDropdown isOpen={burgerIsOpen}>
+          {localStorage.getItem('sessionId') && localStorage.getItem('token') && !inBar
+            ? <a href="/bar">{name}</a> : null}
+          <a href="/joinbar" className="joinBar">
+            JOIN
+          </a>
+          <a href="/createbar" classnam="createBar">
+            CREATE
+          </a>
+        </NavDropdown>
+      </div>
     </NavStyled>
   );
 };
+
 export default Nav;

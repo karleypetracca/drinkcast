@@ -108,10 +108,14 @@ const IndexPage = () => {
 
       setRedirect(true);
     }
-
-    setBarName('');
-    setPassword('');
-    setUserName('');
+    if (opentokInfo.error) {
+      if (opentokInfo.error.includes('password')) {
+        setPassword('');
+      }
+      if (opentokInfo.error.includes('name')) {
+        setBarName('');
+      }
+    }
   };
 
   return (
@@ -129,15 +133,15 @@ const IndexPage = () => {
             value={barName}
             placeholder="Bar Name"
             onChange={(e) => setBarName(e.target.value)}
+            isRequired="true"
           />
-          <div>{passwordCheck}</div>
           <Input
             type="password"
             name="password"
             value={password}
-            placeholder="Bar Password [Optional]"
+            placeholder="Bar Password"
             onChange={(e) => setPassword(e.target.value)}
-            isRequired=""
+            isRequired="true"
           />
           <Input
             name="userName"
