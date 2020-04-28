@@ -120,7 +120,6 @@ const IndexPage = () => {
         <Form onSubmit={(e) => submitBarName(e)}>
           <h1>Create New Bar</h1>
           <div>{nameCheck}</div>
-
           <Input
             name="barName"
             type="text"
@@ -129,7 +128,6 @@ const IndexPage = () => {
             onChange={(e) => setBarName(e.target.value)}
             isRequired="true"
           />
-
           <Input
             type="password"
             name="password"

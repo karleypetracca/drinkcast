@@ -5,6 +5,11 @@ import styled from 'styled-components';
 const WrapperStyled = styled.a`
   text-align: center;
   cursor: pointer;
+  
+  .nav {
+    margin: 0;
+    background-color: var(--primary);
+  }
 `;
 
 const ButtonStyled = styled.button`
@@ -30,23 +35,23 @@ const ButtonStyled = styled.button`
 `;
 
 const Button = ({
-  url, type, children, action,
+  url, type, children, action, className,
 }) => (
-  <>
-    {url !== ''
-      ? (
-        <WrapperStyled href={url} type="button" onClick={action || null}>
-          <ButtonStyled type={type}>
+    <>
+      {url !== ''
+        ? (
+          <WrapperStyled href={url} type="button" onClick={action || null}>
+            <ButtonStyled className={className} type={type}>
+              {children}
+            </ButtonStyled>
+          </WrapperStyled>
+        )
+        : (
+          <ButtonStyled type={type} onClick={action || null}>
             {children}
           </ButtonStyled>
-        </WrapperStyled>
-      )
-      : (
-        <ButtonStyled type={type} onClick={action || null}>
-          {children}
-        </ButtonStyled>
-      )}
-  </>
-);
+        )}
+    </>
+  );
 
 export default Button;
