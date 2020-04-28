@@ -97,7 +97,7 @@ const IndexPage = () => {
       setLocalData('sessionId', opentokInfo.newSession);
       setLocalData('token', opentokInfo.token);
       setLocalData('key', opentokInfo.key);
-      setLocalData('barName', barName);
+      setLocalData('barName', barNameToSubmit);
       setLocalData('userName', userName);
 
       setRedirect(true);
