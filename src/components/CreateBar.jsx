@@ -102,10 +102,12 @@ const IndexPage = () => {
 
       setRedirect(true);
     }
-
-    setBarName('');
-    setPassword('');
-    setUserName('');
+    if (opentokInfo.error.includes('password')) {
+      setPassword('');
+    }
+    if (opentokInfo.error.includes('name')) {
+      setBarName('');
+    }
   };
 
   return (
