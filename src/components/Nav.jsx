@@ -1,3 +1,15 @@
+import React, { useState, useContext } from 'react';
+import Burger from '@animated-burgers/burger-squeeze';
+import '@animated-burgers/burger-squeeze/dist/styles.css';
+import styled from 'styled-components';
+import StateContext from '../context';
+
+import Image from './Image';
+import Button from './Button';
+import NavDropdown from './NavDropdown';
+
+import logo from '../images/drinkcast-logo-white.png';
+
 
 const NavStyled = styled.nav`
   width: calc(100vw - (100vw - 100%));
@@ -61,6 +73,7 @@ const Nav = () => {
 
     localStorage.clear();
   };
+
   const getBarName = () => {
     const item = localStorage.getItem('barName') || '';
     if (item === '') {
