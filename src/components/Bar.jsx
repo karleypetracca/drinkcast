@@ -8,10 +8,9 @@ import Publisher from './Publisher';
 import Subscriber from './Subscriber';
 import StateContext from '../context';
 import Game from './Game';
-
 import Nav from './Nav';
 import Modal from './Modal';
-import { post, API_URL } from '../utils/apiConn';
+import { get, post, API_URL } from '../utils/apiConn';
 
 const BarRoom = styled.div`
   display: flex;
@@ -45,10 +44,11 @@ const GameDiv = styled.div`
 
 const Bar = ({ match }) => {
   const [value, dispatch] = useContext(StateContext);
-  const [error, setError] = useState(false);
-  const [connected, setConnected] = useState(false);
-  const [question, setQuestion] = useState('');
+  // const [connected, setConnected] = useState(false);
   const sessionRef = useRef();
+  const [gameStart, setGameStart] = useState(false);
+  const [gameSelected, setGameSelected] = useState(''); // "neverhaveiever" or "wouldyourather"
+  const [roundText, setRoundText] = useState('');
 
   const getLocalData = (localKey) => {
     const itemStr = localStorage.getItem(localKey);
@@ -64,22 +64,12 @@ const Bar = ({ match }) => {
     return item.localValue;
   };
 
-  const onSignalReceive = (signal) => {
-    console.log('onSignalReceive => ', signal.data);
-    // based on signal data type you can do use switch or conditional statements
-  };
-
-  const signalCallback = (event) => {
-    console.log(event);
-    onSignalReceive(event);
-  };
-
+  // this passes the barName to the backend to set the last access time
+  // of a particular bar.
   useEffect(() => {
     sessionRef.current.sessionHelper.session.on('signal:msg', (event) => {
       console.log('Signal sent from connection ' + event.from.id);
       console.log(event.data);
-      // Process the event.data property, if there is any data.
-      setQuestion('Have you destroyed the world?');
     });
 
     const loadData = {
@@ -87,39 +77,79 @@ const Bar = ({ match }) => {
     };
 
     const postURL = `${API_URL}api/updatebar`;
+    // eslint-disable-next-line no-unused-vars
     const loadResp = post(postURL, loadData);
   }, [value.barName]);
 
+  // console.log('this is the context inside the Bar component: ', value);
   console.log('this is the context inside the Bar component: ', value);
   console.log('this is local: ', getLocalData('barName'));
 
+  const signalStartGame = (signal) => {
+    console.log(signal);
+    setGameStart(signal.data);
+  };
+
+  const signalChangeGame = (signal) => {
+    console.log(signal);
+    setGameSelected(signal.data);
+  };
+
+  const signalSetRoundText = (signal) => {
+    console.log(signal);
+    setRoundText(signal.data);
+  };
+
   const sessionEvents = {
-    sessionConnected: () => setConnected(true),
-    sessionDisconnected: () => setConnected(false),
-    'signal:msg': (event) => signalCallback(event),
+    // sessionConnected: () => setConnected(true),
+    // sessionDisconnected: () => setConnected(false),
+    'signal:startGame': (event) => signalStartGame(event),
+    'signal:changeGame': (event) => signalChangeGame(event),
+    'signal:setRoundText': (event) => signalSetRoundText(event),
   };
 
-  const onError = (err) => {
-    setError(`Failed to connect: ${err.message}`);
-  };
-
-  const greeting = `Welcome to ${value.barName}! Pull up a seat ${value.userName}!`;
-
-  const sendSignal = () => {
+  const sendSignal = (type, data) => {
     sessionRef.current.sessionHelper.session.signal(
       {
-        type: 'msg',
-        data: 'TheData',
+        type,
+        data,
       },
       (err) => {
         if (err) {
+          // eslint-disable-next-line no-console
           console.log('signal error: ', err.message);
         } else {
+          // eslint-disable-next-line no-console
           console.log('signal sent');
         }
       },
     );
   };
+
+  const startGame = () => {
+    sendSignal('startGame', !gameStart);
+  };
+
+  const changeGame = (e) => {
+    sendSignal('changeGame', e.target.value);
+  };
+
+  const getRoundText = async () => {
+    const getUrl = `${API_URL}api/${gameSelected}`;
+    const response = await get(getUrl);
+    if (gameSelected === 'neverhaveiever') {
+      sendSignal('setRoundText', response.statement);
+    } else {
+      sendSignal('setRoundText', response.question);
+    }
+  };
+
+  const onError = (err) => {
+    // eslint-disable-next-line no-console
+    console.log(`Failed to connect: ${err.message}`);
+  };
+
+  const greeting = `Welcome to ${value.barName}! Pull up a seat ${value.userName}!`;
 
   return (
     <>
@@ -147,14 +177,16 @@ const Bar = ({ match }) => {
                   <OTStreams>
                     <Subscriber />
                   </OTStreams>
-                  <Game />
-                  <Countdown date={Date.now() + 300000} />
+                  <Game
+                    gameStart={gameStart}
+                    gameSelected={gameSelected}
+                    roundText={roundText}
+                    getRoundText={getRoundText}
+                    startGame={startGame}
+                    changeGame={changeGame}
+                  />
                 </GameDiv>
               </Display>
-              <button type='button' onClick={sendSignal}>
-                Signal
-              </button>
-              {question}
             </OTSession>
           </BarRoom>
         </>
