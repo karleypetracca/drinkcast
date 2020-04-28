@@ -58,7 +58,7 @@ const Modal = ({ text }) => {
   };
 
   const modalDisplay = (
-    <ModalDiv>
+    <ModalDiv onClick={(e) => closeModal(e)}>
       <ModalContent>
         <CloseModal onClick={(e) => closeModal(e)}>
           <i className="far fa-window-close" />

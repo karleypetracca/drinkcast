@@ -1,19 +1,17 @@
 /* eslint-disable no-nested-ternary */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { get, API_URL } from '../utils/apiConn';
-
-import { subscribeToTimer } from '../api';
 
 //styling
 
 const GameStyled = styled.div`
-  height: 100vh;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: var(--background);
+  background-color: none;
   padding: 10px;
 
   button {
@@ -48,13 +46,13 @@ const GameStyled = styled.div`
 
 //websockets data
 
-const Game = () => {
+const Game = (props) => {
   const [gameStart, setGameStart] = useState(false);
   const [gameSelected, setGameSelected] = useState(''); // "neverhaveiever" or "wouldyourather"
   const [roundText, setRoundText] = useState('');
   const [timer, setTimer] = useState('');
-
-  // subscribeToTimer((err, timestamp) => setTimer(timestamp));
+  const [question, setQuestion] = useState('nope');
+  // const sessionRef = useRef();
 
   const startGame = () => {
     setGameStart(!gameStart);
@@ -77,9 +75,7 @@ const Game = () => {
   return (
     <GameStyled>
       {timer}
-      <button type='submit' onClick={subscribeToTimer}>
-        push
-      </button>
+      {question}
       {gameSelected === 'neverhaveiever' ? (
         <h1>Playing: Never Have I Ever</h1>
       ) : (

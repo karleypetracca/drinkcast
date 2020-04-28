@@ -46,6 +46,16 @@ const IndexPage = () => {
 
   const submitJoinBar = async (e) => {
     e.preventDefault();
+
+    const setLocalData = (localKey, localValue) => {
+      const currentDate = new Date();
+      const item = {
+        localValue,
+        expiry: currentDate.getTime() + 86400000,
+      };
+      localStorage.setItem(localKey, JSON.stringify(item));
+    };
+
     const data = { joinBar, password };
     const getUrl = `${API_URL}api/joinbar`;
     const response = await post(getUrl, data);
@@ -60,9 +70,16 @@ const IndexPage = () => {
         barName: joinBar,
         userName,
       });
+      setLocalData('sessionId', opentokInfo.sessionId);
+      setLocalData('token', opentokInfo.token);
+      setLocalData('key', opentokInfo.key);
+      setLocalData('barName', joinBar);
+      setLocalData('userName', userName);
+
       setAlert(false);
       setJoinBar('');
       setPassword('');
+
       setRedirect(true);
     }
 

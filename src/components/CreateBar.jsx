@@ -48,6 +48,16 @@ const IndexPage = () => {
 
   const submitBarName = async (e) => {
     e.preventDefault();
+
+    const setLocalData = (localKey, localValue) => {
+      const currentDate = new Date();
+      const item = {
+        localValue,
+        expiry: currentDate.getTime() + 86400000,
+      };
+      localStorage.setItem(localKey, JSON.stringify(item));
+    };
+
     const data = { barName, password };
     const postUrl = `${API_URL}api/createbar`;
     const response = await post(postUrl, data);
@@ -55,6 +65,7 @@ const IndexPage = () => {
     setNameCheck(opentokInfo.error);
 
     console.log(opentokInfo);
+
     if (
       !opentokInfo.hasOwnProperty('error') &&
       barName !== '' &&
@@ -68,6 +79,12 @@ const IndexPage = () => {
         barName,
         userName,
       });
+
+      setLocalData('sessionId', opentokInfo.newSession);
+      setLocalData('token', opentokInfo.token);
+      setLocalData('key', opentokInfo.key);
+      setLocalData('barName', barName);
+      setLocalData('userName', userName);
 
       setRedirect(true);
     }

@@ -18,14 +18,27 @@ const AppMain = styled.div`
 `;
 
 const App = () => {
-  const initialState = {
-    sessionId: 'no session yet',
-    token: 'no token yet',
-    key: 'no key yet',
-    barName: 'no name yet',
-    userName: 'no user name yet',
+  const getLocalData = (localKey) => {
+    const itemStr = localStorage.getItem(localKey);
+    if (!itemStr) {
+      return '';
+    }
+    const item = JSON.parse(itemStr);
+    const currentDate = new Date();
+    if (currentDate.getTime() > item.expiry) {
+      localStorage.removeItem(localKey);
+      return '';
+    }
+    return item.localValue;
   };
 
+  const initialState = {
+    sessionId: getLocalData('sessionId'),
+    token: getLocalData('token'),
+    key: getLocalData('key'),
+    barName: getLocalData('barName'),
+    userName: getLocalData('userName'),
+  };
 
   return (
     <StateProvider value={useReducer(Reducer, initialState)}>
