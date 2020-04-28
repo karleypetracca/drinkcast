@@ -84,9 +84,9 @@ const IndexPage = () => {
     }
 
     setAlert(true);
-    setJoinBar('');
-    setPassword('');
-    setUserName('');
+    // setJoinBar('');
+    // setPassword('');
+    // setUserName('');
   };
 
   return (
