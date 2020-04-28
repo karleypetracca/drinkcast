@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
 import { post, API_URL } from '../utils/apiConn';
 import StateContext from '../context';
-
+import RandomBarGen from '../utils/RandomBarGen';
 import Nav from './Nav';
 import Button from './Button';
 import Input from './Input';
@@ -46,6 +46,13 @@ const IndexPage = () => {
 
   const [value, dispatch] = useContext(StateContext);
 
+  const randomNameHandler = async (e) => {
+    e.preventDefault();
+    const name = await RandomBarGen();
+    const randomName = `The ${name.join(' ')}`;
+    return setBarName(randomName);
+  };
+
 
   const submitBarName = async (e) => {
     e.preventDefault();
@@ -58,21 +65,32 @@ const IndexPage = () => {
       };
       localStorage.setItem(localKey, JSON.stringify(item));
     };
+    // creates random bar name.
+    const name = await RandomBarGen();
+    const randomName = `The ${name.join(' ')}`;
 
-    const data = { barName, password };
+    // checks to see if a bar name was entered and substitutes
+    // a random name if barName is an empty string.
+    const barNameToSubmit = !barName.length ? randomName : barName;
+
+    // console.log(barNameToSubmit);
+    // console.log('barName is : ', barName);
+
+    const data = { barName: barNameToSubmit, password };
     const postUrl = `${API_URL}api/createbar`;
     const response = await post(postUrl, data);
     const opentokInfo = await response.json();
     setNameCheck(opentokInfo.error);
 
-    console.log(opentokInfo);
-    if (!opentokInfo.hasOwnProperty('error') && barName !== '' && password !== '') {
+    // console.log(opentokInfo);
+
+    if (!opentokInfo.hasOwnProperty('error') && password !== '') {
       dispatch({
         type: 'ACTION_CREATE_BAR',
         sessionId: opentokInfo.newSession,
         token: opentokInfo.token,
         key: opentokInfo.key,
-        barName,
+        barName: barNameToSubmit,
         userName,
       });
 
@@ -98,14 +116,16 @@ const IndexPage = () => {
         <Form onSubmit={(e) => submitBarName(e)}>
           <h1>Create New Bar</h1>
           <div>{nameCheck}</div>
+
           <Input
             name="barName"
             type="text"
             value={barName}
             placeholder="Bar Name"
             onChange={(e) => setBarName(e.target.value)}
-            isRequired="true"
           />
+
+
           <Input
             type="password"
             name="password"
@@ -122,8 +142,10 @@ const IndexPage = () => {
             onChange={(e) => setUserName(e.target.value)}
             isRequired="true"
           />
+          <Button url="" type="button" action={(e) => randomNameHandler(e)}>Get Random Bar Name</Button>
           <Button url="" type="submit">Create</Button>
         </Form>
+
       </FormDiv>
     </>
   );
