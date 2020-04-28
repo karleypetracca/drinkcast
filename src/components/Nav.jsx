@@ -1,18 +1,10 @@
-<<<<<<< HEAD
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
-
 import Burger from '@animated-burgers/burger-squeeze';
 import '@animated-burgers/burger-squeeze/dist/styles.css';
 import Image from './Image';
 import NavDropdown from './NavDropdown';
-
-=======
-import React, { useState, useContext } from 'react';
-import styled from 'styled-components';
 import StateContext from '../context';
-import Image from './Image';
->>>>>>> 25ece0eef0825ff461eb343499d4a555e7bf8ee5
 import logo from '../images/drinkcast-logo-white.png';
 import Button from './Button';
 
