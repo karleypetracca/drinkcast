@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useContext, useEffect, useRef } from 'react';
+import React, {
+  useState, useContext, useEffect, useRef,
+} from 'react';
 import { OTSession, OTStreams, preloadScript } from 'opentok-react';
 import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';

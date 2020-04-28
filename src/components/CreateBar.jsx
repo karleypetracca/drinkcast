@@ -41,6 +41,7 @@ const IndexPage = () => {
   const [barName, setBarName] = useState('');
   const [password, setPassword] = useState('');
   const [nameCheck, setNameCheck] = useState('');
+  const [passwordCheck, setPasswordCheck] = useState('');
   const [redirect, setRedirect] = useState(false);
   const [userName, setUserName] = useState('');
 
@@ -80,9 +81,14 @@ const IndexPage = () => {
     const postUrl = `${API_URL}api/createbar`;
     const response = await post(postUrl, data);
     const opentokInfo = await response.json();
-    setNameCheck(opentokInfo.error);
+    if (opentokInfo.error === 'Sorry. That name is taken!') {
+      setNameCheck(opentokInfo.error);
+    }
+    if (opentokInfo.error === 'Sorry! That password is too short!') {
+      setPasswordCheck(opentokInfo.error);
+    }
 
-    // console.log(opentokInfo);
+
 
     if (!opentokInfo.hasOwnProperty('error') && password !== '') {
       dispatch({
@@ -124,8 +130,7 @@ const IndexPage = () => {
             placeholder="Bar Name"
             onChange={(e) => setBarName(e.target.value)}
           />
-
-
+          <div>{passwordCheck}</div>
           <Input
             type="password"
             name="password"
@@ -142,8 +147,8 @@ const IndexPage = () => {
             onChange={(e) => setUserName(e.target.value)}
             isRequired="true"
           />
-          <Button url="" type="button" action={(e) => randomNameHandler(e)}>Get Random Bar Name</Button>
           <Button url="" type="submit">Create</Button>
+          <Button url="" type="button" action={(e) => randomNameHandler(e)}>Get Random Bar Name</Button>
         </Form>
 
       </FormDiv>
