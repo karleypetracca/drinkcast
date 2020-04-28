@@ -31,10 +31,10 @@ const NavStyled = styled.nav`
     padding: 0 1rem;
   }
 
-  .links a {
+  .returnBar, .joinBar, .createBar {
     padding: 10px 1rem;
   }
-  
+
   a:hover {
     transition: 0.3s ease-in-out;
     color: var(--secondary);
@@ -96,10 +96,10 @@ const Nav = () => {
       </a>
       <div className="desktop links">
         {localStorage.getItem('sessionId') && localStorage.getItem('token') && !inBar
-          ? <a href="/bar">{name}</a> : null}
+          ? <a href="/bar" className="returnBar">{name}</a> : null}
         {inBar
           ? (
-            <Button href="/" type="button" action={(e) => clearBarInfo(e)}>
+            <Button className="nav" href="/" type="button" action={(e) => clearBarInfo(e)}>
               EXIT
             </Button>
           )
@@ -108,7 +108,7 @@ const Nav = () => {
               <a href="/joinbar" className="joinBar">
                 JOIN
               </a>
-              <a href="/createbar" classnam="createBar">
+              <a href="/createbar" className="createBar">
                 CREATE
               </a>
             </>
