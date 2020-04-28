@@ -1,12 +1,3 @@
-import React, { useState, useContext } from 'react';
-import styled from 'styled-components';
-import Burger from '@animated-burgers/burger-squeeze';
-import '@animated-burgers/burger-squeeze/dist/styles.css';
-import Image from './Image';
-import NavDropdown from './NavDropdown';
-import StateContext from '../context';
-import logo from '../images/drinkcast-logo-white.png';
-import Button from './Button';
 
 const NavStyled = styled.nav`
   width: calc(100vw - (100vw - 100%));
