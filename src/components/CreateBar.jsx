@@ -8,25 +8,21 @@ import StateContext from '../context';
 import Nav from './Nav';
 import Button from './Button';
 import Input from './Input';
-import wood from '../images/wood.jpg';
 
 const FormDiv = styled.div`
   display: flex;
   height: var(--main-height);
-  background: url(${wood}) no-repeat top left fixed;
-  background-size: cover;
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  background-color: var(--primary);
   width: var(--sm-container);
   min-height: 350px;
   align-items: center;
   justify-content: center;
   margin: auto;
-  border-radius: 10px;
+
   
   div {
     display: inherit;
@@ -53,6 +49,16 @@ const IndexPage = () => {
 
   const submitBarName = async (e) => {
     e.preventDefault();
+
+    const setLocalData = (localKey, localValue) => {
+      const currentDate = new Date();
+      const item = {
+        localValue,
+        expiry: currentDate.getTime() + 86400000,
+      };
+      localStorage.setItem(localKey, JSON.stringify(item));
+    };
+
     const data = { barName, password };
     const postUrl = `${API_URL}api/createbar`;
     const response = await post(postUrl, data);
@@ -69,6 +75,12 @@ const IndexPage = () => {
         barName,
         userName,
       });
+
+      setLocalData('sessionId', opentokInfo.newSession);
+      setLocalData('token', opentokInfo.token);
+      setLocalData('key', opentokInfo.key);
+      setLocalData('barName', barName);
+      setLocalData('userName', userName);
 
       setRedirect(true);
     }

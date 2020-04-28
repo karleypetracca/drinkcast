@@ -8,8 +8,6 @@ import Button from './Button';
 import logo from '../images/drinkcast-logo-white.png';
 import tagline from '../images/drinkcast-tagline-white.png';
 
-import wood from '../images/wood.jpg';
-
 // styles
 
 const IndexDiv = styled.div`
@@ -17,8 +15,7 @@ const IndexDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url(${wood}) no-repeat top left fixed;
-  background-size: cover;
+ 
 `;
 
 const IndexBox = styled.div`

@@ -4,12 +4,12 @@ import styled from 'styled-components';
 import { get, API_URL } from '../utils/apiConn';
 
 const GameStyled = styled.div`
-  height: 100vh;
+  height: auto; 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: var(--background);
+  background-color: none;
   padding: 10px;
 
   button {
@@ -23,7 +23,7 @@ const GameStyled = styled.div`
     padding: 10px;
     cursor: pointer;
   }
-
+  
   button:hover {
     background-color: var(--white);
     color: var(--secondary);
