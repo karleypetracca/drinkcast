@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { OTPublisher } from 'opentok-react';
 import styled from 'styled-components';
 import CheckBox from './CheckBox';
@@ -11,7 +11,7 @@ const PublisherDiv = styled.div`
  
   @media screen and (max-width: 600px) {
     padding: 0 0.4rem;
-    width: 80%
+    width: 60%
   } 
 `;
 
@@ -20,6 +20,18 @@ const Publisher = () => {
   const [audio, setAudio] = useState(true);
   const [video, setVideo] = useState(true);
   const [value, dispatch] = useContext(StateContext);
+  const [vidWidth, setVidWidth] = useState('auto');
+  const [vidHeight, setVidHeight] = useState('40vw');
+
+
+  useEffect(() => {
+    const setDimensions = () => {
+      setVidWidth(window.innerWidth <= 600 ? 'contain' : 'auto');
+      setVidHeight(window.innerWidth <= 600 ? 'contain' : '40vw');
+    };
+    window.addEventListener('resize', setDimensions);
+    return () => window.removeEventListener('resize', setDimensions);
+  }, []);
 
   const onError = (err) => {
     setError(`Failed to publish: ${err.message}`);
@@ -30,9 +42,14 @@ const Publisher = () => {
       {value.userName}
       {error ? <div>{error}</div> : null}
       <OTPublisher
+        // style={{
+        //   border: '1px solid green',
+        //   width: vidWidth,
+        //   height: vidHeight,
+        // }}
         properties={{
-          width: 'auto',
-          height: '40vw',
+          width: vidWidth,
+          height: vidHeight,
           publishAudio: audio,
           publishVideo: video,
         }}
