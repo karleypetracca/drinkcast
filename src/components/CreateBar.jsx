@@ -102,10 +102,14 @@ const IndexPage = () => {
 
       setRedirect(true);
     }
-
-    setBarName('');
-    setPassword('');
-    setUserName('');
+    if (opentokInfo.error) {
+      if (opentokInfo.error.includes('password')) {
+        setPassword('');
+      }
+      if (opentokInfo.error.includes('name')) {
+        setBarName('');
+      }
+    }
   };
 
   return (
@@ -130,7 +134,7 @@ const IndexPage = () => {
             type="password"
             name="password"
             value={password}
-            placeholder="Bar Password [Optional]"
+            placeholder="Bar Password"
             onChange={(e) => setPassword(e.target.value)}
             isRequired=""
           />
