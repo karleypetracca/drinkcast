@@ -1,7 +1,18 @@
+<<<<<<< HEAD
+import React, { useState } from 'react';
+import styled from 'styled-components';
+
+import Burger from '@animated-burgers/burger-squeeze';
+import '@animated-burgers/burger-squeeze/dist/styles.css';
+import Image from './Image';
+import NavDropdown from './NavDropdown';
+
+=======
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import StateContext from '../context';
 import Image from './Image';
+>>>>>>> 25ece0eef0825ff461eb343499d4a555e7bf8ee5
 import logo from '../images/drinkcast-logo-white.png';
 import Button from './Button';
 
@@ -21,19 +32,35 @@ const NavStyled = styled.nav`
     align-items: center;
   }
   
-  .links a {
+  .links {
     padding: 0 1rem;
+  }
+
+  .links a {
+    padding: 10px 1rem;
   }
   
   a:hover {
     transition: 0.3s ease-in-out;
     color: var(--secondary);
   }
-  
+
+  @media only screen and (min-width: 601px) {
+    .mobile {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .desktop {
+      display: none;
+    }
+  }
 `;
 
-
 const Nav = () => {
+  const [burgerIsOpen, setBurgerIsOpen] = useState(false);
+
   const location = !!(window.location.href.split('/').pop() === 'bar');
   const [inBar, setInBar] = useState(location);
   const [value, dispatch] = useContext(StateContext);
@@ -61,12 +88,17 @@ const Nav = () => {
   };
 
   const name = getBarName();
+
+  const burgerClick = () => {
+    setBurgerIsOpen(!burgerIsOpen);
+  };
+
   return (
     <NavStyled>
       <a href="/">
         <Image src={logo} alt="logo" className="nav-logo" />
       </a>
-      <div className="links">
+      <div className="desktop links">
         {localStorage.getItem('sessionId') && localStorage.getItem('token') && !inBar
           ? <a href="/bar">{name}</a> : null}
         {inBar
@@ -86,9 +118,21 @@ const Nav = () => {
             </>
           )}
       </div>
-
-
+      <div className="mobile links">
+        {burgerIsOpen ? <Burger isOpen onClick={burgerClick} /> : <Burger onClick={burgerClick} />}
+        <NavDropdown isOpen={burgerIsOpen}>
+          {localStorage.getItem('sessionId') && localStorage.getItem('token') && !inBar
+            ? <a href="/bar">{name}</a> : null}
+          <a href="/joinbar" className="joinBar">
+            JOIN
+          </a>
+          <a href="/createbar" classnam="createBar">
+            CREATE
+          </a>
+        </NavDropdown>
+      </div>
     </NavStyled>
   );
 };
+
 export default Nav;
