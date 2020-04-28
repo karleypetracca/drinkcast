@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
 import styled from 'styled-components';
@@ -42,57 +43,36 @@ const GameStyled = styled.div`
   }
 `;
 
-const Game = () => {
-  const [gameStart, setGameStart] = useState(false);
-  const [gameSelected, setGameSelected] = useState(''); // "neverhaveiever" or "wouldyourather"
-  const [roundText, setRoundText] = useState('');
-
-  const startGame = () => {
-    setGameStart(!gameStart);
-  };
-
-  const changeGame = (e) => {
-    setGameSelected(e.target.value);
-  };
-
-  const getRoundText = async () => {
-    const getUrl = `${API_URL}api/${gameSelected}`;
-    const response = await get(getUrl);
-    if (gameSelected === 'neverhaveiever') {
-      setRoundText(response.statement);
-    } else {
-      setRoundText(response.question);
-    }
-  };
-
-  return (
-    <GameStyled>
-      {gameSelected === 'neverhaveiever'
-        ? <h1>Playing: Never Have I Ever</h1>
-        : ''}
-      {gameSelected === 'wouldyourather'
-        ? <h1>Playing: Would You Rather</h1>
-        : ''}
-      {gameStart
-        ? (gameSelected !== ''
-          ? <button type="button" onClick={getRoundText}>New Round</button>
-          : '')
-        : <button type="button" onClick={startGame}>Start Game</button>}
-      {roundText !== '' ? <h2>{roundText}</h2> : ''}
-      {gameStart
-        ? (
-          <div className="selectGame">
-            <p>Use dropdown to change games</p>
-            <select defaultValue="" onChange={(e) => changeGame(e)}>
-              <option value="">Please select a game</option>
-              <option value="neverhaveiever">Never Have I Ever</option>
-              <option value="wouldyourather">Would You Rather</option>
-            </select>
-          </div>
-        )
-        : ''}
-    </GameStyled>
-  );
-};
+const Game = ({
+  gameStart, gameSelected, roundText, getRoundText, startGame, changeGame,
+}) => (
+  <GameStyled>
+    {console.log('gamestart', gameStart)}
+    {gameSelected === 'neverhaveiever'
+      ? <h1>Playing: Never Have I Ever</h1>
+      : ''}
+    {gameSelected === 'wouldyourather'
+      ? <h1>Playing: Would You Rather</h1>
+      : ''}
+    {gameStart
+      ? (gameSelected !== ''
+        ? <button type="button" onClick={getRoundText}>New Round</button>
+        : '')
+      : <button type="button" onClick={startGame}>Start Game</button>}
+    {roundText !== '' ? <h2>{roundText}</h2> : ''}
+    {gameStart
+      ? (
+        <div className="selectGame">
+          <p>Use dropdown to change games</p>
+          <select defaultValue="" onChange={(e) => changeGame(e)}>
+            <option value="">Please select a game</option>
+            <option value="neverhaveiever">Never Have I Ever</option>
+            <option value="wouldyourather">Would You Rather</option>
+          </select>
+        </div>
+      )
+      : ''}
+  </GameStyled>
+);
 
 export default Game;
