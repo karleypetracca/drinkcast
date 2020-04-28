@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Image from './Image';
 
 import logo from '../images/drinkcast-logo-white.png';
+import { get } from '../utils/apiConn';
 
 const NavStyled = styled.nav`
   width: calc(100vw - (100vw - 100%));
@@ -33,22 +34,32 @@ const NavStyled = styled.nav`
 `;
 
 
-const Nav = () => (
-  <NavStyled>
-    <a href="/">
-      <Image src={logo} alt="logo" className="nav-logo" />
-    </a>
-    <div className="links">
-      <a href="/joinbar" className="joinBar">
-        JOIN
+const Nav = () => {
+  const getBarName = () => {
+    const item = localStorage.getItem('barName');
+    const bar = JSON.parse(item);
+    return bar.localValue;
+  };
+
+  const name = getBarName();
+  return (
+    <NavStyled>
+      <a href="/">
+        <Image src={logo} alt="logo" className="nav-logo" />
       </a>
-      <a href="/createbar" classnam="createBar">
-        CREATE
-      </a>
-    </div>
+      <div className="links">
+        {localStorage.getItem('sessionId') && localStorage.getItem('token')
+          ? <a href="/bar">{name}</a> : null}
+        <a href="/joinbar" className="joinBar">
+          JOIN
+        </a>
+        <a href="/createbar" classnam="createBar">
+          CREATE
+        </a>
+      </div>
 
 
-  </NavStyled>
-);
-
+    </NavStyled>
+  );
+};
 export default Nav;
