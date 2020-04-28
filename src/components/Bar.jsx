@@ -7,10 +7,9 @@ import Publisher from './Publisher';
 import Subscriber from './Subscriber';
 import StateContext from '../context';
 import Game from './Game';
-
 import Nav from './Nav';
 import Modal from './Modal';
-import { post, API_URL } from '../utils/apiConn';
+import { get, post, API_URL } from '../utils/apiConn';
 
 
 const BarRoom = styled.div`
@@ -47,9 +46,11 @@ const GameDiv = styled.div`
 
 const Bar = ({ match }) => {
   const [value, dispatch] = useContext(StateContext);
-  const [error, setError] = useState(false);
-  const [connected, setConnected] = useState(false);
+  // const [connected, setConnected] = useState(false);
   const sessionRef = useRef();
+  const [gameStart, setGameStart] = useState(false);
+  const [gameSelected, setGameSelected] = useState(''); // "neverhaveiever" or "wouldyourather"
+  const [roundText, setRoundText] = useState('');
 
   const getLocalData = (localKey) => {
     const itemStr = localStorage.getItem(localKey);
@@ -64,7 +65,7 @@ const Bar = ({ match }) => {
     }
     return item.localValue;
   };
-  
+
   // this passes the barName to the backend to set the last access time
   // of a particular bar.
   useEffect(() => {
@@ -73,6 +74,7 @@ const Bar = ({ match }) => {
     };
 
     const postURL = `${API_URL}api/updatebar`;
+    // eslint-disable-next-line no-unused-vars
     const loadResp = post(postURL, loadData);
   }, [value.barName]);
 
@@ -80,43 +82,71 @@ const Bar = ({ match }) => {
   console.log('this is the context inside the Bar component: ', value);
   console.log('this is local: ', getLocalData('barName'));
 
-  const onSignalReceive = (signal) => {
-    console.log('onSignalReceive => ', signal.data);
-    // based on signal data type you can do use switch or conditional statements
+  const signalStartGame = (signal) => {
+    console.log(signal);
+    setGameStart(signal.data);
   };
 
-  const signalCallback = (event) => {
-    console.log(event);
-    onSignalReceive(event);
+  const signalChangeGame = (signal) => {
+    console.log(signal);
+    setGameSelected(signal.data);
   };
+
+  const signalSetRoundText = (signal) => {
+    console.log(signal);
+    setRoundText(signal.data);
+  };
+
   const sessionEvents = {
-    sessionConnected: () => setConnected(true),
-    sessionDisconnected: () => setConnected(false),
-    'signal:msg': (event) => signalCallback(event),
+    // sessionConnected: () => setConnected(true),
+    // sessionDisconnected: () => setConnected(false),
+    'signal:startGame': (event) => signalStartGame(event),
+    'signal:changeGame': (event) => signalChangeGame(event),
+    'signal:setRoundText': (event) => signalSetRoundText(event),
   };
 
-
-  const onError = (err) => {
-    setError(`Failed to connect: ${err.message}`);
-  };
-
-  const greeting = `Welcome to ${value.barName}! Pull up a seat ${value.userName}!`;
-
-  const sendSignal = () => {
+  const sendSignal = (type, data) => {
     sessionRef.current.sessionHelper.session.signal(
       {
-        type: 'msg',
-        data: 'TheData',
+        type,
+        data,
       },
       (err) => {
         if (err) {
+          // eslint-disable-next-line no-console
           console.log('signal error: ', err.message);
         } else {
+          // eslint-disable-next-line no-console
           console.log('signal sent');
         }
       },
     );
   };
+
+  const startGame = () => {
+    sendSignal('startGame', !gameStart);
+  };
+
+  const changeGame = (e) => {
+    sendSignal('changeGame', e.target.value);
+  };
+
+  const getRoundText = async () => {
+    const getUrl = `${API_URL}api/${gameSelected}`;
+    const response = await get(getUrl);
+    if (gameSelected === 'neverhaveiever') {
+      sendSignal('setRoundText', response.statement);
+    } else {
+      sendSignal('setRoundText', response.question);
+    }
+  };
+
+  const onError = (err) => {
+    // eslint-disable-next-line no-console
+    console.log(`Failed to connect: ${err.message}`);
+  };
+
+  const greeting = `Welcome to ${value.barName}! Pull up a seat ${value.userName}!`;
 
   return (
     <>
@@ -144,7 +174,14 @@ const Bar = ({ match }) => {
                       <OTStreams>
                         <Subscriber />
                       </OTStreams>
-                      <Game />
+                      <Game
+                        gameStart={gameStart}
+                        gameSelected={gameSelected}
+                        roundText={roundText}
+                        getRoundText={getRoundText}
+                        startGame={startGame}
+                        changeGame={changeGame}
+                      />
                     </GameDiv>
                   </Display>
                 </OTSession>
