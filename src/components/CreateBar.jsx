@@ -106,7 +106,6 @@ const IndexPage = () => {
       if (opentokInfo.error.includes('password')) {
         setPassword('');
       }
-
       if (opentokInfo.error.includes('name')) {
         setBarName('');
       }
@@ -135,7 +134,7 @@ const IndexPage = () => {
             type="password"
             name="password"
             value={password}
-            placeholder="Bar Password [Optional]"
+            placeholder="Bar Password"
             onChange={(e) => setPassword(e.target.value)}
             isRequired=""
           />
