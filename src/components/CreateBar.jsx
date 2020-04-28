@@ -127,8 +127,8 @@ const IndexPage = () => {
             value={barName}
             placeholder="Bar Name"
             onChange={(e) => setBarName(e.target.value)}
+            isRequired="true"
           />
-
 
           <Input
             type="password"
@@ -136,7 +136,7 @@ const IndexPage = () => {
             value={password}
             placeholder="Bar Password"
             onChange={(e) => setPassword(e.target.value)}
-            isRequired=""
+            isRequired="true"
           />
           <Input
             name="userName"
