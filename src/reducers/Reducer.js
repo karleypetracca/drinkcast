@@ -3,6 +3,14 @@ const Reducer = (state, action) => {
     sessionId, token, barName, userName, key,
   } = action;
   switch (action.type) {
+    case 'ACTION_EXIT_BAR':
+      return {
+        token,
+        sessionId,
+        key,
+        barName,
+        userName,
+      };
     case 'ACTION_CREATE_BAR':
       return {
         ...state,
