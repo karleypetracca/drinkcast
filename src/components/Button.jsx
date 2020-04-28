@@ -29,7 +29,9 @@ const ButtonStyled = styled.button`
   }
 `;
 
-const Button = ({ url, type, children }) => (
+const Button = ({
+  url, type, children, action,
+}) => (
   <>
     {url !== ''
       ? (
@@ -40,7 +42,7 @@ const Button = ({ url, type, children }) => (
         </WrapperStyled>
       )
       : (
-        <ButtonStyled type={type}>
+        <ButtonStyled type={type} onClick={action || null}>
           {children}
         </ButtonStyled>
       )}
