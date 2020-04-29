@@ -12,6 +12,7 @@ import NavDropdown from './NavDropdown';
 
 import logo from '../images/drinkcast-logo-white.png';
 
+
 const NavStyled = styled.nav`
   width: calc(100vw - (100vw - 100%));
   min-height: var(--nav-height);
