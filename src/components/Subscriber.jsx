@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { OTSubscriber } from 'opentok-react';
 import styled from 'styled-components';
 import CheckBox from './CheckBox';
+import StateContext from '../context';
 
 const SubDiv = styled.div`
   margin: 30px;
@@ -14,28 +15,15 @@ const Subscriber = () => {
   const [error, setError] = useState(null);
   const [audio, setAudio] = useState(false);
   const [video, setVideo] = useState(true);
+  const [value] = useContext(StateContext);
 
   const onError = (err) => {
     setError(`Failed to publish: ${err.message}`);
   };
 
-  const getLocalData = (localKey) => {
-    const itemStr = localStorage.getItem(localKey);
-    if (!itemStr) {
-      return '';
-    }
-    const item = JSON.parse(itemStr);
-    const currentDate = new Date();
-    if (currentDate.getTime() > item.expiry) {
-      localStorage.removeItem(localKey);
-      return '';
-    }
-    return item.localValue;
-  };
-
   return (
     <SubDiv>
-      {getLocalData('userName')}
+      {value.name}
       {error ? <div>{error}</div> : null}
       <OTSubscriber
         style={{
