@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import StateContext from '../context';
 
 const ModalDiv = styled.div`
   background-color: rgba(0, 0, 0, 0);
@@ -45,12 +44,9 @@ const CloseModal = styled.a`
 
 const Modal = ({ text }) => {
   const [status, setStatus] = useState(true);
-  const [value, dispatch] = useContext(StateContext);
-
 
   // this could be controlled from context instead of local state.
   // when a user logs in, useEffect trigger another modal with the new user name.
-
 
   const closeModal = (e) => {
     e.preventDefault();

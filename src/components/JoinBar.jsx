@@ -11,7 +11,6 @@ import Input from './Input';
 const FormDiv = styled.div`
   display: flex;
   height: var(--main-height);
-
 `;
 
 const Form = styled.form`
@@ -22,7 +21,7 @@ const Form = styled.form`
   align-items: center;
   justify-content: center;
   margin: auto;
-  
+
   div {
     display: inherit;
     text-align: center;
@@ -40,78 +39,100 @@ const IndexPage = () => {
   const [joinBar, setJoinBar] = useState('');
   const [password, setPassword] = useState('');
   const [userName, setUserName] = useState('');
+  // eslint-disable-next-line no-unused-vars
   const [value, dispatch] = useContext(StateContext);
   const [redirect, setRedirect] = useState(false);
-  const [alert, setAlert] = useState(false);
+  const [nameCheck, setNameCheck] = useState('');
+  const [passwordCheck, setPasswordCheck] = useState('');
+  const [barNamePlaceholder, setBarNamePlaceholder] = useState('Bar Name');
+  const [passwordPlaceholder, setPasswordPlaceholder] = useState('Bar Password');
 
   const submitJoinBar = async (e) => {
     e.preventDefault();
 
-    const setLocalData = (localKey, localValue) => {
-      const currentDate = new Date();
-      const item = {
-        localValue,
-        expiry: currentDate.getTime() + 86400000,
-      };
-      localStorage.setItem(localKey, JSON.stringify(item));
-    };
-
-    const data = { joinBar, password };
-    const getUrl = `${API_URL}api/joinbar`;
-    const response = await post(getUrl, data);
-    const opentokInfo = await response.json();
-
-    if (!opentokInfo.hasOwnProperty('error') && joinBar !== '' && password !== '') {
-      dispatch({
-        type: 'ACTION_JOIN_BAR',
-        token: opentokInfo.token,
-        sessionId: opentokInfo.sessionId,
-        key: opentokInfo.key,
-        barName: joinBar,
-        userName,
-      });
-      setLocalData('sessionId', opentokInfo.sessionId);
-      setLocalData('token', opentokInfo.token);
-      setLocalData('key', opentokInfo.key);
-      setLocalData('barName', joinBar);
-      setLocalData('userName', userName);
-
-      setAlert(false);
-      setJoinBar('');
-      setPassword('');
-
-      setRedirect(true);
+    if (!joinBar.length) {
+      setBarNamePlaceholder('A Bar Name is Requied');
+      setNameCheck('');
+    }
+    if (!password.length) {
+      setPasswordPlaceholder('A Password is Requied');
+      setPasswordCheck('');
     }
 
-    setAlert(true);
-    setJoinBar('');
-    setPassword('');
-    setUserName('');
+    if (password.length && joinBar.length) {
+      if (barNamePlaceholder !== 'Bar Name' || passwordPlaceholder !== 'Bar Password') {
+        setBarNamePlaceholder('Bar Name');
+        setPasswordPlaceholder('Bar Password');
+      }
+      const setLocalData = (localKey, localValue) => {
+        const currentDate = new Date();
+        const item = {
+          localValue,
+          expiry: currentDate.getTime() + 86400000,
+        };
+        localStorage.setItem(localKey, JSON.stringify(item));
+      };
+
+      const data = { joinBar, password };
+      const getUrl = `${API_URL}api/joinbar`;
+      const response = await post(getUrl, data);
+      const opentokInfo = await response.json();
+      // eslint-disable-next-line no-prototype-builtins
+      if (!opentokInfo.hasOwnProperty('error') && joinBar !== '' && password !== '') {
+        dispatch({
+          type: 'ACTION_JOIN_BAR',
+          token: opentokInfo.token,
+          sessionId: opentokInfo.sessionId,
+          key: opentokInfo.key,
+          barName: joinBar,
+          userName,
+        });
+        setLocalData('sessionId', opentokInfo.sessionId);
+        setLocalData('token', opentokInfo.token);
+        setLocalData('key', opentokInfo.key);
+        setLocalData('barName', joinBar);
+        setLocalData('userName', userName);
+
+        setRedirect(true);
+      } else {
+        if (opentokInfo.error.includes('bar')) {
+          setNameCheck(opentokInfo.error);
+          setJoinBar('');
+          setPasswordCheck('');
+        }
+        if (opentokInfo.error.includes('password')) {
+          setPasswordCheck(opentokInfo.error);
+          setPassword('');
+          setNameCheck('');
+        }
+      }
+    }
   };
 
   return (
     <>
       <Nav />
       <FormDiv>
-        {redirect && (<Redirect to="./bar" />)}
+        {redirect && <Redirect to="./bar" />}
         <Form onSubmit={(e) => submitJoinBar(e)}>
           <h1>Join</h1>
-          {alert ? <div>Incorrect bar name or password.</div> : null}
+          <div>{nameCheck}</div>
           <Input
             name="joinBar"
             type="text"
             value={joinBar}
-            placeholder="Bar Name"
+            placeholder={barNamePlaceholder}
             onChange={(e) => setJoinBar(e.target.value)}
             isRequired="true"
           />
+          <div>{passwordCheck}</div>
           <Input
             type="password"
             name="password"
-            placeholder="Bar Password"
+            placeholder={passwordPlaceholder}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            isRequired=""
+            isRequired="true"
           />
           <Input
             name="userName"
@@ -121,9 +142,10 @@ const IndexPage = () => {
             onChange={(e) => setUserName(e.target.value)}
             isRequired="true"
           />
-          <Button url="" type="submit">Join</Button>
+          <Button url="" type="submit">
+            Join
+          </Button>
         </Form>
-
       </FormDiv>
     </>
   );
