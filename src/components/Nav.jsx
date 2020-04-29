@@ -1,3 +1,5 @@
+/* eslint-disable indent */
+/* eslint-disable react/jsx-indent */
 import React, { useState, useContext } from 'react';
 import Burger from '@animated-burgers/burger-squeeze';
 import '@animated-burgers/burger-squeeze/dist/styles.css';
@@ -25,12 +27,14 @@ const NavStyled = styled.nav`
     width: 100%;
     align-items: center;
   }
-  
+
   .links {
     padding: 0 1rem;
   }
 
-  .returnBar, .joinBar, .createBar {
+  .returnBar,
+  .joinBar,
+  .createBar {
     padding: 10px 1rem;
   }
 
@@ -56,7 +60,9 @@ const Nav = () => {
   const [burgerIsOpen, setBurgerIsOpen] = useState(false);
 
   const location = !!(window.location.href.split('/').pop() === 'bar');
+  // eslint-disable-next-line no-unused-vars
   const [inBar, setInBar] = useState(location);
+  // eslint-disable-next-line no-unused-vars
   const [value, dispatch] = useContext(StateContext);
 
   const clearBarInfo = (e) => {
@@ -94,15 +100,23 @@ const Nav = () => {
         <Image src={logo} alt="logo" className="nav-logo" />
       </a>
       <div className="desktop links">
-        {localStorage.getItem('sessionId') && localStorage.getItem('token') && !inBar
-          ? <a href="/bar" className="returnBar">{name}</a> : null}
-        {inBar
-          ? (
-            <Button className="nav" href="/" type="button" action={(e) => clearBarInfo(e)}>
-              EXIT
-            </Button>
-          )
-          : (
+        {localStorage.getItem('sessionId')
+          && localStorage.getItem('token')
+          && !inBar ? (
+            <a href="/bar" className="returnBar">
+              {name}
+            </a>
+          ) : null}
+        {inBar ? (
+          <Button
+            className="nav"
+            href="/"
+            type="button"
+            action={(e) => clearBarInfo(e)}
+          >
+            EXIT
+          </Button>
+        ) : (
             <>
               <a href="/joinbar" className="joinBar">
                 JOIN
@@ -114,10 +128,17 @@ const Nav = () => {
           )}
       </div>
       <div className="mobile links">
-        {burgerIsOpen ? <Burger isOpen onClick={burgerClick} /> : <Burger onClick={burgerClick} />}
+        {burgerIsOpen ? (
+          <Burger isOpen onClick={burgerClick} />
+        ) : (
+            <Burger onClick={burgerClick} />
+          )}
         <NavDropdown isOpen={burgerIsOpen}>
-          {localStorage.getItem('sessionId') && localStorage.getItem('token') && !inBar
-            ? <a href="/bar">{name}</a> : null}
+          {localStorage.getItem('sessionId')
+            && localStorage.getItem('token')
+            && !inBar ? (
+              <a href="/bar">{name}</a>
+            ) : null}
           <a href="/joinbar" className="joinBar">
             JOIN
           </a>

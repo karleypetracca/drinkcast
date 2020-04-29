@@ -4,8 +4,7 @@ import styled from 'styled-components';
 import CheckBox from './CheckBox';
 
 const SubDiv = styled.div`
- 
-  
+  margin: 30px;
   @media screen and (max-width: 600px) {
     width: 80%;
   }
@@ -13,7 +12,7 @@ const SubDiv = styled.div`
 
 const Subscriber = () => {
   const [error, setError] = useState(null);
-  const [audio, setAudio] = useState(true);
+  const [audio, setAudio] = useState(false);
   const [video, setVideo] = useState(true);
 
   const onError = (err) => {
@@ -24,24 +23,18 @@ const Subscriber = () => {
     <SubDiv>
       {error ? <div>{error}</div> : null}
       <OTSubscriber
+        style={{
+          width: '100',
+          height: '100',
+        }}
         properties={{
-          width: '20vw',
-          height: '20vw',
           subscribeToAudio: audio,
           subscribeToVideo: video,
         }}
         onError={onError}
       />
-      <CheckBox
-        label="Hide Video"
-        initialChecked={video}
-        onChange={setVideo}
-      />
-      <CheckBox
-        label="Mute Audio"
-        initialChecked={audio}
-        onChange={setAudio}
-      />
+      <CheckBox label="Hide Video" initialChecked={video} onChange={setVideo} />
+      <CheckBox label="Mute Audio" initialChecked={audio} onChange={setAudio} />
     </SubDiv>
   );
 };
