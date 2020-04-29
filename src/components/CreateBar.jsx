@@ -73,8 +73,6 @@ const IndexPage = () => {
     const opentokInfo = await response.json();
     setNameCheck(opentokInfo.error);
 
-    // console.log(opentokInfo);
-
     // eslint-disable-next-line no-prototype-builtins
     if (!opentokInfo.hasOwnProperty('error') && password !== '') {
       dispatch({
