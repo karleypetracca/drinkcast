@@ -58,6 +58,7 @@ const Bar = () => {
   const [value] = useContext(StateContext);
   // const [connected, setConnected] = useState(false);
   const sessionRef = useRef();
+  // eslint-disable-next-line no-unused-vars
   const [gameStart, setGameStart] = useState(false);
   const [gameSelected, setGameSelected] = useState(''); // "neverhaveiever" or "wouldyourather"
   const [roundText, setRoundText] = useState('');
