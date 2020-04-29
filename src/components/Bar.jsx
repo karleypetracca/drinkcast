@@ -5,7 +5,6 @@ import React, {
 import { OTSession, OTStreams, preloadScript } from 'opentok-react';
 import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
-// eslint-disable-next-line no-unused-vars
 import Publisher from './Publisher';
 import Subscriber from './Subscriber';
 import StateContext from '../context';
