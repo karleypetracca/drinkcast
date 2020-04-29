@@ -94,16 +94,17 @@ const IndexPage = () => {
         setLocalData('userName', userName);
 
         setRedirect(true);
-      }
-      if (opentokInfo.error.includes('bar')) {
-        setNameCheck(opentokInfo.error);
-        setJoinBar('');
-        setPasswordCheck('');
-      }
-      if (opentokInfo.error.includes('password')) {
-        setPasswordCheck(opentokInfo.error);
-        setPassword('');
-        setNameCheck('');
+      } else {
+        if (opentokInfo.error.includes('bar')) {
+          setNameCheck(opentokInfo.error);
+          setJoinBar('');
+          setPasswordCheck('');
+        }
+        if (opentokInfo.error.includes('password')) {
+          setPasswordCheck(opentokInfo.error);
+          setPassword('');
+          setNameCheck('');
+        }
       }
     }
   };
