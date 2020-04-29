@@ -171,7 +171,7 @@ const Bar = () => {
               >
                 <Display>
                   <VideoBox>
-                    {/* <Publisher /> */}
+                    <Publisher />
                     <OTStreams>
                       <Subscriber />
                     </OTStreams>
