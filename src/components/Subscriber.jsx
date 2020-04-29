@@ -3,10 +3,21 @@ import { OTSubscriber } from 'opentok-react';
 import styled from 'styled-components';
 import CheckBox from './CheckBox';
 
-const SubDiv = styled.div`
-  margin: 30px;
+const SubscriberStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 5px;
+
   @media screen and (max-width: 600px) {
-    width: 80%;
+    padding: 0 0.4rem;
+  }
+
+  .OTSubscriberContainer {
+    width: 240px !important;
+    height: 200px !important;
   }
 `;
 
@@ -16,11 +27,11 @@ const Subscriber = () => {
   const [video, setVideo] = useState(true);
 
   const onError = (err) => {
-    setError(`Failed to publish: ${err.message}`);
+    setError(`Failed to connect: ${err.message}`);
   };
 
   return (
-    <SubDiv>
+    <SubscriberStyled>
       {error ? <div>{error}</div> : null}
       <OTSubscriber
         style={{
@@ -33,9 +44,9 @@ const Subscriber = () => {
         }}
         onError={onError}
       />
-      <CheckBox label="Hide Video" initialChecked={video} onChange={setVideo} />
-      <CheckBox label="Mute Audio" initialChecked={audio} onChange={setAudio} />
-    </SubDiv>
+      <CheckBox label="Show Video" initialChecked={video} onChange={setVideo} />
+      <CheckBox label="Play Audio" initialChecked={audio} onChange={setAudio} />
+    </SubscriberStyled>
   );
 };
 

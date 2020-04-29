@@ -1,7 +1,11 @@
+/* eslint-disable react/jsx-indent */
+/* eslint-disable indent */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-nested-ternary */
 import React from 'react';
 import styled from 'styled-components';
+
+import Button from './Button';
 
 const GameStyled = styled.div`
   height: auto;
@@ -11,22 +15,14 @@ const GameStyled = styled.div`
   justify-content: center;
   background-color: none;
   padding: 10px;
-
-  button {
-    margin: 1rem auto;
-    background-color: var(--secondary);
-    color: var(--white);
-    transition: 0.2s ease-in;
-    border-radius: 5px;
-    border-style: none;
-    font-weight: bold;
-    padding: 10px;
-    cursor: pointer;
+  
+  p {
+    font-size: 20px;
   }
 
-  button:hover {
-    background-color: var(--white);
-    color: var(--secondary);
+  select, option {
+    font-size: inherit;
+    padding: 5px;
   }
 
   .selectGame {
@@ -50,44 +46,44 @@ const Game = ({
   startGame,
   changeGame,
 }) => (
-  <GameStyled>
-    {gameSelected === 'neverhaveiever' ? (
-      <h1>Playing: Never Have I Ever</h1>
-    ) : (
-      ''
-    )}
-    {gameSelected === 'wouldyourather' ? (
-      <h1>Playing: Would You Rather</h1>
-    ) : (
-      ''
-    )}
-    {gameStart ? (
-      gameSelected !== '' ? (
-        <button type='button' onClick={getRoundText}>
-          New Round
-        </button>
+    <GameStyled>
+      {gameSelected === 'neverhaveiever' ? (
+        <h1>Playing: Never Have I Ever</h1>
       ) : (
-        ''
-      )
-    ) : (
-      <button type='button' onClick={startGame}>
-        Start Game
-      </button>
-    )}
-    {roundText !== '' ? <h2>{roundText}</h2> : ''}
-    {gameStart ? (
-      <div className='selectGame'>
-        <p>Use dropdown to change games</p>
-        <select defaultValue='' onChange={(e) => changeGame(e)}>
-          <option value=''>Please select a game</option>
-          <option value='neverhaveiever'>Never Have I Ever</option>
-          <option value='wouldyourather'>Would You Rather</option>
-        </select>
-      </div>
-    ) : (
-      ''
-    )}
-  </GameStyled>
-);
+          ''
+        )}
+      {gameSelected === 'wouldyourather' ? (
+        <h2>Playing: Would You Rather</h2>
+      ) : (
+          ''
+        )}
+      {gameStart ? (
+        gameSelected !== '' ? (
+          <Button url="" type="button" action={getRoundText} className="">
+            New Round
+          </Button>
+        ) : (
+            ''
+          )
+      ) : (
+          <Button url="" type="button" action={startGame} className="">
+            Start Game
+          </Button>
+        )}
+      {roundText !== '' ? <h2>{roundText}</h2> : ''}
+      {gameStart ? (
+        <div className="selectGame">
+          <p>Use dropdown to change games</p>
+          <select defaultValue="" onChange={(e) => changeGame(e)}>
+            <option value="">Please select a game</option>
+            <option value="neverhaveiever">Never Have I Ever</option>
+            <option value="wouldyourather">Would You Rather</option>
+          </select>
+        </div>
+      ) : (
+          ''
+        )}
+    </GameStyled>
+  );
 
 export default Game;

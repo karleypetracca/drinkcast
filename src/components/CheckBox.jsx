@@ -1,6 +1,26 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useRef, useEffect } from 'react';
+import styled from 'styled-components';
+
+const InputStyled = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  * {
+    padding: 3px;
+  }
+
+  input[type="checkbox"] {
+    outline: 2px solid var(--white);
+    outline-offset: -2px;
+  }
+
+  input[type="checkbox"]:checked {
+    background-color: var(--secondary);
+  }
+`;
 
 const CheckBox = ({ initialChecked, label, onChange }) => {
   const id = useRef(
@@ -17,18 +37,16 @@ const CheckBox = ({ initialChecked, label, onChange }) => {
   };
 
   return (
-    <div>
-      <label>
-        {label}
-        <input
-          type="checkbox"
-          checked={isChecked}
-          id={id}
-          onChange={(e) => handleChange(e)}
-          data-testid="checkbox"
-        />
-      </label>
-    </div>
+    <InputStyled>
+      <p>{label}</p>
+      <input
+        type="checkbox"
+        checked={isChecked}
+        id={id}
+        onChange={(e) => handleChange(e)}
+        data-testid="checkbox"
+      />
+    </InputStyled>
   );
 };
 
