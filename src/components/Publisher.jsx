@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { OTPublisher } from 'opentok-react';
 import styled from 'styled-components';
 import CheckBox from './CheckBox';
@@ -17,18 +17,7 @@ const Publisher = () => {
   const [error, setError] = useState(null);
   const [audio, setAudio] = useState(false);
   const [video, setVideo] = useState(true);
-  const [value, dispatch] = useContext(StateContext);
-  const [vidWidth, setVidWidth] = useState('auto');
-  const [vidHeight, setVidHeight] = useState('40vw');
-
-  useEffect(() => {
-    const setDimensions = () => {
-      setVidWidth(window.innerWidth <= 200 ? 'contain' : '10vw');
-      setVidHeight(window.innerWidth <= 200 ? 'contain' : '40vw');
-    };
-    window.addEventListener('resize', setDimensions);
-    return () => window.removeEventListener('resize', setDimensions);
-  }, []);
+  const [value] = useContext(StateContext);
 
   const onError = (err) => {
     setError(`Failed to publish: ${err.message}`);

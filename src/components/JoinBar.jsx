@@ -11,7 +11,6 @@ import Input from './Input';
 const FormDiv = styled.div`
   display: flex;
   height: var(--main-height);
-
 `;
 
 const Form = styled.form`
@@ -22,7 +21,7 @@ const Form = styled.form`
   align-items: center;
   justify-content: center;
   margin: auto;
-  
+
   div {
     display: inherit;
     text-align: center;
@@ -61,7 +60,11 @@ const IndexPage = () => {
     const response = await post(getUrl, data);
     const opentokInfo = await response.json();
 
-    if (!opentokInfo.hasOwnProperty('error') && joinBar !== '' && password !== '') {
+    if (
+      !opentokInfo.hasOwnProperty('error') &&
+      joinBar !== '' &&
+      password !== ''
+    ) {
       dispatch({
         type: 'ACTION_JOIN_BAR',
         token: opentokInfo.token,
@@ -93,37 +96,38 @@ const IndexPage = () => {
     <>
       <Nav />
       <FormDiv>
-        {redirect && (<Redirect to="./bar" />)}
+        {redirect && <Redirect to='./bar' />}
         <Form onSubmit={(e) => submitJoinBar(e)}>
           <h1>Join</h1>
           {alert ? <div>Incorrect bar name or password.</div> : null}
           <Input
-            name="joinBar"
-            type="text"
+            name='joinBar'
+            type='text'
             value={joinBar}
-            placeholder="Bar Name"
+            placeholder='Bar Name'
             onChange={(e) => setJoinBar(e.target.value)}
-            isRequired="true"
+            isRequired='true'
           />
           <Input
-            type="password"
-            name="password"
-            placeholder="Bar Password"
+            type='password'
+            name='password'
+            placeholder='Bar Password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            isRequired=""
+            isRequired=''
           />
           <Input
-            name="userName"
-            type="text"
+            name='userName'
+            type='text'
             value={userName}
-            placeholder="Your Name"
+            placeholder='Your Name'
             onChange={(e) => setUserName(e.target.value)}
-            isRequired="true"
+            isRequired='true'
           />
-          <Button url="" type="submit">Join</Button>
+          <Button url='' type='submit'>
+            Join
+          </Button>
         </Form>
-
       </FormDiv>
     </>
   );

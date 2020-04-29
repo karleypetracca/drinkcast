@@ -32,6 +32,7 @@ const Display = styled.div`
 const VideoBox = styled.div`
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
 `;
 
 const TitleBar = styled.div`
@@ -51,8 +52,8 @@ const GameDiv = styled.div`
   }
 `;
 
-const Bar = ({ match }) => {
-  const [value, dispatch] = useContext(StateContext);
+const Bar = () => {
+  const [value] = useContext(StateContext);
   // const [connected, setConnected] = useState(false);
   const sessionRef = useRef();
   const [gameStart, setGameStart] = useState(false);
@@ -73,14 +74,7 @@ const Bar = ({ match }) => {
     return item.localValue;
   };
 
-  // this passes the barName to the backend to set the last access time
-  // of a particular bar.
   useEffect(() => {
-    sessionRef.current.sessionHelper.session.on('signal:msg', (event) => {
-      console.log('Signal sent from connection ' + event.from.id);
-      console.log(event.data);
-    });
-
     const loadData = {
       barName: value.barName,
     };
@@ -90,28 +84,19 @@ const Bar = ({ match }) => {
     const loadResp = post(postURL, loadData);
   }, [value.barName]);
 
-  // console.log('this is the context inside the Bar component: ', value);
-  console.log('this is the context inside the Bar component: ', value);
-  console.log('this is local: ', getLocalData('barName'));
-
   const signalStartGame = (signal) => {
-    console.log(signal);
     setGameStart(signal.data);
   };
 
   const signalChangeGame = (signal) => {
-    console.log(signal);
     setGameSelected(signal.data);
   };
 
   const signalSetRoundText = (signal) => {
-    console.log(signal);
     setRoundText(signal.data);
   };
 
   const sessionEvents = {
-    // sessionConnected: () => setConnected(true),
-    // sessionDisconnected: () => setConnected(false),
     'signal:startGame': (event) => signalStartGame(event),
     'signal:changeGame': (event) => signalChangeGame(event),
     'signal:setRoundText': (event) => signalSetRoundText(event),

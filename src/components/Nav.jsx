@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Image from './Image';
 
 import logo from '../images/drinkcast-logo-white.png';
-import { get } from '../utils/apiConn';
 
 const NavStyled = styled.nav`
   width: calc(100vw - (100vw - 100%));

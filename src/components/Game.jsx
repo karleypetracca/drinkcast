@@ -1,10 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-nested-ternary */
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { get, API_URL } from '../utils/apiConn';
-
-//styling
 
 const GameStyled = styled.div`
   height: auto;
@@ -54,7 +51,6 @@ const Game = ({
   changeGame,
 }) => (
   <GameStyled>
-    {console.log('gamestart', gameStart)}
     {gameSelected === 'neverhaveiever' ? (
       <h1>Playing: Never Have I Ever</h1>
     ) : (
