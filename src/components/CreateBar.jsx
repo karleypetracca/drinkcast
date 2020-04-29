@@ -23,7 +23,6 @@ const Form = styled.form`
   justify-content: center;
   margin: auto;
 
-  
   div {
     display: inherit;
     text-align: center;
@@ -41,6 +40,7 @@ const IndexPage = () => {
   const [barName, setBarName] = useState('');
   const [password, setPassword] = useState('');
   const [nameCheck, setNameCheck] = useState('');
+  const [passCheck, setPassCheck] = useState('');
   const [redirect, setRedirect] = useState(false);
   const [userName, setUserName] = useState('');
 
@@ -53,7 +53,6 @@ const IndexPage = () => {
     return setBarName(randomName);
   };
 
-
   const submitBarName = async (e) => {
     e.preventDefault();
 
@@ -65,25 +64,16 @@ const IndexPage = () => {
       };
       localStorage.setItem(localKey, JSON.stringify(item));
     };
-    // creates random bar name.
     const name = await RandomBarGen();
     const randomName = `The ${name.join(' ')}`;
-
-    // checks to see if a bar name was entered and substitutes
-    // a random name if barName is an empty string.
     const barNameToSubmit = !barName.length ? randomName : barName;
-
-    // console.log(barNameToSubmit);
-    // console.log('barName is : ', barName);
-
     const data = { barName: barNameToSubmit, password };
     const postUrl = `${API_URL}api/createbar`;
     const response = await post(postUrl, data);
     const opentokInfo = await response.json();
     setNameCheck(opentokInfo.error);
 
-    // console.log(opentokInfo);
-
+    // eslint-disable-next-line no-prototype-builtins
     if (!opentokInfo.hasOwnProperty('error') && password !== '') {
       dispatch({
         type: 'ACTION_CREATE_BAR',
@@ -116,7 +106,7 @@ const IndexPage = () => {
     <>
       <Nav />
       <FormDiv>
-        {redirect && (<Redirect to="./bar" />)}
+        {redirect && <Redirect to="./bar" />}
         <Form onSubmit={(e) => submitBarName(e)}>
           <h1>Create New Bar</h1>
           <div>{nameCheck}</div>
@@ -144,10 +134,13 @@ const IndexPage = () => {
             onChange={(e) => setUserName(e.target.value)}
             isRequired="true"
           />
-          <Button url="" type="button" action={(e) => randomNameHandler(e)}>Get Random Bar Name</Button>
-          <Button url="" type="submit">Create</Button>
+          <Button url="" type="button" action={(e) => randomNameHandler(e)}>
+            Get Random Bar Name
+          </Button>
+          <Button url="" type="submit">
+            Create
+          </Button>
         </Form>
-
       </FormDiv>
     </>
   );
