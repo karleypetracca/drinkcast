@@ -11,7 +11,6 @@ import Input from './Input';
 const FormDiv = styled.div`
   display: flex;
   height: var(--main-height);
-
 `;
 
 const Form = styled.form`
@@ -22,7 +21,7 @@ const Form = styled.form`
   align-items: center;
   justify-content: center;
   margin: auto;
-  
+
   div {
     display: inherit;
     text-align: center;
@@ -113,7 +112,7 @@ const IndexPage = () => {
     <>
       <Nav />
       <FormDiv>
-        {redirect && (<Redirect to="./bar" />)}
+        {redirect && <Redirect to="./bar" />}
         <Form onSubmit={(e) => submitJoinBar(e)}>
           <h1>Join</h1>
           <div>{nameCheck}</div>
@@ -142,9 +141,10 @@ const IndexPage = () => {
             onChange={(e) => setUserName(e.target.value)}
             isRequired="true"
           />
-          <Button url="" type="submit">Join</Button>
+          <Button url="" type="submit">
+            Join
+          </Button>
         </Form>
-
       </FormDiv>
     </>
   );

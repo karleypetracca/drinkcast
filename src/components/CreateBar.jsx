@@ -23,7 +23,6 @@ const Form = styled.form`
   justify-content: center;
   margin: auto;
 
-  
   div {
     display: inherit;
     text-align: center;
@@ -55,7 +54,6 @@ const IndexPage = () => {
     const randomName = `The ${name.join(' ')}`;
     return setBarName(randomName);
   };
-
 
   const submitBarName = async (e) => {
     e.preventDefault();
@@ -129,7 +127,7 @@ const IndexPage = () => {
     <>
       <Nav />
       <FormDiv>
-        {redirect && (<Redirect to="./bar" />)}
+        {redirect && <Redirect to="./bar" />}
         <Form onSubmit={(e) => submitBarName(e)}>
           <h1>Create New Bar</h1>
           <div>{nameCheck}</div>
@@ -161,7 +159,6 @@ const IndexPage = () => {
           <Button url="" type="submit">Create</Button>
           <Button url="" type="button" action={(e) => randomNameHandler(e)}>Get Random Bar Name</Button>
         </Form>
-
       </FormDiv>
     </>
   );
