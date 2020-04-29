@@ -21,18 +21,16 @@ const NavStyled = styled.nav`
     width: 100%;
     align-items: center;
   }
-  
+
   .links a {
     padding: 0 1rem;
   }
-  
+
   a:hover {
     transition: 0.3s ease-in-out;
     color: var(--secondary);
   }
-  
 `;
-
 
 const Nav = () => {
   const getBarName = () => {
@@ -44,21 +42,20 @@ const Nav = () => {
   const name = getBarName();
   return (
     <NavStyled>
-      <a href="/">
-        <Image src={logo} alt="logo" className="nav-logo" />
+      <a href='/'>
+        <Image src={logo} alt='logo' className='nav-logo' />
       </a>
-      <div className="links">
-        {localStorage.getItem('sessionId') && localStorage.getItem('token')
-          ? <a href="/bar">{name}</a> : null}
-        <a href="/joinbar" className="joinBar">
+      <div className='links'>
+        {localStorage.getItem('sessionId') && localStorage.getItem('token') ? (
+          <a href='/bar'>{name}</a>
+        ) : null}
+        <a href='/joinbar' className='joinBar'>
           JOIN
         </a>
-        <a href="/createbar" classnam="createBar">
+        <a href='/createbar' classnam='createBar'>
           CREATE
         </a>
       </div>
-
-
     </NavStyled>
   );
 };

@@ -3,7 +3,6 @@ import React, { useState, useContext, useEffect, useRef } from 'react';
 import { OTSession, OTStreams, preloadScript } from 'opentok-react';
 import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
-import Countdown from 'react-countdown';
 import Publisher from './Publisher';
 import Subscriber from './Subscriber';
 import StateContext from '../context';
@@ -15,7 +14,7 @@ import { get, post, API_URL } from '../utils/apiConn';
 const BarRoom = styled.div`
   display: flex;
   flex-direction: column;
-  height: var(--main-height);
+  height: calc(100vh - var(--nav-height));
   text-align: center;
 `;
 
@@ -23,15 +22,25 @@ const Display = styled.div`
   display: flex;
   flex-wrap: wrap;
   height: auto;
+  flex-direction: row;
 
   @media screen and (max-width: 600px) {
     flex-direction: column;
   }
 `;
 
-const GameDiv = styled.div`
+const VideoBox = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const TitleBar = styled.div`
+  padding-top: 40px;
+`;
+
+const GameDiv = styled.div`
+  display: flex;
+  /* flex-direction: column; */
   align-content: center;
   justify-content: center;
   margin: auto;
@@ -159,9 +168,9 @@ const Bar = ({ match }) => {
         <>
           <Nav />
           <BarRoom>
-            <div className='bar'>
+            <TitleBar>
               <h1>{value.barName}</h1>
-            </div>
+            </TitleBar>
             <Modal text={greeting} />
             <OTSession
               ref={sessionRef}
@@ -172,11 +181,13 @@ const Bar = ({ match }) => {
               onError={onError}
             >
               <Display>
-                <Publisher />
-                <GameDiv>
+                <VideoBox>
+                  <Publisher />
                   <OTStreams>
                     <Subscriber />
                   </OTStreams>
+                </VideoBox>
+                <GameDiv>
                   <Game
                     gameStart={gameStart}
                     gameSelected={gameSelected}
