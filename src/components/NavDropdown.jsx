@@ -12,6 +12,15 @@ const menuDrop = keyframes`
   }
 `;
 
+const smallerMenuDrop = keyframes`
+   0% {
+      height: 0%;
+    }
+    100% {
+      height: 23%;
+    }
+`;
+
 const opacity = keyframes`
   0% {
     opacity: 0;
@@ -19,6 +28,8 @@ const opacity = keyframes`
   100% {
     opacity: 1;
   }
+  
+  
 
 `;
 
@@ -49,6 +60,14 @@ const NavDropdownStyled = styled.div`
     z-index: 10000;
     animation: ${menuDrop} 0.4s ease-in-out;
     animation-iteration-count: 1;
+  }
+  
+  @media screen and (max-width: 415px) {
+    .dropdown-links {
+      height: 23%;
+      animation: ${smallerMenuDrop} 0.4s ease-in-out;
+      animation-iteration-count: 1;
+    }
   }
 `;
 
