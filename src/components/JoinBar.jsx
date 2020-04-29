@@ -11,7 +11,6 @@ import Input from './Input';
 const FormDiv = styled.div`
   display: flex;
   height: var(--main-height);
-
 `;
 
 const Form = styled.form`
@@ -22,7 +21,7 @@ const Form = styled.form`
   align-items: center;
   justify-content: center;
   margin: auto;
-  
+
   div {
     display: inherit;
     text-align: center;
@@ -40,6 +39,7 @@ const IndexPage = () => {
   const [joinBar, setJoinBar] = useState('');
   const [password, setPassword] = useState('');
   const [userName, setUserName] = useState('');
+  // eslint-disable-next-line no-unused-vars
   const [value, dispatch] = useContext(StateContext);
   const [redirect, setRedirect] = useState(false);
   const [alert, setAlert] = useState(false);
@@ -61,7 +61,12 @@ const IndexPage = () => {
     const response = await post(getUrl, data);
     const opentokInfo = await response.json();
 
-    if (!opentokInfo.hasOwnProperty('error') && joinBar !== '' && password !== '') {
+    if (
+      // eslint-disable-next-line no-prototype-builtins
+      !opentokInfo.hasOwnProperty('error')
+      && joinBar !== ''
+      && password !== ''
+    ) {
       dispatch({
         type: 'ACTION_JOIN_BAR',
         token: opentokInfo.token,
@@ -84,16 +89,13 @@ const IndexPage = () => {
     }
 
     setAlert(true);
-    // setJoinBar('');
-    // setPassword('');
-    // setUserName('');
   };
 
   return (
     <>
       <Nav />
       <FormDiv>
-        {redirect && (<Redirect to="./bar" />)}
+        {redirect && <Redirect to="./bar" />}
         <Form onSubmit={(e) => submitJoinBar(e)}>
           <h1>Join</h1>
           {alert ? <div>Incorrect bar name or password.</div> : null}
@@ -121,9 +123,10 @@ const IndexPage = () => {
             onChange={(e) => setUserName(e.target.value)}
             isRequired="true"
           />
-          <Button url="" type="submit">Join</Button>
+          <Button url="" type="submit">
+            Join
+          </Button>
         </Form>
-
       </FormDiv>
     </>
   );

@@ -13,7 +13,7 @@ import Understood from './components/Understood';
 import wood from './images/wood.jpg';
 
 const AppMain = styled.div`
-  background: url(${wood}) no-repeat top left fixed;
+  background: url(${wood}) repeat top left fixed;
   background-size: cover;
 `;
 
