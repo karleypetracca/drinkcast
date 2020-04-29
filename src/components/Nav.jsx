@@ -140,12 +140,25 @@ const Nav = () => {
             && !inBar ? (
               <a href="/bar">{name}</a>
             ) : null}
+            {inBar ? (
+          <a
+            href="/"
+            onClick={(e) => clearBarInfo(e)}
+          >
+            EXIT
+          </a>
+        )
+          : (
+          <>
           <a href="/joinbar" className="joinBar">
             JOIN
           </a>
           <a href="/createbar" classnam="createBar">
             CREATE
           </a>
+          </>
+        )}
+
         </NavDropdown>
       </div>
     </NavStyled>
