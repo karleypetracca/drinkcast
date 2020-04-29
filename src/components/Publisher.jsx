@@ -39,12 +39,12 @@ const Publisher = () => {
         onError={onError}
       />
       <CheckBox
-        label='Publish Video'
+        label="Publish Video"
         initialChecked={video}
         onChange={setVideo}
       />
       <CheckBox
-        label='Publish Audio'
+        label="Publish Audio"
         initialChecked={audio}
         onChange={setAudio}
       />

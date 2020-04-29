@@ -39,6 +39,7 @@ const IndexPage = () => {
   const [joinBar, setJoinBar] = useState('');
   const [password, setPassword] = useState('');
   const [userName, setUserName] = useState('');
+  // eslint-disable-next-line no-unused-vars
   const [value, dispatch] = useContext(StateContext);
   const [redirect, setRedirect] = useState(false);
   const [alert, setAlert] = useState(false);
@@ -61,9 +62,10 @@ const IndexPage = () => {
     const opentokInfo = await response.json();
 
     if (
-      !opentokInfo.hasOwnProperty('error') &&
-      joinBar !== '' &&
-      password !== ''
+      // eslint-disable-next-line no-prototype-builtins
+      !opentokInfo.hasOwnProperty('error')
+      && joinBar !== ''
+      && password !== ''
     ) {
       dispatch({
         type: 'ACTION_JOIN_BAR',
@@ -87,44 +89,41 @@ const IndexPage = () => {
     }
 
     setAlert(true);
-    // setJoinBar('');
-    // setPassword('');
-    // setUserName('');
   };
 
   return (
     <>
       <Nav />
       <FormDiv>
-        {redirect && <Redirect to='./bar' />}
+        {redirect && <Redirect to="./bar" />}
         <Form onSubmit={(e) => submitJoinBar(e)}>
           <h1>Join</h1>
           {alert ? <div>Incorrect bar name or password.</div> : null}
           <Input
-            name='joinBar'
-            type='text'
+            name="joinBar"
+            type="text"
             value={joinBar}
-            placeholder='Bar Name'
+            placeholder="Bar Name"
             onChange={(e) => setJoinBar(e.target.value)}
-            isRequired='true'
+            isRequired="true"
           />
           <Input
-            type='password'
-            name='password'
-            placeholder='Bar Password'
+            type="password"
+            name="password"
+            placeholder="Bar Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            isRequired='true'
+            isRequired="true"
           />
           <Input
-            name='userName'
-            type='text'
+            name="userName"
+            type="text"
             value={userName}
-            placeholder='Your Name'
+            placeholder="Your Name"
             onChange={(e) => setUserName(e.target.value)}
-            isRequired='true'
+            isRequired="true"
           />
-          <Button url='' type='submit'>
+          <Button url="" type="submit">
             Join
           </Button>
         </Form>

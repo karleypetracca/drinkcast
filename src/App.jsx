@@ -44,12 +44,12 @@ const App = () => {
     <StateProvider value={useReducer(Reducer, initialState)}>
       <AppMain>
         <Router>
-          <Route path='/' component={IndexPage} exact />
-          <Route path='/createbar' component={CreateBar} />
-          <Route path='/joinbar' component={JoinBar} />
-          <Route path='/bar' component={Bar} />
-          <Route path='/game' component={Game} />
-          <Route path='/understood' component={Understood} />
+          <Route path="/" component={IndexPage} exact />
+          <Route path="/createbar" component={CreateBar} />
+          <Route path="/joinbar" component={JoinBar} />
+          <Route path="/bar" component={Bar} />
+          <Route path="/game" component={Game} />
+          <Route path="/understood" component={Understood} />
         </Router>
       </AppMain>
     </StateProvider>

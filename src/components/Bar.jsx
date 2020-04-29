@@ -1,8 +1,11 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useContext, useEffect, useRef } from 'react';
+import React, {
+  useState, useContext, useEffect, useRef,
+} from 'react';
 import { OTSession, OTStreams, preloadScript } from 'opentok-react';
 import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
+// eslint-disable-next-line no-unused-vars
 import Publisher from './Publisher';
 import Subscriber from './Subscriber';
 import StateContext from '../context';
@@ -148,45 +151,47 @@ const Bar = () => {
   return (
     <>
       {!value.barName ? (
-        <Redirect to='/' />
+        <Redirect to="/" />
       ) : (
-        <>
-          <Nav />
-          <BarRoom>
-            <TitleBar>
-              <h1>{value.barName}</h1>
-            </TitleBar>
-            <Modal text={greeting} />
-            <OTSession
-              ref={sessionRef}
-              apiKey={value.key || getLocalData('key')}
-              sessionId={value.sessionId || getLocalData('sessionId')}
-              token={value.token || getLocalData('token')}
-              eventHandlers={sessionEvents}
-              onError={onError}
-            >
-              <Display>
-                <VideoBox>
-                  <Publisher />
-                  <OTStreams>
-                    <Subscriber />
-                  </OTStreams>
-                </VideoBox>
-                <GameDiv>
-                  <Game
-                    gameStart={gameStart}
-                    gameSelected={gameSelected}
-                    roundText={roundText}
-                    getRoundText={getRoundText}
-                    startGame={startGame}
-                    changeGame={changeGame}
-                  />
-                </GameDiv>
-              </Display>
-            </OTSession>
-          </BarRoom>
-        </>
-      )}
+          // eslint-disable-next-line react/jsx-indent
+          <>
+            <Nav />
+            <BarRoom>
+              <TitleBar>
+                <h1>{value.barName}</h1>
+              </TitleBar>
+              <Modal text={greeting} />
+              <OTSession
+                ref={sessionRef}
+                apiKey={value.key || getLocalData('key')}
+                sessionId={value.sessionId || getLocalData('sessionId')}
+                token={value.token || getLocalData('token')}
+                eventHandlers={sessionEvents}
+                onError={onError}
+              >
+                <Display>
+                  <VideoBox>
+                    {/* <Publisher /> */}
+                    <OTStreams>
+                      <Subscriber />
+                    </OTStreams>
+                  </VideoBox>
+                  <GameDiv>
+                    <Game
+                      gameStart={gameStart}
+                      gameSelected={gameSelected}
+                      roundText={roundText}
+                      getRoundText={getRoundText}
+                      startGame={startGame}
+                      changeGame={changeGame}
+                    />
+                  </GameDiv>
+                </Display>
+              </OTSession>
+            </BarRoom>
+          </>
+          // eslint-disable-next-line indent
+        )}
     </>
   );
 };

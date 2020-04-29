@@ -33,8 +33,8 @@ const Subscriber = () => {
         }}
         onError={onError}
       />
-      <CheckBox label='Hide Video' initialChecked={video} onChange={setVideo} />
-      <CheckBox label='Mute Audio' initialChecked={audio} onChange={setAudio} />
+      <CheckBox label="Hide Video" initialChecked={video} onChange={setVideo} />
+      <CheckBox label="Mute Audio" initialChecked={audio} onChange={setAudio} />
     </SubDiv>
   );
 };

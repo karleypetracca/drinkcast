@@ -1,3 +1,5 @@
+/* eslint-disable indent */
+/* eslint-disable react/jsx-indent */
 import React, { useState, useContext } from 'react';
 import Burger from '@animated-burgers/burger-squeeze';
 import '@animated-burgers/burger-squeeze/dist/styles.css';
@@ -58,7 +60,9 @@ const Nav = () => {
   const [burgerIsOpen, setBurgerIsOpen] = useState(false);
 
   const location = !!(window.location.href.split('/').pop() === 'bar');
+  // eslint-disable-next-line no-unused-vars
   const [inBar, setInBar] = useState(location);
+  // eslint-disable-next-line no-unused-vars
   const [value, dispatch] = useContext(StateContext);
 
   const clearBarInfo = (e) => {
@@ -92,53 +96,53 @@ const Nav = () => {
 
   return (
     <NavStyled>
-      <a href='/'>
-        <Image src={logo} alt='logo' className='nav-logo' />
+      <a href="/">
+        <Image src={logo} alt="logo" className="nav-logo" />
       </a>
-      <div className='desktop links'>
-        {localStorage.getItem('sessionId') &&
-        localStorage.getItem('token') &&
-        !inBar ? (
-          <a href='/bar' className='returnBar'>
-            {name}
-          </a>
-        ) : null}
+      <div className="desktop links">
+        {localStorage.getItem('sessionId')
+          && localStorage.getItem('token')
+          && !inBar ? (
+            <a href="/bar" className="returnBar">
+              {name}
+            </a>
+          ) : null}
         {inBar ? (
           <Button
-            className='nav'
-            href='/'
-            type='button'
+            className="nav"
+            href="/"
+            type="button"
             action={(e) => clearBarInfo(e)}
           >
             EXIT
           </Button>
         ) : (
-          <>
-            <a href='/joinbar' className='joinBar'>
-              JOIN
-            </a>
-            <a href='/createbar' className='createBar'>
-              CREATE
-            </a>
-          </>
-        )}
+            <>
+              <a href="/joinbar" className="joinBar">
+                JOIN
+              </a>
+              <a href="/createbar" className="createBar">
+                CREATE
+              </a>
+            </>
+          )}
       </div>
-      <div className='mobile links'>
+      <div className="mobile links">
         {burgerIsOpen ? (
           <Burger isOpen onClick={burgerClick} />
         ) : (
-          <Burger onClick={burgerClick} />
-        )}
+            <Burger onClick={burgerClick} />
+          )}
         <NavDropdown isOpen={burgerIsOpen}>
-          {localStorage.getItem('sessionId') &&
-          localStorage.getItem('token') &&
-          !inBar ? (
-            <a href='/bar'>{name}</a>
-          ) : null}
-          <a href='/joinbar' className='joinBar'>
+          {localStorage.getItem('sessionId')
+            && localStorage.getItem('token')
+            && !inBar ? (
+              <a href="/bar">{name}</a>
+            ) : null}
+          <a href="/joinbar" className="joinBar">
             JOIN
           </a>
-          <a href='/createbar' classnam='createBar'>
+          <a href="/createbar" classnam="createBar">
             CREATE
           </a>
         </NavDropdown>

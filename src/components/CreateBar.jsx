@@ -64,17 +64,9 @@ const IndexPage = () => {
       };
       localStorage.setItem(localKey, JSON.stringify(item));
     };
-    // creates random bar name.
     const name = await RandomBarGen();
     const randomName = `The ${name.join(' ')}`;
-
-    // checks to see if a bar name was entered and substitutes
-    // a random name if barName is an empty string.
     const barNameToSubmit = !barName.length ? randomName : barName;
-
-    // console.log(barNameToSubmit);
-    // console.log('barName is : ', barName);
-
     const data = { barName: barNameToSubmit, password };
     const postUrl = `${API_URL}api/createbar`;
     const response = await post(postUrl, data);
@@ -83,6 +75,7 @@ const IndexPage = () => {
 
     // console.log(opentokInfo);
 
+    // eslint-disable-next-line no-prototype-builtins
     if (!opentokInfo.hasOwnProperty('error') && password !== '') {
       dispatch({
         type: 'ACTION_CREATE_BAR',
@@ -115,38 +108,38 @@ const IndexPage = () => {
     <>
       <Nav />
       <FormDiv>
-        {redirect && <Redirect to='./bar' />}
+        {redirect && <Redirect to="./bar" />}
         <Form onSubmit={(e) => submitBarName(e)}>
           <h1>Create New Bar</h1>
           <div>{nameCheck}</div>
           <Input
-            name='barName'
-            type='text'
+            name="barName"
+            type="text"
             value={barName}
-            placeholder='Bar Name'
+            placeholder="Bar Name"
             onChange={(e) => setBarName(e.target.value)}
-            isRequired='true'
+            isRequired="true"
           />
           <Input
-            type='password'
-            name='password'
+            type="password"
+            name="password"
             value={password}
-            placeholder='Bar Password'
+            placeholder="Bar Password"
             onChange={(e) => setPassword(e.target.value)}
-            isRequired='true'
+            isRequired="true"
           />
           <Input
-            name='userName'
-            type='text'
+            name="userName"
+            type="text"
             value={userName}
-            placeholder='Your Name'
+            placeholder="Your Name"
             onChange={(e) => setUserName(e.target.value)}
-            isRequired='true'
+            isRequired="true"
           />
-          <Button url='' type='button' action={(e) => randomNameHandler(e)}>
+          <Button url="" type="button" action={(e) => randomNameHandler(e)}>
             Get Random Bar Name
           </Button>
-          <Button url='' type='submit'>
+          <Button url="" type="submit">
             Create
           </Button>
         </Form>
