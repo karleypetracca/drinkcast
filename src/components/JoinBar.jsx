@@ -87,9 +87,9 @@ const IndexPage = () => {
     }
 
     setAlert(true);
-    setJoinBar('');
-    setPassword('');
-    setUserName('');
+    // setJoinBar('');
+    // setPassword('');
+    // setUserName('');
   };
 
   return (
@@ -114,7 +114,7 @@ const IndexPage = () => {
             placeholder='Bar Password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            isRequired=''
+            isRequired='true'
           />
           <Input
             name='userName'

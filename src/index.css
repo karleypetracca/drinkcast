@@ -12,6 +12,7 @@
   --green-dark: rgb(76, 94, 55);
 
   --primaryFaded: rgba(209, 108, 61, 0.5);
+  --brownFaded: rgba(27, 20, 17, 0.7);
 
   --primary: var(--orange);
   --secondary: var(--blue-dark);
