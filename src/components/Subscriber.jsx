@@ -19,8 +19,23 @@ const Subscriber = () => {
     setError(`Failed to publish: ${err.message}`);
   };
 
+  const getLocalData = (localKey) => {
+    const itemStr = localStorage.getItem(localKey);
+    if (!itemStr) {
+      return '';
+    }
+    const item = JSON.parse(itemStr);
+    const currentDate = new Date();
+    if (currentDate.getTime() > item.expiry) {
+      localStorage.removeItem(localKey);
+      return '';
+    }
+    return item.localValue;
+  };
+
   return (
     <SubDiv>
+      {getLocalData('userName')}
       {error ? <div>{error}</div> : null}
       <OTSubscriber
         style={{

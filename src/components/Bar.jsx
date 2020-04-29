@@ -87,7 +87,7 @@ const Bar = () => {
   }, [value.barName]);
 
   const signalStartGame = (signal) => {
-    setGameStart(signal.data);
+    console.log(signal, "Hello");
   };
 
   const signalChangeGame = (signal) => {
@@ -98,10 +98,15 @@ const Bar = () => {
     setRoundText(signal.data);
   };
 
+  const signalSetName = (signal) => {
+    setUserName(signal.data);
+  };
+
   const sessionEvents = {
     'signal:startGame': (event) => signalStartGame(event),
     'signal:changeGame': (event) => signalChangeGame(event),
     'signal:setRoundText': (event) => signalSetRoundText(event),
+    'singal:setName': (event) => signalSetName(event),
   };
 
   const sendSignal = (type, data) => {
@@ -120,6 +125,10 @@ const Bar = () => {
         }
       },
     );
+  };
+
+  const setUserName = () => {
+    sendSignal('setName', console.log('Hello!'));
   };
 
   const startGame = () => {
