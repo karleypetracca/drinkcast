@@ -1,7 +1,26 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const menuDrop = keyframes`
+  0% {
+    height: 0%;
+  }
+  100% {
+    height: 16%;
+  }
+`;
+
+const opacity = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+
+`;
 
 const NavDropdownStyled = styled.div`
   position: fixed;
@@ -14,16 +33,22 @@ const NavDropdownStyled = styled.div`
   right: 0;
   bottom: 0;
   z-index: 9999;
+  animation: ${opacity} 0.4s forwards ease-in-out;
+  animation-iteration-count: 1;
 
   .dropdown-links {
     background-color: var(--primary);
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     padding: 10px;
     width: 100%;
+    height: 16%;
     top: var(--nav-height);
     text-align: center;
     z-index: 10000;
+    animation: ${menuDrop} 0.4s ease-in-out;
+    animation-iteration-count: 1;
   }
 `;
 

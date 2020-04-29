@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import StateContext from '../context';
 
 import Image from './Image';
+
 import Button from './Button';
 import NavDropdown from './NavDropdown';
 
@@ -140,12 +141,25 @@ const Nav = () => {
             && !inBar ? (
               <a href="/bar">{name}</a>
             ) : null}
+            {inBar ? (
+          <a
+            href="/"
+            onClick={(e) => clearBarInfo(e)}
+          >
+            EXIT
+          </a>
+        )
+          : (
+          <>
           <a href="/joinbar" className="joinBar">
             JOIN
           </a>
           <a href="/createbar" classnam="createBar">
             CREATE
           </a>
+          </>
+        )}
+
         </NavDropdown>
       </div>
     </NavStyled>
