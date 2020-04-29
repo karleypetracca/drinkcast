@@ -78,7 +78,6 @@ const IndexPage = () => {
       const getUrl = `${API_URL}api/joinbar`;
       const response = await post(getUrl, data);
       const opentokInfo = await response.json();
-      console.log(opentokInfo);
       // eslint-disable-next-line no-prototype-builtins
       if (!opentokInfo.hasOwnProperty('error') && joinBar !== '' && password !== '') {
         dispatch({
@@ -95,7 +94,7 @@ const IndexPage = () => {
         setLocalData('barName', joinBar);
         setLocalData('userName', userName);
 
-        // setRedirect(true);
+        setRedirect(true);
       }
       if (opentokInfo.error.includes('bar')) {
         setNameCheck(opentokInfo.error);

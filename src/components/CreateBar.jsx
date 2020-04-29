@@ -103,7 +103,7 @@ const IndexPage = () => {
         setNameCheck('');
         setPassword('');
       }
-
+      // eslint-disable-next-line no-prototype-builtins
       if (!opentokInfo.hasOwnProperty('error')) {
         dispatch({
           type: 'ACTION_CREATE_BAR',
@@ -123,7 +123,6 @@ const IndexPage = () => {
         setRedirect(true);
       }
     }
-
   };
 
   return (
