@@ -91,16 +91,6 @@ const IndexPage = () => {
       const postUrl = `${API_URL}api/createbar`;
       const response = await post(postUrl, data);
       const opentokInfo = await response.json();
-      if (opentokInfo.error.includes('name')) {
-        setNameCheck(opentokInfo.error);
-        setPasswordCheck('');
-        setBarName('');
-      }
-      if (opentokInfo.error.includes('password')) {
-        setPasswordCheck(opentokInfo.error);
-        setNameCheck('');
-        setPassword('');
-      }
       // eslint-disable-next-line no-prototype-builtins
       if (!opentokInfo.hasOwnProperty('error')) {
         dispatch({
@@ -119,6 +109,17 @@ const IndexPage = () => {
         setLocalData('userName', userName);
 
         setRedirect(true);
+      } else {
+        if (opentokInfo.error.includes('name')) {
+          setNameCheck(opentokInfo.error);
+          setPasswordCheck('');
+          setBarName('');
+        }
+        if (opentokInfo.error.includes('password')) {
+          setPasswordCheck(opentokInfo.error);
+          setNameCheck('');
+          setPassword('');
+        }
       }
     }
   };
