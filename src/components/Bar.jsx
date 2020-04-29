@@ -16,8 +16,12 @@ import { get, post, API_URL } from '../utils/apiConn';
 const BarRoom = styled.div`
   display: flex;
   flex-direction: column;
-  height: calc(100vh - var(--nav-height));
+  min-height: calc(100vh - var(--nav-height));
   text-align: center;
+
+  h1 {
+    margin: 10px auto;
+  }
 `;
 
 const Display = styled.div`
@@ -31,19 +35,34 @@ const Display = styled.div`
   }
 `;
 
-const VideoBox = styled.div`
+const VideoBoxStyled = styled.div`
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  align-items: center;
+  width: 50%;
+  min-height: 70vh;
+
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
-const TitleBar = styled.div`
-  padding-top: 40px;
-`;
-
-const GameDiv = styled.div`
+const SubscribersBoxStyled = styled.div`
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  > div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+`;
+
+const GameStyled = styled.div`
+  display: flex;
   align-content: center;
   justify-content: center;
   margin: auto;
@@ -56,9 +75,7 @@ const GameDiv = styled.div`
 
 const Bar = () => {
   const [value] = useContext(StateContext);
-  // const [connected, setConnected] = useState(false);
   const sessionRef = useRef();
-  // eslint-disable-next-line no-unused-vars
   const [gameStart, setGameStart] = useState(false);
   const [gameSelected, setGameSelected] = useState(''); // "neverhaveiever" or "wouldyourather"
   const [roundText, setRoundText] = useState('');
@@ -152,49 +169,48 @@ const Bar = () => {
 
   return (
     <>
-      {!value.barName ? (
-        <Redirect to="/" />
-      ) : (
-          // eslint-disable-next-line react/jsx-indent
-          <>
-            <Nav />
-            <BarRoom>
-              <TitleBar>
-
+      {
+        !value.barName
+          ? <Redirect to="/" />
+          : (
+            <>
+              <Nav />
+              <BarRoom>
                 <h1>{value.barName}</h1>
-              </TitleBar>
-              <Modal text={greeting} />
-              <OTSession
-                ref={sessionRef}
-                apiKey={value.key || getLocalData('key')}
-                sessionId={value.sessionId || getLocalData('sessionId')}
-                token={value.token || getLocalData('token')}
-                eventHandlers={sessionEvents}
-                onError={onError}
-              >
-                <Display>
-                  <VideoBox>
-                    <Publisher />
-                    <OTStreams>
-                      <Subscriber />
-                    </OTStreams>
-                  </VideoBox>
-                  <GameDiv>
-                    <Game
-                      gameStart={gameStart}
-                      gameSelected={gameSelected}
-                      roundText={roundText}
-                      getRoundText={getRoundText}
-                      startGame={startGame}
-                      changeGame={changeGame}
-                    />
-                  </GameDiv>
-                </Display>
-              </OTSession>
-            </BarRoom>
-          </>
-          // eslint-disable-next-line indent
-        )}
+                <Modal text={greeting} />
+                <OTSession
+                  ref={sessionRef}
+                  apiKey={value.key || getLocalData('key')}
+                  sessionId={value.sessionId || getLocalData('sessionId')}
+                  token={value.token || getLocalData('token')}
+                  eventHandlers={sessionEvents}
+                  onError={onError}
+                >
+                  <Display>
+                    <VideoBoxStyled>
+                      <Publisher />
+                      <SubscribersBoxStyled>
+                        <OTStreams>
+                          <Subscriber />
+                        </OTStreams>
+                      </SubscribersBoxStyled>
+                    </VideoBoxStyled>
+                    <GameStyled>
+                      <Game
+                        gameStart={gameStart}
+                        gameSelected={gameSelected}
+                        roundText={roundText}
+                        getRoundText={getRoundText}
+                        startGame={startGame}
+                        changeGame={changeGame}
+                      />
+                    </GameStyled>
+                  </Display>
+                </OTSession>
+              </BarRoom>
+            </>
+          )
+      }
     </>
   );
 };
