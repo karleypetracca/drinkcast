@@ -4,12 +4,20 @@ import styled from 'styled-components';
 import CheckBox from './CheckBox';
 import StateContext from '../context';
 
-const PublisherDiv = styled.div`
-  margin-left: 30px;
+const PublisherStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
   @media screen and (max-width: 600px) {
     padding: 0 0.4rem;
+  }
 
-    width: 60%;
+  .OTPublisherContainer {
+    width: 120px !important;
+    height: 100px !important;
   }
 `;
 
@@ -20,13 +28,13 @@ const Publisher = () => {
   const [value] = useContext(StateContext);
 
   const onError = (err) => {
-    setError(`Failed to publish: ${err.message}`);
+    setError(`Failed to connect: ${err.message}`);
   };
 
   return (
-    <PublisherDiv>
-      {value.userName}
-      {error ? <div>{error}</div> : null}
+    <PublisherStyled>
+      <h3>{value.userName}</h3>
+      {error ? <p>{error}</p> : null}
       <OTPublisher
         style={{
           width: '100',
@@ -39,16 +47,16 @@ const Publisher = () => {
         onError={onError}
       />
       <CheckBox
-        label="Publish Video"
+        label="Share Video"
         initialChecked={video}
         onChange={setVideo}
       />
       <CheckBox
-        label="Publish Audio"
+        label="Share Audio"
         initialChecked={audio}
         onChange={setAudio}
       />
-    </PublisherDiv>
+    </PublisherStyled>
   );
 };
 
