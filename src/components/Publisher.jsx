@@ -33,20 +33,24 @@ const Publisher = () => {
 
   return (
     <PublisherStyled>
-      <h3>{value.userName}</h3>
+      {value.userName}
       {error ? <p>{error}</p> : null}
       <OTPublisher
         style={{
+          name: value.userName,
           width: '100',
           height: '100',
         }}
         properties={{
+          name: value.userName,
+          nameDisplayMode: 'on',
           publishAudio: audio,
           publishVideo: video,
         }}
         onError={onError}
       />
       <CheckBox
+
         label="Share Video"
         initialChecked={video}
         onChange={setVideo}
@@ -55,6 +59,7 @@ const Publisher = () => {
         label="Share Audio"
         initialChecked={audio}
         onChange={setAudio}
+
       />
     </PublisherStyled>
   );
