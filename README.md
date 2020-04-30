@@ -1,37 +1,73 @@
----
-noteId: "1ffab7a08a2111ea89caa52b44749065"
-tags: []
+# drinkcast Client
 
----
-
-# DrinkCast Client
----
 ## Summary
+
 Invite your friends and enjoy a happy hour with video chat and games to play!
 
+The demo for this app is located at [drinkcast.live](https://www.drinkcast.live)
 
-## Sources
-- [Uomo Font](https://www.freefonts.io/uomo-font-family/)
-- [Favicon](https://favicon.io/)
-- [Wood Image](https://pixabay.com/photos/floor-wood-hardwood-floors-1256804/)
+The repo for the API can be viewed on [GitHub](https://github.com/karleypetracca/drinkcast-api) or as a demo site at [api.drinkcast.live](https://api.drinkcast.live)
+
+
+## Features
+
+The drinkcast project uses Node.js, Express and PostgreSQL on the backend and
+React for the frontend. The core video connecton functionality is run with the
+use of the OpenTok API to create unique session IDs, or in our case 'bars', thats
+are available for others to join via the bar's name and password set by a user.
+Upon a successful log in, the user is granted a token that is used to join the
+session. Once a user has created a bar and invites friends to join, the app
+allows friends to play games and hang out through video chat in their own
+private 'bar'!
+
+Additional features include:
+- 2 embedded games in each bar: 'Would you rather' and 'Never have I ever'
+- Randomizer option for the bar name
+- Automatic CRON-like database cleaning to remove rooms that have not been used
+  in the last 24 hours
+
 
 ## Tools used
 
-- React
-- OpentTok React
+- [React](https://reactjs.org/)
+- [OpenTok React](https://tokbox.com/developer/guides/basics/)
 - [Random Word API](https://random-word-api.herokuapp.com/home)
+- [Uomo Font](https://www.freefonts.io/uomo-font-family/)
+- [Favicon](https://favicon.io/)
+- [Animated Burger Icon](https://march08.github.io/animated-burgers/)
+- [React Select Input](https://react-select.com/home)
+- [Background Image](https://pixabay.com/photos/floor-wood-hardwood-floors-1256804/)
 
-## ScreenShots
+
+## Screenshots
+
+NEED TO ADD !!!!!
 
 
-## App Features
+## Installation
 
-The project uses Node.js, Express and PostgreSQL on the backend and React for the frontend. The App uses the OpenTok API to create unique session IDs, or in our case 'bars', that are available for others to join via the bar's name (either chosen or randomly generated) and password. Upon a successful log in, the user is granted a token that is used to join the session. Once you've created a bar and invited some friends to join, you can play games and hang out through video chat! 
+### Clone
+
+- Clone this repo to your local machine
+
+### Setup
+
+- Install npm packages
+
+```
+$ npm i
+```
+
+- Run program
+
+```
+$ npm start
+```
 
 
 ## Authors
 
-- Zach Barbre - [gitHub](https://github.com/ZachBarbre)
-- Joshua Bevers - [gitHub](https://github.com/JoshuaBevers)
-- Lockett Pundt - [gitHub](https://github.com/LockettPundt)
-- Karley Petracca - [gitHub](https://github.com/karleypetracca)
+- Lockett Pundt - [GitHub](https://github.com/LockettPundt)
+- Joshua Bevers - [GitHub](https://github.com/JoshuaBevers)
+- Zach Barbre - [GitHub](https://github.com/ZachBarbre)
+- Karley Petracca - [GitHub](https://github.com/karleypetracca)
