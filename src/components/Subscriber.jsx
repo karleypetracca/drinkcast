@@ -32,6 +32,7 @@ const Subscriber = () => {
     setError(`Failed to connect: ${err.message}`);
   };
 
+
   return (
     <SubscriberStyled>
       {error ? <div>{error}</div> : null}
