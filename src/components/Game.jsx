@@ -4,7 +4,7 @@
 /* eslint-disable no-nested-ternary */
 import React from 'react';
 import styled from 'styled-components';
-
+import Select from 'react-select';
 import Button from './Button';
 
 const GameStyled = styled.div`
@@ -20,9 +20,9 @@ const GameStyled = styled.div`
     font-size: 20px;
   }
 
-  select, option {
-    font-size: inherit;
-    padding: 5px;
+  .select {
+    width: 300px;
+    color: var(--black);
   }
 
   .selectGame {
@@ -30,13 +30,19 @@ const GameStyled = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 20px 0;
-
+    margin: 0;
     * {
       margin: 5px;
     }
   }
 `;
+
+
+const options = [
+  { value: 'neverhaveiever', label: 'Never Have I Ever' },
+  { value: 'wouldyourather', label: 'Would You Rather' },
+];
+
 
 const Game = ({
   gameStart,
@@ -73,12 +79,16 @@ const Game = ({
       {roundText !== '' ? <h2>{roundText}</h2> : ''}
       {gameStart ? (
         <div className="selectGame">
-          <p>Use dropdown to change games</p>
-          <select defaultValue="" onChange={(e) => changeGame(e)}>
-            <option value="">Please select a game</option>
-            <option value="neverhaveiever">Never Have I Ever</option>
-            <option value="wouldyourather">Would You Rather</option>
-          </select>
+          <Select
+            classNamePrefix="selectOption"
+            className="select"
+            options={options}
+            placeholder="Choose Your Game!"
+            value=""
+            onChange={(value) => changeGame(value)}
+          >
+            <option value="neverhaveiever">NEVER</option>
+          </Select>
         </div>
       ) : (
           ''
