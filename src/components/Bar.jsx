@@ -16,7 +16,7 @@ import { get, post, API_URL } from '../utils/apiConn';
 const BarRoom = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - var(--nav-height));
+  min-height: var(--main-height);
   text-align: center;
 
   h1 {

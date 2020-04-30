@@ -11,7 +11,7 @@ import Input from './Input';
 
 const FormDiv = styled.div`
   display: flex;
-  height: var(--main-height);
+  min-height: var(--main-height);
 `;
 
 const Form = styled.form`
