@@ -145,8 +145,9 @@ const Bar = () => {
     sendSignal('startGame', !gameStart);
   };
 
-  const changeGame = (e) => {
-    sendSignal('changeGame', e.target.value);
+  const changeGame = (game) => {
+    sendSignal('changeGame', game.value);
+    sendSignal('setRoundText', '');
   };
 
   const getRoundText = async () => {
