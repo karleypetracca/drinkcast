@@ -146,7 +146,6 @@ const Bar = () => {
   };
 
   const changeGame = (game) => {
-    console.log(game);
     sendSignal('changeGame', game.value);
   };
 
