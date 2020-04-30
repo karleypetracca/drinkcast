@@ -33,6 +33,7 @@ const Publisher = () => {
 
   return (
     <PublisherStyled>
+      {value.userName}
       {error ? <p>{error}</p> : null}
       <OTPublisher
         style={{
