@@ -38,6 +38,7 @@ const Publisher = () => {
       <OTPublisher
         style={{
           name: value.userName,
+          nameDisplayMode: 'on',
           width: '100',
           height: '100',
         }}

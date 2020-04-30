@@ -38,10 +38,12 @@ const Subscriber = () => {
       {error ? <div>{error}</div> : null}
       <OTSubscriber
         style={{
+          sessionId: 'helloid',
           width: '100',
           height: '100',
         }}
         properties={{
+          sessionId: 'helloid',
           subscribeToAudio: audio,
           subscribeToVideo: video,
         }}
