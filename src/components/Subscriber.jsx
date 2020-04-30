@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { OTSubscriber } from 'opentok-react';
 import styled from 'styled-components';
 import CheckBox from './CheckBox';
