@@ -1,8 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { OTSubscriber } from 'opentok-react';
 import styled from 'styled-components';
 import CheckBox from './CheckBox';
-import StateContext from '../context';
 
 const SubscriberStyled = styled.div`
   display: flex;
@@ -26,12 +25,10 @@ const Subscriber = () => {
   const [error, setError] = useState(null);
   const [audio, setAudio] = useState(false);
   const [video, setVideo] = useState(true);
-  const [value] = useContext(StateContext);
 
   const onError = (err) => {
     setError(`Failed to connect: ${err.message}`);
   };
-
 
   return (
     <SubscriberStyled>
