@@ -44,7 +44,7 @@ const IndexPage = () => {
   const [redirect, setRedirect] = useState(false);
   const [userName, setUserName] = useState('');
   const [barNamePlaceholder, setBarNamePlaceholder] = useState('Bar Name');
-  const [passwordPlaceholder, setPasswordPlaceholder] = useState('Bar Password');
+  const [passwordPlaceholder, setPasswordPlaceholder] = useState('Bar Password - 5 Char Min');
 
   const [value, dispatch] = useContext(StateContext);
 
@@ -137,7 +137,6 @@ const IndexPage = () => {
           <Input
             type="password"
             name="password"
-            value={password}
             placeholder={passwordPlaceholder}
             onChange={(e) => setPassword(e.target.value)}
             isRequired="true"
