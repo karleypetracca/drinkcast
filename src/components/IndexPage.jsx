@@ -31,7 +31,7 @@ const IndexStyled = styled.div`
     }
 
     a * {
-      padding: 1px;
+      padding: 2px;
       line-height: 1rem;
     }
   }
