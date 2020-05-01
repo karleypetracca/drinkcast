@@ -33,6 +33,10 @@ const GameStyled = styled.div`
     color: var(--black);
   }
 
+  button { 
+    margin-top: 80px;
+  }
+
   .selectGame {
     display: flex;
     flex-direction: column;
@@ -41,6 +45,10 @@ const GameStyled = styled.div`
     margin: ${(props) => (props.roundText ? '2.5%' : '5%')};
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5), 0 6px 20px 0 rgba(0,0,0,0.49);
   }
+`;
+
+const RoundText = styled.div`
+  margin-top: 100px;
 `;
 
 
@@ -58,31 +66,14 @@ const Game = ({
   startGame,
   changeGame,
 }) => (
-    <GameStyled roundText={roundText}>
-      {gameSelected === 'neverhaveiever' ? (
-        <h1>Never Have I Ever</h1>
+    <GameStyled>
+      {gameSelected === null ? (
+        ''
       ) : (
-          ''
+          // eslint-disable-next-line react/jsx-one-expression-per-line
+          <h1>Playing: {gameSelected} </h1>
         )}
-      {gameSelected === 'wouldyourather' ? (
-        <h1>Would You Rather</h1>
-      ) : (
-          ''
-        )}
-      {gameStart ? (
-        gameSelected !== '' ? (
-          <Button url="" type="button" action={getRoundText} className="">
-            New Round
-          </Button>
-        ) : (
-            ''
-          )
-      ) : (
-          <Button url="" type="button" action={startGame} className="">
-            Start Game
-          </Button>
-        )}
-      {roundText !== '' ? <h2>{roundText}</h2> : ''}
+
       {gameStart ? (
         <div className="selectGame">
           <Select
@@ -99,6 +90,22 @@ const Game = ({
       ) : (
           ''
         )}
+      {gameStart ? (
+        gameSelected !== null ? (
+          <Button url="" type="button" action={getRoundText} className="">
+            New Round
+          </Button>
+        ) : (
+            ''
+          )
+      ) : (
+          <Button url="" inputProps={{ readOnly: true }} type="button" action={startGame} className="">
+            Start Game
+          </Button>
+        )}
+      <RoundText>
+        {roundText !== '' ? <h2>{roundText}</h2> : ''}
+      </RoundText>
     </GameStyled>
   );
 
