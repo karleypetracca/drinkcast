@@ -37,6 +37,10 @@ const GameStyled = styled.div`
   }
 `;
 
+const RoundText = styled.div`
+  margin-top: 100px;
+`;
+
 
 const options = [
   { value: 'neverhaveiever', label: 'Never Have I Ever' },
@@ -53,30 +57,13 @@ const Game = ({
   changeGame,
 }) => (
     <GameStyled>
-      {gameSelected === 'neverhaveiever' ? (
-        <h1>Playing: Never Have I Ever</h1>
+      {gameSelected === null ? (
+        ''
       ) : (
-          ''
+          // eslint-disable-next-line react/jsx-one-expression-per-line
+          <h1>Playing: {gameSelected} </h1>
         )}
-      {gameSelected === 'wouldyourather' ? (
-        <h2>Playing: Would You Rather</h2>
-      ) : (
-          ''
-        )}
-      {gameStart ? (
-        gameSelected !== '' ? (
-          <Button url="" type="button" action={getRoundText} className="">
-            New Round
-          </Button>
-        ) : (
-            ''
-          )
-      ) : (
-          <Button url="" type="button" action={startGame} className="">
-            Start Game
-          </Button>
-        )}
-      {roundText !== '' ? <h2>{roundText}</h2> : ''}
+
       {gameStart ? (
         <div className="selectGame">
           <Select
@@ -93,6 +80,22 @@ const Game = ({
       ) : (
           ''
         )}
+      {gameStart ? (
+        gameSelected !== null ? (
+          <Button url="" type="button" action={getRoundText} className="">
+            New Round
+          </Button>
+        ) : (
+            ''
+          )
+      ) : (
+          <Button url="" inputProps={{ readOnly: true }} type="button" action={startGame} className="">
+            Start Game
+          </Button>
+        )}
+      <RoundText>
+        {roundText !== '' ? <h2>{roundText}</h2> : ''}
+      </RoundText>
     </GameStyled>
   );
 

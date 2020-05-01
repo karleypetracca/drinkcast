@@ -24,9 +24,8 @@ const SubscriberStyled = styled.div`
 
 const Subscriber = () => {
   const [error, setError] = useState(null);
-  const [audio, setAudio] = useState(false);
+  const [audio, setAudio] = useState(true);
   const [video, setVideo] = useState(true);
-  const [value] = useContext(StateContext);
 
   const onError = (err) => {
     setError(`Failed to connect: ${err.message}`);
@@ -38,12 +37,10 @@ const Subscriber = () => {
       {error ? <div>{error}</div> : null}
       <OTSubscriber
         style={{
-          sessionId: 'helloid',
           width: '100',
           height: '100',
         }}
         properties={{
-          sessionId: 'helloid',
           subscribeToAudio: audio,
           subscribeToVideo: video,
         }}
