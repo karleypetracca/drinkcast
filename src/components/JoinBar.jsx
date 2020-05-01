@@ -142,7 +142,11 @@ const IndexPage = () => {
             onChange={(e) => setUserName(e.target.value)}
             isRequired="true"
           />
-          <Button url="" type="submit">
+          <Button
+            className="join"
+            url="#"
+            type="submit"
+          >
             Join
           </Button>
         </Form>
