@@ -15,7 +15,26 @@ const IndexDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
  
+  .about-message {
+    font-size: 14px;
+    position: absolute;
+    bottom: 0;
+    
+    a {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    a * {
+      padding: 1px;
+      line-height: 1rem;
+    }
+  }
 `;
 
 const IndexBox = styled.div`
@@ -65,7 +84,12 @@ const IndexPage = () => (
       </ButtonBox>
 
     </IndexBox>
-
+    <footer className="about-message">
+      <a href="https://github.com/karleypetracca/drinkcast-client/">
+        <p>Made with ♥ {' '}</p>
+        <p>by Lockett, Josh, Zach and Karley</p>
+      </a>
+    </footer>
   </IndexDiv>
 );
 
