@@ -23,6 +23,12 @@ const SubscriberStyled = styled.div`
     z-index: 5;
     border-radius: 5px;
   }
+
+  .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const Subscriber = () => {
@@ -48,8 +54,20 @@ const Subscriber = () => {
         }}
         onError={onError}
       />
-      <CheckBox label="Show Video" initialChecked={video} onChange={setVideo} />
-      <CheckBox label="Play Audio" initialChecked={audio} onChange={setAudio} />
+      <div className="controls">
+        <CheckBox
+          type="video"
+          label="Show Video"
+          initialChecked={video}
+          onChange={setVideo}
+        />
+        <CheckBox
+          type="audio"
+          label="Play Audio"
+          initialChecked={audio}
+          onChange={setAudio}
+        />
+      </div>
     </SubscriberStyled>
   );
 };

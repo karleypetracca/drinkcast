@@ -6,13 +6,21 @@ import StateContext from '../context';
 
 const PublisherStyled = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin: 20px;
+  padding-left: 60px;
 
   @media screen and (max-width: 600px) {
     padding: 0 0.4rem;
+  }
+
+  .video-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .OTPublisherContainer {
@@ -22,6 +30,14 @@ const PublisherStyled = styled.div`
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.49);
     z-index: 5;
     border-radius: 5px;
+  }
+
+  .controls {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -37,33 +53,38 @@ const Publisher = () => {
 
   return (
     <PublisherStyled>
-      {value.userName}
-      {error ? <p>{error}</p> : null}
-      <OTPublisher
-        style={{
-          nameDisplayMode: 'on',
-          width: '100',
-          height: '100',
-        }}
-        properties={{
-          name: value.userName.toUpperCase(),
-          nameDisplayMode: 'on',
-          publishAudio: audio,
-          publishVideo: video,
-        }}
-        onError={onError}
-      />
-      <CheckBox
-
-        label="Share Video"
-        initialChecked={video}
-        onChange={setVideo}
-      />
-      <CheckBox
-        label="Share Audio"
-        initialChecked={audio}
-        onChange={setAudio}
-      />
+      <div className="video-box">
+        <b>{value.userName}</b>
+        {error ? <p>{error}</p> : null}
+        <OTPublisher
+          style={{
+            nameDisplayMode: 'on',
+            width: '100',
+            height: '100',
+          }}
+          properties={{
+            name: value.userName.toUpperCase(),
+            nameDisplayMode: 'on',
+            publishAudio: audio,
+            publishVideo: video,
+          }}
+          onError={onError}
+        />
+      </div>
+      <div className="controls">
+        <CheckBox
+          type="video"
+          label="Share Video"
+          initialChecked={video}
+          onChange={setVideo}
+        />
+        <CheckBox
+          type="audio"
+          label="Share Audio"
+          initialChecked={audio}
+          onChange={setAudio}
+        />
+      </div>
     </PublisherStyled>
   );
 };
