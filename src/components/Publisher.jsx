@@ -21,6 +21,7 @@ const PublisherStyled = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-left: 55px;
   }
 
   .OTPublisherContainer {
@@ -55,7 +56,7 @@ const Publisher = () => {
     <PublisherStyled>
       <div className="video-box">
         <b>{value.userName}</b>
-        {error ? <p>{error}</p> : null}
+        {error ? <p>Failed to Connect</p> : null}
         <OTPublisher
           style={{
             nameDisplayMode: 'on',
