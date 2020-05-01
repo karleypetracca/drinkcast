@@ -1,3 +1,9 @@
+---
+noteId: "79548ee08b0a11eaa02e9d9266c24b2e"
+tags: []
+
+---
+
 # drinkcast Client
 
 ## Summary
@@ -41,8 +47,10 @@ Additional features include:
 
 ## Screenshots
 
-NEED TO ADD !!!!!
-
+<img src="https://i.postimg.cc/VvrvZdqB/index-Desktop.png" width="300px">
+<img src="https://i.postimg.cc/63LVYSST/index-Mobile.png" width="200px">
+<img src="https://i.postimg.cc/nztYKZ36/create-Bar-Mobile.png" width="200px">
+<img src="https://i.postimg.cc/kGTQdS7m/create-Bar-Desktop.png" width="300px">
 
 ## Installation
 
