@@ -152,7 +152,22 @@ const Bar = () => {
     console.log(`Failed to connect: ${err.message}`);
   };
 
-  const greeting = `Welcome to ${value.barName}! Pull up a seat ${value.userName}!`;
+  const greeting = (
+    <>
+      <p>
+        Welcome to
+        {' '}
+        {value.barName}
+        !
+      </p>
+      <p>
+        Pull up a seat
+        {' '}
+        {value.userName}
+        !
+      </p>
+    </>
+  );
 
   return (
     <>
