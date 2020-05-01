@@ -27,7 +27,7 @@
 }
 
 @font-face {
-  font-family: 'uomouploaded_file';
+  font-family: 'uomo';
   src: url('uomo-webfont.woff2') format('woff2'),
     url('uomo-webfont.woff') format('woff');
   font-weight: normal;
@@ -46,7 +46,7 @@
 
 body {
   font-size: 16px;
-  font-family: 'uomouploaded_file', 'Roboto', -apple-system, BlinkMacSystemFont,
+  font-family: 'uomo', 'Roboto', -apple-system, BlinkMacSystemFont,
     'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
     'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;

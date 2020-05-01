@@ -79,6 +79,7 @@ const Game = ({
             classNamePrefix="selectOption"
             className="select"
             options={options}
+            isSearchable={false}
             placeholder="Choose Your Game!"
             value=""
             onChange={(value) => changeGame(value)}
@@ -96,7 +97,7 @@ const Game = ({
       </RoundText>
       {gameStart ? (
         gameSelected !== null ? (
-          <Button url="" type="button" action={getRoundText} className="">
+          <Button url="" type="button" action={getRoundText} className="join">
             New Round
           </Button>
         ) : (
