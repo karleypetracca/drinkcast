@@ -23,7 +23,7 @@ const SubscriberStyled = styled.div`
 
 const Subscriber = () => {
   const [error, setError] = useState(null);
-  const [audio, setAudio] = useState(false);
+  const [audio, setAudio] = useState(true);
   const [video, setVideo] = useState(true);
 
   const onError = (err) => {

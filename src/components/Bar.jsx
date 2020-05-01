@@ -77,7 +77,7 @@ const Bar = () => {
   const [value] = useContext(StateContext);
   const sessionRef = useRef();
   const [gameStart, setGameStart] = useState(false);
-  const [gameSelected, setGameSelected] = useState(''); // "neverhaveiever" or "wouldyourather"
+  const [gameSelected, setGameSelected] = useState(null); // "neverhaveiever" or "wouldyourather"
   const [roundText, setRoundText] = useState('');
 
   const getLocalData = (localKey) => {

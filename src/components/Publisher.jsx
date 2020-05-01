@@ -23,7 +23,7 @@ const PublisherStyled = styled.div`
 
 const Publisher = () => {
   const [error, setError] = useState(null);
-  const [audio, setAudio] = useState(false);
+  const [audio, setAudio] = useState(true);
   const [video, setVideo] = useState(true);
   const [value] = useContext(StateContext);
 
@@ -38,6 +38,7 @@ const Publisher = () => {
       <OTPublisher
         style={{
           name: value.userName,
+          nameDisplayMode: 'on',
           width: '100',
           height: '100',
         }}
@@ -59,7 +60,6 @@ const Publisher = () => {
         label="Share Audio"
         initialChecked={audio}
         onChange={setAudio}
-
       />
     </PublisherStyled>
   );

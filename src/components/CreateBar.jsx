@@ -58,14 +58,6 @@ const IndexPage = () => {
   const submitBarName = async (e) => {
     e.preventDefault();
 
-    // creates random bar name.
-    // const name = await RandomBarGen();
-    // const randomName = `The ${name.join(' ')}`;
-
-    // checks to see if a bar name was entered and substitutes
-    // a random name if barName is an empty string.
-    // const barNameToSubmit = !barName.length ? randomName : barName;
-
     if (!barName.length) {
       setBarNamePlaceholder('A Bar Name is Requied');
       setNameCheck('');
@@ -79,6 +71,7 @@ const IndexPage = () => {
         setBarNamePlaceholder('Bar Name');
         setPasswordPlaceholder('Bar Password');
       }
+
       const setLocalData = (localKey, localValue) => {
         const currentDate = new Date();
         const item = {
