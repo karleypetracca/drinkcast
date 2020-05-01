@@ -125,7 +125,6 @@ const IndexPage = () => {
         <Form onSubmit={(e) => submitBarName(e)}>
           <h1>Create New Bar</h1>
           <div>{nameCheck}</div>
-
           <Input
             name="barName"
             type="text"
@@ -134,8 +133,15 @@ const IndexPage = () => {
             onChange={(e) => setBarName(e.target.value)}
             isRequired="true"
           />
+          <Button
+            url="#"
+            className="random"
+            type="button"
+            action={(e) => randomNameHandler(e)}
+          >
+            Get Random Bar Name
+          </Button>
           <div>{passwordCheck}</div>
-
           <Input
             type="password"
             name="password"
@@ -156,14 +162,6 @@ const IndexPage = () => {
             type="submit"
           >
             Create
-          </Button>
-          <Button
-            url="#"
-            className="random"
-            type="button"
-            action={(e) => randomNameHandler(e)}
-          >
-            Get Random Bar Name
           </Button>
         </Form>
       </FormDiv>
