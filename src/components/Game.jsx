@@ -12,8 +12,12 @@ const GameStyled = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: none;
+  background-color: var(--brownFaded);
   padding: 10px;
+  width: 600px;
+  height: 500px;
+  border-radius: 10px;
+  margin: 1rem
   
   h1 {
     margin: 5%;
@@ -43,6 +47,19 @@ const GameStyled = styled.div`
     justify-content: center;
     margin: 5%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5), 0 6px 20px 0 rgba(0,0,0,0.49);
+  }
+  @media screen and (max-width: 600px) {
+    width: 310px;
+    min-height: 600px;
+    
+    h2 {
+      font-size: 17px;
+      min-height: 150px;
+    }
+    
+    .select {
+      width: 275px;
+    }
   }
 `;
 
