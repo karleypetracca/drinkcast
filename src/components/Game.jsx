@@ -12,10 +12,18 @@ const GameStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   background-color: none;
   padding: 10px;
   
+  h1 {
+    margin: 5%;
+  }
+
+  h2 {
+    margin: 2.5%;
+  }
+
   p {
     font-size: 20px;
   }
@@ -30,10 +38,8 @@ const GameStyled = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 0;
-    * {
-      margin: 5px;
-    }
+    margin: ${(props) => (props.roundText ? '2.5%' : '5%')};
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5), 0 6px 20px 0 rgba(0,0,0,0.49);
   }
 `;
 

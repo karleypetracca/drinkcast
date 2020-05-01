@@ -104,24 +104,10 @@ const Bar = () => {
     const loadResp = post(postURL, loadData);
   }, [value.barName]);
 
-  const signalStartGame = (signal) => {
-    setGameStart(signal.data);
-  };
-
-  const signalChangeGame = (signal) => {
-    setGameSelected(signal.data);
-  };
-
-  const signalSetRoundText = (signal) => {
-    setRoundText(signal.data);
-  };
-
-
-
   const sessionEvents = {
-    'signal:startGame': (event) => signalStartGame(event),
-    'signal:changeGame': (event) => signalChangeGame(event),
-    'signal:setRoundText': (event) => signalSetRoundText(event),
+    'signal:startGame': (event) => setGameStart(event.data),
+    'signal:changeGame': (event) => setGameSelected(event.data),
+    'signal:setRoundText': (event) => setRoundText(event.data),
   };
 
   const sendSignal = (type, data) => {
