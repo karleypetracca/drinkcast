@@ -33,6 +33,10 @@ const GameStyled = styled.div`
     color: var(--black);
   }
 
+  button { 
+    margin-top: 80px;
+  }
+
   .selectGame {
     display: flex;
     flex-direction: column;
