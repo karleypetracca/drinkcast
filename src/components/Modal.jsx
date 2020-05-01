@@ -16,9 +16,9 @@ const ModalDiv = styled.div`
 
 const ModalContent = styled.div`
   margin: 30vh auto;
-  padding: 16px;
-  padding-top: 35px;
-  border-radius: 10px;
+  padding: 10px;
+  padding-top: 25px;
+  border-radius: 5px;
   min-width: var(--sm-container);
   max-width: 400px;
   text-align: center;
@@ -26,6 +26,10 @@ const ModalContent = styled.div`
   background-color: var(--secondary);
   position: relative;
   z-index: 10000;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5), 0 6px 20px 0 rgba(0,0,0,0.49);
+  p {
+    margin: 0.6rem auto;
+  }
 `;
 
 const CloseModal = styled.a`

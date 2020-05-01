@@ -16,8 +16,11 @@ const PublisherStyled = styled.div`
   }
 
   .OTPublisherContainer {
+    font-family: 'uomo';
     width: 120px !important;
     height: 100px !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.49);
+    z-index: 5;
   }
 `;
 
@@ -37,13 +40,12 @@ const Publisher = () => {
       {error ? <p>{error}</p> : null}
       <OTPublisher
         style={{
-          name: value.userName,
           nameDisplayMode: 'on',
           width: '100',
           height: '100',
         }}
         properties={{
-          name: value.userName,
+          name: value.userName.toUpperCase(),
           nameDisplayMode: 'on',
           publishAudio: audio,
           publishVideo: video,
