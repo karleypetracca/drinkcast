@@ -2,6 +2,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWindowClose } from "@fortawesome/free-solid-svg-icons";
+
 const ModalDiv = styled.div`
   background-color: rgba(0, 0, 0, 0);
   width: 100vw;
@@ -61,7 +64,7 @@ const Modal = ({ text }) => {
     <ModalDiv onClick={(e) => closeModal(e)}>
       <ModalContent>
         <CloseModal onClick={(e) => closeModal(e)}>
-          <i className="far fa-window-close" />
+          <FontAwesomeIcon icon={faWindowClose} />
         </CloseModal>
         <p>{text}</p>
       </ModalContent>

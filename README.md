@@ -1,9 +1,3 @@
----
-noteId: "79548ee08b0a11eaa02e9d9266c24b2e"
-tags: []
-
----
-
 # drinkcast Client
 
 ## Summary

@@ -20,6 +20,7 @@ const IndexStyled = styled.div`
     position: absolute;
     bottom: 0;
     margin: 0 auto;
+    padding: 10px;
     
     a {
       text-align: center;
@@ -52,9 +53,11 @@ const HeroStyled = styled.div`
   .logo {
     margin: 0 2.3rem;
   }
+
   @media screen and (max-width: 600px) {
     flex-direction: column;
   }
+
   * {
     margin: 5px auto;
   }
@@ -86,7 +89,7 @@ const IndexPage = () => (
     <footer>
       <a href="https://github.com/karleypetracca/drinkcast-client/">
         <p>Made with ♥</p>
-        <p>by Lockett, Josh, Zach and Karley</p>
+        <p>by Lockett, Josh, Zach & Karley</p>
       </a>
     </footer>
   </IndexStyled>

@@ -11,11 +11,17 @@ const WrapperStyled = styled.a`
     background-color: var(--primary);
     width: 110px;
   }
+
   .random {
     margin: 10px auto;
     background-color: var(--primary);
     width: 220px;
   }
+
+  .random:hover {
+    color: var(--primary);
+  }
+
   .create, .join {
     width: 220px;
   }
@@ -46,21 +52,21 @@ const ButtonStyled = styled.button`
 const Button = ({
   url, type, children, action, className,
 }) => (
-  <>
-    {url !== ''
-      ? (
-        <WrapperStyled href={url} type="button" onClick={action || null}>
-          <ButtonStyled className={className} type={type}>
+    <>
+      {url !== ''
+        ? (
+          <WrapperStyled href={url} type="button" onClick={action || null}>
+            <ButtonStyled className={className} type={type}>
+              {children}
+            </ButtonStyled>
+          </WrapperStyled>
+        )
+        : (
+          <ButtonStyled type={type} onClick={action || null} className={className}>
             {children}
           </ButtonStyled>
-        </WrapperStyled>
-      )
-      : (
-        <ButtonStyled type={type} onClick={action || null} className={className}>
-          {children}
-        </ButtonStyled>
-      )}
-  </>
-);
+        )}
+    </>
+  );
 
 export default Button;
