@@ -52,8 +52,8 @@ const RoundText = styled.div`
 
 
 const options = [
-  { value: 'Never Have I Ever', label: 'Never Have I Ever' },
-  { value: 'Would You Rather', label: 'Would You Rather' },
+  { value: 'neverhaveiever', label: 'Never Have I Ever' },
+  { value: 'wouldyourather', label: 'Would You Rather' },
 ];
 
 
@@ -70,7 +70,7 @@ const Game = ({
         ''
       ) : (
           // eslint-disable-next-line react/jsx-one-expression-per-line
-          <h1>{gameSelected} </h1>
+          <h1>{gameSelected === 'neverhaveiever' ? 'Never Have I Ever' : 'Would You Rather'} </h1>
         )}
 
       {gameStart ? (
@@ -83,9 +83,7 @@ const Game = ({
             placeholder="Choose Your Game!"
             value=""
             onChange={(value) => changeGame(value)}
-          >
-            <option value="neverhaveiever">NEVER</option>
-          </Select>
+          />
         </div>
       ) : (
           <Button url="" inputProps={{ readOnly: true }} type="button" action={startGame} className="">
