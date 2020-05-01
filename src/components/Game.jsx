@@ -70,7 +70,10 @@ const Game = ({
         ''
       ) : (
           // eslint-disable-next-line react/jsx-one-expression-per-line
-          <h1>{gameSelected === 'neverhaveiever' ? 'Never Have I Ever' : 'Would You Rather'} </h1>
+          <h1>
+            {gameSelected === 'neverhaveiever' ? 'Never Have I Ever' : ''}
+            {gameSelected === 'wouldyourather' ? 'Would You Rather' : ''}
+          </h1>
         )}
 
       {gameStart ? (
