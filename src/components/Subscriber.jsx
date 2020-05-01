@@ -29,6 +29,20 @@ const SubscriberStyled = styled.div`
     justify-content: center;
     align-items: center;
   }
+  
+  @media screen and (max-width: 600px) {
+    .OTSubscriberContainer {
+      width: 150px !important;
+      height: 150px !important;
+    }
+  }
+  @media screen and (max-width: 340px) {
+    .OTSubscriberContainer {
+      width: 120px !important;
+      height: 120px !important;
+    }
+  }
+  
 `;
 
 const Subscriber = () => {
@@ -42,7 +56,7 @@ const Subscriber = () => {
 
   return (
     <SubscriberStyled>
-      {error ? <div>{error}</div> : null}
+      {error ? <div>Failed to Connect</div> : null}
       <OTSubscriber
         style={{
           width: '100',
