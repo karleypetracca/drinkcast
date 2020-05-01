@@ -130,7 +130,6 @@ const IndexPage = () => {
             type="password"
             name="password"
             placeholder={passwordPlaceholder}
-            value={password}
             onChange={(e) => setPassword(e.target.value)}
             isRequired="true"
           />
