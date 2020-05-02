@@ -10,7 +10,7 @@ import Input from './Input';
 
 const FormDiv = styled.div`
   display: flex;
-  height: var(--main-height);
+  min-height: var(--main-height);
 `;
 
 const Form = styled.form`
@@ -130,7 +130,6 @@ const IndexPage = () => {
             type="password"
             name="password"
             placeholder={passwordPlaceholder}
-            value={password}
             onChange={(e) => setPassword(e.target.value)}
             isRequired="true"
           />
@@ -142,7 +141,11 @@ const IndexPage = () => {
             onChange={(e) => setUserName(e.target.value)}
             isRequired="true"
           />
-          <Button url="" type="submit">
+          <Button
+            className="join"
+            url="#"
+            type="submit"
+          >
             Join
           </Button>
         </Form>

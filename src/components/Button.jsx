@@ -9,6 +9,21 @@ const WrapperStyled = styled.a`
   .nav {
     margin: 0;
     background-color: var(--primary);
+    width: 110px;
+  }
+
+  .random {
+    margin: 10px auto;
+    background-color: var(--primary);
+    width: 220px;
+  }
+
+  .random:hover {
+    color: var(--primary);
+  }
+
+  .create, .join {
+    width: 220px;
   }
 `;
 
@@ -47,7 +62,7 @@ const Button = ({
           </WrapperStyled>
         )
         : (
-          <ButtonStyled type={type} onClick={action || null}>
+          <ButtonStyled type={type} onClick={action || null} className={className}>
             {children}
           </ButtonStyled>
         )}

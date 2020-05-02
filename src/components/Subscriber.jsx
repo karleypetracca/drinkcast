@@ -1,8 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { OTSubscriber } from 'opentok-react';
 import styled from 'styled-components';
 import CheckBox from './CheckBox';
-import StateContext from '../context';
 
 const SubscriberStyled = styled.div`
   display: flex;
@@ -17,25 +16,47 @@ const SubscriberStyled = styled.div`
   }
 
   .OTSubscriberContainer {
+    font-family: 'uomo';
     width: 240px !important;
     height: 200px !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.49);
+    z-index: 5;
+    border-radius: 5px;
   }
+
+  .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .OTSubscriberContainer {
+      width: 150px !important;
+      height: 150px !important;
+    }
+  }
+  @media screen and (max-width: 340px) {
+    .OTSubscriberContainer {
+      width: 120px !important;
+      height: 120px !important;
+    }
+  }
+  
 `;
 
 const Subscriber = () => {
   const [error, setError] = useState(null);
-  const [audio, setAudio] = useState(false);
+  const [audio, setAudio] = useState(true);
   const [video, setVideo] = useState(true);
-  const [value] = useContext(StateContext);
 
   const onError = (err) => {
     setError(`Failed to connect: ${err.message}`);
   };
 
-
   return (
     <SubscriberStyled>
-      {error ? <div>{error}</div> : null}
+      {error ? <div>Failed to Connect</div> : null}
       <OTSubscriber
         style={{
           width: '100',
@@ -47,8 +68,20 @@ const Subscriber = () => {
         }}
         onError={onError}
       />
-      <CheckBox label="Show Video" initialChecked={video} onChange={setVideo} />
-      <CheckBox label="Play Audio" initialChecked={audio} onChange={setAudio} />
+      <div className="controls">
+        <CheckBox
+          type="video"
+          label="Show Video"
+          initialChecked={video}
+          onChange={setVideo}
+        />
+        <CheckBox
+          type="audio"
+          label="Play Audio"
+          initialChecked={audio}
+          onChange={setAudio}
+        />
+      </div>
     </SubscriberStyled>
   );
 };

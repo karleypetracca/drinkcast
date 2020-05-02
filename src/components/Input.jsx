@@ -9,11 +9,11 @@ const InputStyled = styled.input`
   margin: 10px auto;
   text-align: center;
   width: 250px;
-  font-family: inherit;
-  font-size: 1rem;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.1rem;
   font-weight: bold;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.49);
-    z-index: 5;
+  z-index: 5;
 `;
 
 const Input = ({

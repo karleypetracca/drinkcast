@@ -16,7 +16,7 @@ import { get, post, API_URL } from '../utils/apiConn';
 const BarRoom = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - var(--nav-height));
+  min-height: var(--main-height);
   text-align: center;
 
   h1 {
@@ -77,7 +77,7 @@ const Bar = () => {
   const [value] = useContext(StateContext);
   const sessionRef = useRef();
   const [gameStart, setGameStart] = useState(false);
-  const [gameSelected, setGameSelected] = useState(''); // "neverhaveiever" or "wouldyourather"
+  const [gameSelected, setGameSelected] = useState(null); // "neverhaveiever" or "wouldyourather"
   const [roundText, setRoundText] = useState('');
 
   const getLocalData = (localKey) => {
@@ -152,7 +152,22 @@ const Bar = () => {
     console.log(`Failed to connect: ${err.message}`);
   };
 
-  const greeting = `Welcome to ${value.barName}! Pull up a seat ${value.userName}!`;
+  const greeting = (
+    <>
+      <p>
+        Welcome to
+        {' '}
+        {value.barName}
+        !
+      </p>
+      <p>
+        Pull up a seat
+        {' '}
+        {value.userName}
+        !
+      </p>
+    </>
+  );
 
   return (
     <>

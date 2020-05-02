@@ -11,7 +11,7 @@ import Input from './Input';
 
 const FormDiv = styled.div`
   display: flex;
-  height: var(--main-height);
+  min-height: var(--main-height);
 `;
 
 const Form = styled.form`
@@ -44,7 +44,7 @@ const IndexPage = () => {
   const [redirect, setRedirect] = useState(false);
   const [userName, setUserName] = useState('');
   const [barNamePlaceholder, setBarNamePlaceholder] = useState('Bar Name');
-  const [passwordPlaceholder, setPasswordPlaceholder] = useState('Bar Password');
+  const [passwordPlaceholder, setPasswordPlaceholder] = useState('Bar Password - 5 Char Min');
 
   const [value, dispatch] = useContext(StateContext);
 
@@ -57,14 +57,6 @@ const IndexPage = () => {
 
   const submitBarName = async (e) => {
     e.preventDefault();
-
-    // creates random bar name.
-    // const name = await RandomBarGen();
-    // const randomName = `The ${name.join(' ')}`;
-
-    // checks to see if a bar name was entered and substitutes
-    // a random name if barName is an empty string.
-    // const barNameToSubmit = !barName.length ? randomName : barName;
 
     if (!barName.length) {
       setBarNamePlaceholder('A Bar Name is Requied');
@@ -79,6 +71,7 @@ const IndexPage = () => {
         setBarNamePlaceholder('Bar Name');
         setPasswordPlaceholder('Bar Password');
       }
+
       const setLocalData = (localKey, localValue) => {
         const currentDate = new Date();
         const item = {
@@ -105,7 +98,7 @@ const IndexPage = () => {
         setLocalData('sessionId', opentokInfo.newSession);
         setLocalData('token', opentokInfo.token);
         setLocalData('key', opentokInfo.key);
-        setLocalData('barName');
+        setLocalData('barName', barName);
         setLocalData('userName', userName);
 
         setRedirect(true);
@@ -140,11 +133,18 @@ const IndexPage = () => {
             onChange={(e) => setBarName(e.target.value)}
             isRequired="true"
           />
+          <Button
+            url="#"
+            className="random"
+            type="button"
+            action={(e) => randomNameHandler(e)}
+          >
+            Get Random Bar Name
+          </Button>
           <div>{passwordCheck}</div>
           <Input
             type="password"
             name="password"
-            value={password}
             placeholder={passwordPlaceholder}
             onChange={(e) => setPassword(e.target.value)}
             isRequired="true"
@@ -152,13 +152,17 @@ const IndexPage = () => {
           <Input
             name="userName"
             type="text"
-            value={userName}
             placeholder="Your Name"
             onChange={(e) => setUserName(e.target.value)}
             isRequired="true"
           />
-          <Button url="" type="submit">Create</Button>
-          <Button url="" type="button" action={(e) => randomNameHandler(e)}>Get Random Bar Name</Button>
+          <Button
+            url="#"
+            className="create"
+            type="submit"
+          >
+            Create
+          </Button>
         </Form>
       </FormDiv>
     </>
