@@ -38,6 +38,8 @@ const BarRoom = styled.div`
     font-weight: bold;
     font-size: 1.2rem;
     min-height: 40px;
+    max-width: 600px;
+    margin: 0 auto;
   }
 
   .unlock {
@@ -47,7 +49,6 @@ const BarRoom = styled.div`
   .password {
     display: ${(props) => (props.seePassword ? 'block' : 'none')};
   }
-  
 `;
 
 const Display = styled.div`
