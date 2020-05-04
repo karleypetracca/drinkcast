@@ -120,7 +120,7 @@ const Bar = () => {
         if (err) {
           // eslint-disable-next-line no-console
           console.log('signal error: ', err.message);
-        } 
+        }
       },
     );
   };
