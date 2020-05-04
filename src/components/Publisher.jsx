@@ -10,7 +10,7 @@ const PublisherStyled = styled.div`
   align-items: center;
   width: 100%;
   margin: 20px;
-  padding-left: 60px;
+  padding-left: 10px;
 
   @media screen and (max-width: 600px) {
     padding: 0 0.4rem;
@@ -21,7 +21,7 @@ const PublisherStyled = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-left: 55px;
+    padding-left: 45px;
   }
 
   .OTPublisherContainer {
