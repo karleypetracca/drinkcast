@@ -56,6 +56,7 @@ const HeroStyled = styled.div`
 
   @media screen and (max-width: 600px) {
     flex-direction: column;
+    margin: 3vh auto;
   }
 
   * {
