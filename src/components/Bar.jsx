@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable react/prop-types */
 import React, {
   useState, useContext, useEffect, useRef,
@@ -5,6 +7,10 @@ import React, {
 import { OTSession, OTStreams, preloadScript } from 'opentok-react';
 import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faUnlockAlt,
+} from '@fortawesome/free-solid-svg-icons';
 import Publisher from './Publisher';
 import Subscriber from './Subscriber';
 import StateContext from '../context';
@@ -22,6 +28,26 @@ const BarRoom = styled.div`
   h1 {
     margin: 10px auto;
   }
+  
+  .passwordShow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+    min-height: 40px;
+  }
+
+  .unlock {
+    display: ${(props) => (props.seePassword ? 'none' : 'block')};
+  }
+  
+  .password {
+    display: ${(props) => (props.seePassword ? 'block' : 'none')};
+  }
+  
 `;
 
 const Display = styled.div`
@@ -92,6 +118,14 @@ const Bar = () => {
       return '';
     }
     return item.localValue;
+  };
+
+  // eslint-disable-next-line no-unused-vars
+  const [password, setPassword] = useState(getLocalData('password'));
+  const [seePassword, setSeePassword] = useState(false);
+
+  const seePasswordToggle = () => {
+    setSeePassword(!seePassword);
   };
 
   useEffect(() => {
@@ -174,8 +208,22 @@ const Bar = () => {
           : (
             <>
               <Nav />
-              <BarRoom>
-                <h1>{value.barName}</h1>
+              <BarRoom seePassword={seePassword}>
+                <h1>
+                  {value.barName}
+                  {' '}
+                </h1>
+                {password ? (
+                  <div className="passwordShow" title="Show/hide bar password">
+                    <FontAwesomeIcon icon={faUnlockAlt} size="lg" className="unlock" onClick={seePasswordToggle} />
+                    <p className="password" onClick={seePasswordToggle}>
+                      Password:
+                      {' '}
+                      {password}
+                    </p>
+                  </div>
+                ) : ''}
+
                 <Modal text={greeting} />
                 <OTSession
                   ref={sessionRef}

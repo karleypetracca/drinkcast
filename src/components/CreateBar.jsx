@@ -94,7 +94,7 @@ const IndexPage = () => {
           barName,
           userName,
         });
-
+        setLocalData('password', password);
         setLocalData('sessionId', opentokInfo.newSession);
         setLocalData('token', opentokInfo.token);
         setLocalData('key', opentokInfo.key);
