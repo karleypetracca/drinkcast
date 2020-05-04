@@ -66,7 +66,7 @@ const Modal = ({ text }) => {
         <CloseModal onClick={(e) => closeModal(e)}>
           <FontAwesomeIcon icon={faWindowClose} />
         </CloseModal>
-        <p>{text}</p>
+        {text}
       </ModalContent>
     </ModalDiv>
   );

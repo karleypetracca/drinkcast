@@ -41,10 +41,13 @@ Additional features include:
 
 ## Screenshots
 
-<img src="https://i.postimg.cc/VvrvZdqB/index-Desktop.png" width="300px">
-<img src="https://i.postimg.cc/63LVYSST/index-Mobile.png" width="200px">
-<img src="https://i.postimg.cc/nztYKZ36/create-Bar-Mobile.png" width="200px">
-<img src="https://i.postimg.cc/kGTQdS7m/create-Bar-Desktop.png" width="300px">
+<img src="https://i.postimg.cc/QxWMTQrF/Screen-Shot-2020-05-03-at-2-30-55-PM.png" width="300px">
+<img src="https://i.postimg.cc/rytQ2M4D/Screen-Shot-2020-05-04-at-9-36-40-AM.png" width="200px">
+<img src="https://i.postimg.cc/SxFx7nyD/Screen-Shot-2020-05-01-at-1-39-07-PM.png" width="300px">
+<img src="https://i.postimg.cc/bY5Jr64X/Screen-Shot-2020-05-01-at-1-40-07-PM.png" width="200px">
+<img src="https://i.postimg.cc/P5Wr6dJh/Screen-Shot-2020-05-01-at-1-40-35-PM.png" width="300px">
+<img src="https://i.postimg.cc/br4N5J1Y/Screen-Shot-2020-05-01-at-1-41-29-PM.png" width="200px">
+
 
 ## Installation
 
