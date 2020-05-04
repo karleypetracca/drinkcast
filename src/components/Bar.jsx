@@ -30,6 +30,7 @@ const BarRoom = styled.div`
   }
   
   .passwordShow {
+    font-size: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -204,17 +205,18 @@ const Bar = () => {
                 <h1>
                   {value.barName}
                   {' '}
-                  {password ? (
-                    <div className="passwordShow">
-                      <FontAwesomeIcon icon={faUnlockAlt} className="unlock" onClick={seePasswordToggle} />
-                      <p className="password" onClick={seePasswordToggle}>
-                        password:
-                        {' '}
-                        {password}
-                      </p>
-                    </div>
-                  ) : ''}
                 </h1>
+                {password ? (
+                  <div className="passwordShow">
+                    <FontAwesomeIcon icon={faUnlockAlt} className="unlock" onClick={seePasswordToggle} />
+                    <p className="password" onClick={seePasswordToggle}>
+                      password:
+                      {' '}
+                      {password}
+                    </p>
+                  </div>
+                ) : ''}
+
                 <Modal text={greeting} />
                 <OTSession
                   ref={sessionRef}
