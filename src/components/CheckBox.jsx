@@ -74,7 +74,7 @@ const CheckBox = ({
   return (
     <InputStyled>
       <button type="button" onClick={handleClick} title={label}>
-        <FontAwesomeIcon icon={icon} className="arrows" size="3x" />
+        <FontAwesomeIcon icon={icon} size="3x" />
       </button>
     </InputStyled>
   );
