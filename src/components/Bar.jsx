@@ -30,11 +30,16 @@ const BarRoom = styled.div`
   }
   
   .passwordShow {
-    font-size: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+    min-height: 40px;
   }
+
   .unlock {
     display: ${(props) => (props.seePassword ? 'none' : 'block')};
   }
@@ -100,12 +105,6 @@ const Bar = () => {
   const [gameStart, setGameStart] = useState(false);
   const [gameSelected, setGameSelected] = useState(null); // "neverhaveiever" or "wouldyourather"
   const [roundText, setRoundText] = useState('');
-  const [password, setPassword] = useState(localStorage.getItem('password'));
-  const [seePassword, setSeePassword] = useState(false);
-
-  const seePasswordToggle = () => {
-    setSeePassword(!seePassword);
-  };
 
   const getLocalData = (localKey) => {
     const itemStr = localStorage.getItem(localKey);
@@ -119,6 +118,14 @@ const Bar = () => {
       return '';
     }
     return item.localValue;
+  };
+
+  // eslint-disable-next-line no-unused-vars
+  const [password, setPassword] = useState(getLocalData('password'));
+  const [seePassword, setSeePassword] = useState(false);
+
+  const seePasswordToggle = () => {
+    setSeePassword(!seePassword);
   };
 
   useEffect(() => {
@@ -192,7 +199,7 @@ const Bar = () => {
       </p>
     </>
   );
-  console.log(localStorage.getItem('password'));
+
   return (
     <>
       {
@@ -207,10 +214,10 @@ const Bar = () => {
                   {' '}
                 </h1>
                 {password ? (
-                  <div className="passwordShow">
-                    <FontAwesomeIcon icon={faUnlockAlt} className="unlock" onClick={seePasswordToggle} />
+                  <div className="passwordShow" title="Show/hide bar password">
+                    <FontAwesomeIcon icon={faUnlockAlt} size="lg" className="unlock" onClick={seePasswordToggle} />
                     <p className="password" onClick={seePasswordToggle}>
-                      password:
+                      Password:
                       {' '}
                       {password}
                     </p>
