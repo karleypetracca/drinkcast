@@ -120,20 +120,17 @@ const Bar = () => {
         if (err) {
           // eslint-disable-next-line no-console
           console.log('signal error: ', err.message);
-        } else {
-          // eslint-disable-next-line no-console
-          console.log('signal sent');
-        }
+        } 
       },
     );
   };
 
   const startGame = () => {
-    sendSignal('startGame', !gameStart);
+    sendSignal('startGame', `${!gameStart}`);
   };
 
   const changeGame = (game) => {
-    sendSignal('changeGame', game.value);
+    sendSignal('changeGame', `${game.value}`);
     sendSignal('setRoundText', '');
   };
 
@@ -141,9 +138,9 @@ const Bar = () => {
     const getUrl = `${API_URL}api/${gameSelected}`;
     const response = await get(getUrl);
     if (gameSelected === 'neverhaveiever') {
-      sendSignal('setRoundText', response.statement);
+      sendSignal('setRoundText', `${response.statement}`);
     } else {
-      sendSignal('setRoundText', response.question);
+      sendSignal('setRoundText', `${response.question}`);
     }
   };
 
