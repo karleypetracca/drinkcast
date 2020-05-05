@@ -59,11 +59,11 @@ const IndexPage = () => {
     e.preventDefault();
 
     if (!barName.length) {
-      setBarNamePlaceholder('A Bar Name is Requied');
+      setBarNamePlaceholder('A Bar Name is Required');
       setNameCheck('');
     }
     if (!password.length) {
-      setPasswordPlaceholder('A Password is Requied');
+      setPasswordPlaceholder('A Password is Required');
       setPasswordCheck('');
     }
     if (password.length && barName.length) {
