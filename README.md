@@ -26,6 +26,7 @@ Additional features include:
 - Automatic CRON-like database cleaning to remove rooms that have not been used
   in the last 24 hours
 
+<img src="./src/images/drinkcast-fade-30fps.gif">
 
 ## Tools used
 
