@@ -12,7 +12,7 @@ The repo for the API can be viewed on [GitHub](https://github.com/karleypetracca
 ## Features
 
 The drinkcast project uses Node.js, Express and PostgreSQL on the backend and
-React for the frontend. The core video connecton functionality is run with the
+React for the frontend. The core video connection functionality is run with the
 use of the OpenTok API to create unique session IDs, or in our case 'bars', thats
 are available for others to join via the bar's name and password set by a user.
 Upon a successful log in, the user is granted a token that is used to join the
